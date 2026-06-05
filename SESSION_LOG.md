@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Extraordinary Content Standard created
+- Created `docs/verticals/animalfood/animalfood-extraordinary-content-standard.md` — minimum quality bar for every AnimalFood content idea/calendar/reel/carousel/story/ad/caption/AI-prompt/seller-comm/campaign. 20 sections: definition of extraordinary, forbidden list, 18-field required output per idea, 10 strategic pillars, brand pillar mapping (Canfeed/Catfeed/IronPet/Enercan-Enercat/AnimalFood), creative/caption/visual-prompt/seller-comm quality rules, Aranza delegation spec, metrics+learning, design review, trend-intelligence HYPOTHESIS requirement, paid-ads gate, create/improve/reject decision rule, compact review table, weak-vs-strong examples. Enforces: no generic content, every idea needs pillar+metric+evidence/confidence+owner, claims backed by product facts, no publishing/ads without Gonzalo. Links to doctrine, signals log, column map + content/ads/paid systems. Docs only — no tools/scripts/Sheet/tasks changed; enforcement wiring deferred behind scheduler stability.
+
 ### Trend Signals Log created (doctrine roadmap step 2)
 - Created `docs/verticals/animalfood/animalfood-trend-signals-log.md` — normalized memory layer that makes the Trend Intelligence doctrine operational by hand (no tools installed). 14 sections + the 15-column signal table (Date…Status), 10 signal types, confidence/risk/brand-fit scoring, decision values (Use/Adapt/Watch/Reject/Needs data), and agent-usage gates. Seeded 5 honest signals: Catfeed +6% YoY (Needs data), Canfeed overview ~50 views → single-pillar (Adapt), June/winter AR angles (Watch/hypothesis), Enercan/IronPet dark accounts (Needs data), seller promo comms Ailen/WhatsApp (Use for B2B templates). All weak/undated signals labeled Low/Needs validation, not fact. Linked to [[animalfood-trend-intelligence]] + [[animalfood-column-map]]. Docs only — no scripts/Sheet/tasks modified, no credentials read.
 
