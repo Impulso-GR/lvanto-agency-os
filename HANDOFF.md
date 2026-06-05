@@ -23,7 +23,7 @@ Lvanto Agency OS — internal AI infrastructure for a digital marketing agency.
 - WORKFLOW RULE: update the CSV/state only when a row changes status (Catfeed designed/scheduled/published · Canfeed Pilar 1 designed/PSD ready · Animalfood repost approved/scheduled/published). Do not regenerate unnecessarily.
 - GOOGLE SHEETS MCP (2026-06-04): uv 0.11.19 installed (winget); mcp-google-sheets 0.6.3 validated; MCP server "google-sheets" registered in LOCAL scope (C:\Users\Pc\.claude.json — NOT .claude/settings.json) via uvx, env CREDENTIALS_PATH + TOKEN_PATH. OAuth (Desktop client) authorized; token at C:\ClaudeSecrets\animalfood-oauth-token.json (client JSON + token kept out of repo, contents never read). Service-account keys blocked by org policy → OAuth used. Plan/checklist: docs/integrations/. **CONNECTED + LIVE (2026-06-04):** MCP read/write validated end-to-end (read test, write test, Status-cell update To prepare→Ready, cleanup). Google Sheet "AnimalFood Daily Operations" (ID 1kHApdwpoo9zyOoxEdvTr6YnPoH164BAlEN6hZqYUf8U, tab Hoja 1) is now the LIVE operational view: real 21-column header at A1:U1 written + validated; today's 3 carry-over rows mirrored to A2:U4 (Catfeed = To prepare, Canfeed = To prepare, Animalfood institucional = Idea). RULE: Google Sheet = live operational view; local animalfood-daily-sheet-state.md remains BACKUP until scheduling is fully tested; do NOT duplicate rows; update rows only when Status/Result/Learning changes. **OAuth consent screen PUBLISHED TO PRODUCTION (2026-06-04)** — removes the ~7-day testing-mode token expiry.
 - README.md: empty — not filled yet.
-- GitHub: private repository not connected yet — planned for tomorrow.
+- GitHub: **CONNECTED (2026-06-05).** Private repo https://github.com/Impulso-GR/lvanto-agency-os pushed. Initial commit `57f191a` (44 files). `master` tracks `origin/master`; working tree clean. Identity set repo-only (Gonzalo / gonza.mdq25@gmail.com). No secrets/logs/OAuth JSON/tokens/settings.local.json committed (verified pre-stage). Future flow: `git add` → `git commit` → `git push` (no force push, no history rewrite).
 
 ## Task Scheduler — LIVE (2026-06-04)
 3 daily tasks registered + verified (all State=Ready): AnimalFood-DailyPlan-0600 (06:00), AnimalFood-MiddayReview-1500 (15:00), AnimalFood-EndOfDay-2300 (23:00). Each launches its scripts/animalfood-daily-*.ps1 via stable pwsh alias (-NoProfile -ExecutionPolicy Bypass -File). Settings: LogonType=Interactive (run only when logged on), StartWhenAvailable=True (run if missed), WakeToRun=False, AllowStartOnBatteries=True, 30-min limit, IgnoreNew. User=DESKTOP-K1B4K78\Pc. Scripts use scoped google-sheets --allowedTools only (no --dangerously-skip-permissions). **FULLY VALIDATED (2026-06-04):** AnimalFood-MiddayReview-1500 manually launched via Start-ScheduledTask → LastTaskResult=0, returned to Ready, new log written (logs/animalfood-daily-1500_2026-06-04_090146.log), Sheet UNCHANGED (no fabricated writes, no new rows, header intact). Full pipeline Task Scheduler → pwsh → claude headless (scoped tools) → live Sheet confirmed working end-to-end. (06:00 and 23:00 not manually run — same script pattern + verified settings.) Rollback: Disable/Unregister the 3 AnimalFood-* tasks; local CSV/state fallback still works.
@@ -48,12 +48,13 @@ Los 3 scripts viven sobre `01 · CALENDARIO OPERATIVO` (fuente única); `Hoja 1`
 - **ROLLBACK disponible:** `scripts/backup/animalfood-daily-{0600,1500,2300}.ps1.orig` (revierte los prompts a Hoja 1).
 
 ## Next Actions
-1. **PRIMERA CORRIDA REAL MONITOREADA:** dejar que dispare sola la próxima ejecución automática programada (Task Scheduler) sobre `01 · CALENDARIO OPERATIVO`. NO ejecutar manualmente 06:00 ni 23:00. Después, revisar log (`logs/`) + Sheet (filas agregadas, sin duplicados, estados sin avances indebidos, dashboard correcto).
-2. Si falla algo, rollback desde `scripts/backup/*.ps1.orig`.
-3. Connect this folder to a private GitHub repository.
+1. **Fill README.md** (repo overview — top priority next).
+2. **PRIMERA CORRIDA REAL MONITOREADA:** dejar que dispare sola la próxima ejecución automática programada (Task Scheduler) sobre `01 · CALENDARIO OPERATIVO`. NO ejecutar manualmente 06:00 ni 23:00. Después, revisar log (`logs/`) + Sheet (filas agregadas, sin duplicados, estados sin avances indebidos, dashboard correcto).
+3. Si falla algo, rollback desde `scripts/backup/*.ps1.orig`.
 4. Stabilization testing durante varios días contra el Sheet real (confirm table-first output, carry-over chain, y reglas no-duplicado / update-on-status-change).
-5. Test AnimalFood daily planning system: "qué tengo que hacer hoy".
-6. Test workflow from another machine.
+5. Then audit/install browser MCP if useful.
+6. Test AnimalFood daily planning system: "qué tengo que hacer hoy".
+7. Test workflow from another machine (clone and continue).
 
 ## Key Files
 | File | Purpose |

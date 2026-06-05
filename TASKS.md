@@ -10,7 +10,7 @@
 - [x] Create agent: animalfood-growth-strategist.
 - [ ] Create remaining core agency agents.
 - [ ] Create remaining operational skills.
-- [ ] Connect project to a private GitHub repository.
+- [x] Connect project to a private GitHub repository (Impulso-GR/lvanto-agency-os, private; commit 57f191a pushed; master tracks origin/master; no secrets committed).
 - [x] Fill AGENCY_OS.md (master reference + growth engine).
 - [x] Create AnimalFood vertical structure (docs/verticals/animalfood/).
 - [x] Fill AnimalFood systems (content, b2b, launches, daily-operator) + import synthesis.
@@ -47,6 +47,7 @@
 - [ ] PRIMERA CORRIDA REAL MONITOREADA: dejar que la próxima ejecución automática programada (06:00 / 15:00 / 23:00) sea la primera prueba real sobre 01 · CALENDARIO OPERATIVO. NO ejecutar manualmente. Revisar log + Sheet después. Rollback: scripts/backup/*.ps1.orig.
 - [ ] Test AnimalFood daily planning system ("qué tengo que hacer hoy" → animalfood-daily-plan).
 - [ ] Test workflow from another machine (clone and continue).
+- [ ] Audit/install browser MCP if useful (after AnimalFood live workflow is stable).
 
 ## Next Skills to Build
 

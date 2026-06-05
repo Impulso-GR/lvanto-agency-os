@@ -1,5 +1,14 @@
 # Session Log
 
+## 2026-06-05
+
+### CHECKPOINT — GitHub backup live (private repo connected + pushed)
+- **Local Git initialized** in `C:\Proyecto Code\VSCODE` (Git 2.54.0.windows.1). `.claude/settings.local.json` added to `.gitignore` (existing rules untouched: logs, .env, *client_secret*.json, token*.json, *oauth*token*.json).
+- **Pre-stage safety audit PASSED:** `git status --ignored` + `git check-ignore` confirmed `.claude/settings.local.json` and all `logs/*.log` excluded. Keyword scan (secret/oauth/token/client_secret/ClaudeSecrets) found only documentation mentions — no real credential values; actual secrets stay in `C:\ClaudeSecrets\` (contents never read).
+- **Initial commit:** `57f191a` "Initial commit: Lvanto Agency OS" — 44 files, 3662 insertions. Identity set repo-only (Gonzalo / gonza.mdq25@gmail.com). No secrets, logs, OAuth JSON, tokens or settings.local.json committed.
+- **Remote connected + pushed:** `origin` = https://github.com/Impulso-GR/lvanto-agency-os.git (private). `git push -u origin master` succeeded; `master` tracks `origin/master`; working tree clean. No force push, no history rewrite.
+- **Next priorities:** (1) Fill README.md; (2) stabilize AnimalFood live workflow over several days (real scheduled runs vs Sheet); (3) then audit/install browser MCP if useful.
+
 ## 2026-06-04
 
 ### Cierre de migración: 06:00 + 23:00 aprobados, bug de alertas corregido, TEST limpiado
