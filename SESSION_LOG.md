@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Market & Trend Intelligence doctrine added
+- Created `docs/verticals/animalfood/animalfood-trend-intelligence.md` (doctrine only — no MCPs installed, no tools built, no scraping, agents unchanged). Defines the AnimalFood signal-check layer that must run before content calendars, reels, carousels, stories, ads, campaigns or brand actions. 21 sections: purpose, role in Agency OS, systems/agents fed, 7 signal classes, approved + forbidden sources, per-source roles (Google Trends, RSS, Meta Ads Library, TikTok Creative Center, Playwright/browser, internal performance), brand-fit filter, trend rubric, confidence scoring, signal output schema, calendar + paid-ads gates, Gonzalo/Aranza/System roles, roadmap, safety rules. Core rule: no proposal from old assumptions alone — check current signals or label hypothesis-based. Built on prior research session. Implementation deferred behind workflow stabilization.
+
 ### README.md filled (repo overview)
 - Wrote full `README.md` (14 sections): project name, purpose, current operational status, main systems, AnimalFood Daily Operations, Google Sheets MCP integration, Windows Task Scheduler automation, agents, skills, folder structure, safety rules, how to resume work, git workflow, current next priorities.
 - Documented: private repo Impulso-GR/lvanto-agency-os; Google Sheet = live operational view; local state files = backup/reference; credentials in `C:\ClaudeSecrets\` (never committed/printed); `.claude/settings.local.json` + `logs/*.log` ignored; no ads/publishing/outreach/budget/external actions without Gonzalo approval; never `--dangerously-skip-permissions`. No secrets or token contents exposed.
