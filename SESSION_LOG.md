@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Agency OS Integrity Audit skill created
+- Created `.claude/skills/agency-os-integrity-audit/SKILL.md` — strict read-only QA auditor (never a content generator) to run BEFORE major additions (Browser MCP, new agents/automations, paid-traffic, Trend Signals Log, new clients). Verifies 10 areas: core architecture, agents, skills, AnimalFood vertical, Sheets/live-workflow, scheduler+scripts, security, Git/GitHub, output quality, production-readiness score. Strict scoring (Security + Scheduler weighted; critical blocker caps overall at 5). Fixed output format (executive verdict → module scorecard → blockers → risks → security/automation/strategic reviews → next 5 actions → final go/no-go). Hard rules: never modify files / install / run tasks / read credentials; brutally honest, label uncertainty. Flags naming check (request said "lvanto-cosign"; on disk it's lvanto-copywriting).
+
 ### Guard patch tail — confirmed complete + re-validated
 - Verified `scripts/animalfood-daily-0600.ps1` run/finish tail is already final: captures `$ClaudeExit = $LASTEXITCODE` and writes marker `logs/.animalfood-0600-lastrun.flag` only when `$ClaudeExit -eq 0` (committed in 19a2dcd; no uncommitted changes). Re-ran parse-only validation (`Parser::ParseFile`, NOT executed) = 0 errors. No tasks run, Sheet untouched, no credentials read.
 
