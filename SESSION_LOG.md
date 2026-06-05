@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Trend Intelligence doctrine — confirmed committed
+- Verified `docs/verticals/animalfood/animalfood-trend-intelligence.md` is committed and pushed (origin/master). File unchanged since creation; implementation still deferred behind workflow stabilization. Next build step when ready: the normalized signals-log file, then the RSS pilot.
+
 ### Market & Trend Intelligence doctrine added
 - Created `docs/verticals/animalfood/animalfood-trend-intelligence.md` (doctrine only — no MCPs installed, no tools built, no scraping, agents unchanged). Defines the AnimalFood signal-check layer that must run before content calendars, reels, carousels, stories, ads, campaigns or brand actions. 21 sections: purpose, role in Agency OS, systems/agents fed, 7 signal classes, approved + forbidden sources, per-source roles (Google Trends, RSS, Meta Ads Library, TikTok Creative Center, Playwright/browser, internal performance), brand-fit filter, trend rubric, confidence scoring, signal output schema, calendar + paid-ads gates, Gonzalo/Aranza/System roles, roadmap, safety rules. Core rule: no proposal from old assumptions alone — check current signals or label hypothesis-based. Built on prior research session. Implementation deferred behind workflow stabilization.
 
