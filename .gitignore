@@ -1,0 +1,13 @@
+# Logs from scheduled AnimalFood runs (keep the folder, ignore its contents)
+logs/*
+!logs/.gitkeep
+
+# Secrets — never commit (credentials live OUTSIDE this repo in C:\ClaudeSecrets\)
+.env
+*.env
+*client_secret*.json
+token*.json
+*oauth*token*.json
+
+# Local Claude Code settings (machine-specific, do not commit)
+.claude/settings.local.json

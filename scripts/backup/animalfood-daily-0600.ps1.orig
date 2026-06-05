@@ -1,0 +1,32 @@
+# AnimalFood Daily Workflow - 06:00 MORNING PLAN
+# Runs Claude Code headless against the LIVE Google Sheet via the google-sheets MCP.
+# SAFETY: scoped --allowedTools only. NEVER add --dangerously-skip-permissions.
+# Working directory is forced to the project root so the local-scope MCP + CLAUDE.md load.
+
+$ErrorActionPreference = "Stop"
+
+$ProjectDir = "C:\Proyecto Code\VSCODE"
+$LogDir     = Join-Path $ProjectDir "logs"
+$Stamp      = Get-Date -Format "yyyy-MM-dd_HHmmss"
+$LogFile    = Join-Path $LogDir "animalfood-daily-0600_$Stamp.log"
+
+if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }
+Set-Location $ProjectDir
+
+# Only the google-sheets MCP tools this workflow needs. No file-write or shell tools.
+$AllowedTools = @(
+  "mcp__google-sheets__list_sheets",
+  "mcp__google-sheets__get_sheet_data",
+  "mcp__google-sheets__update_cells",
+  "mcp__google-sheets__batch_update_cells"
+) -join ","
+
+$Prompt = @'
+You are operating the AnimalFood daily workflow. The Google Sheet 1kHApdwpoo9zyOoxEdvTr6YnPoH164BAlEN6hZqYUf8U, tab "Hoja 1", is the LIVE operational view (21-column header at A1:U1). Rules: do NOT duplicate rows (one row per brand/action; match on Date+Brand+Content idea); update existing rows only when Status / Result / Learning / Carry-over action change; never touch the header row; read before you write. Local animalfood-daily-sheet-state.md is backup only. Do not read or print credentials.
+
+TASK (06:00 MORNING PLAN): Read "Hoja 1" (A1:U) via the google-sheets MCP. Carry over rows still pending from prior days. Generate today's plan using the animalfood-daily-plan skill and append only NEW rows below the last used row (no duplicates), setting Status to "To prepare" or "Idea" as appropriate. Then print a one-paragraph summary of what was added or carried over.
+'@
+
+"=== AnimalFood 06:00 MORNING run started $(Get-Date -Format o) ===" | Tee-Object -FilePath $LogFile
+claude -p $Prompt --allowedTools $AllowedTools --add-dir $ProjectDir *>&1 | Tee-Object -FilePath $LogFile -Append
+"=== AnimalFood 06:00 MORNING run finished $(Get-Date -Format o) exit=$LASTEXITCODE ===" | Tee-Object -FilePath $LogFile -Append
