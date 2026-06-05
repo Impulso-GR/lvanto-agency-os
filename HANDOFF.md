@@ -25,8 +25,24 @@ Lvanto Agency OS — internal AI infrastructure for a digital marketing agency.
 - README.md: empty — not filled yet.
 - GitHub: **CONNECTED (2026-06-05).** Private repo https://github.com/Impulso-GR/lvanto-agency-os pushed. Initial commit `57f191a` (44 files). `master` tracks `origin/master`; working tree clean. Identity set repo-only (Gonzalo / gonza.mdq25@gmail.com). No secrets/logs/OAuth JSON/tokens/settings.local.json committed (verified pre-stage). Future flow: `git add` → `git commit` → `git push` (no force push, no history rewrite).
 
-## Task Scheduler — LIVE (2026-06-04)
-3 daily tasks registered + verified (all State=Ready): AnimalFood-DailyPlan-0600 (06:00), AnimalFood-MiddayReview-1500 (15:00), AnimalFood-EndOfDay-2300 (23:00). Each launches its scripts/animalfood-daily-*.ps1 via stable pwsh alias (-NoProfile -ExecutionPolicy Bypass -File). Settings: LogonType=Interactive (run only when logged on), StartWhenAvailable=True (run if missed), WakeToRun=False, AllowStartOnBatteries=True, 30-min limit, IgnoreNew. User=DESKTOP-K1B4K78\Pc. Scripts use scoped google-sheets --allowedTools only (no --dangerously-skip-permissions). **FULLY VALIDATED (2026-06-04):** AnimalFood-MiddayReview-1500 manually launched via Start-ScheduledTask → LastTaskResult=0, returned to Ready, new log written (logs/animalfood-daily-1500_2026-06-04_090146.log), Sheet UNCHANGED (no fabricated writes, no new rows, header intact). Full pipeline Task Scheduler → pwsh → claude headless (scoped tools) → live Sheet confirmed working end-to-end. (06:00 and 23:00 not manually run — same script pattern + verified settings.) Rollback: Disable/Unregister the 3 AnimalFood-* tasks; local CSV/state fallback still works.
+## Task Scheduler — PARTIALLY VALIDATED (updated 2026-06-05)
+3 daily tasks registered (all State=Ready): AnimalFood-DailyPlan-0600 (06:00), AnimalFood-MiddayReview-1500 (15:00), AnimalFood-EndOfDay-2300 (23:00). Each launches its scripts/animalfood-daily-*.ps1 via stable pwsh alias (-NoProfile -ExecutionPolicy Bypass -File). Settings: LogonType=Interactive (run only when logged on), StartWhenAvailable=True (run if missed), WakeToRun=False, AllowStartOnBatteries=True, 30-min limit, IgnoreNew. User=DESKTOP-K1B4K78\Pc. Scripts use scoped google-sheets --allowedTools only (no --dangerously-skip-permissions). Rollback: Disable/Unregister the 3 AnimalFood-* tasks; local CSV/state fallback still works.
+
+**VALIDATION STATUS (NOT fully validated — corrected 2026-06-05 after integrity audit):**
+- ✅ **1500 — VALIDATED in real scheduled production.** Recovered via run-if-missed on 2026-06-05 at 18:42 (StartWhenAvailable caught the missed 15:00), LastTaskResult=0, returned to Ready, new log written (logs/animalfood-daily-1500_2026-06-05_184227.log). State-change guard held: read 01, no signal → changed nothing, no rows added, header intact, Sheet consistent.
+- ✅ **2300 — VALIDATED.** Ran on time 2026-06-04 23:00, LastTaskResult=0, log written.
+- ❌ **0600 — NOT yet validated in production.** LastRunTime=30/11/1999, LastTaskResult=267011 (`SCHED_S_TASK_HAS_NOT_RUN`): the morning task has **never executed once**. Config is identical to the working 1500 (only hour + script differ); root cause is environmental — PC unavailable/not-logged-on at 06:00 + StartWhenAvailable catch-up recovering only the most-recent missed run (1500), not the older 0600. The 06:00 engine is the one that ADDS the day's rows (carry-over + new), so until it runs the daily workflow is effectively 2/3 operational.
+
+**0600 once-per-day guard (applied 2026-06-05, commit 19a2dcd; parse-validated, NOT yet exercised in production):**
+- Marker file `logs/.animalfood-0600-lastrun.flag` holds the last successful run date (yyyy-MM-dd, invariant format).
+- Marker is written **only when claude exits 0** → a failed 06:00 leaves no marker and stays retryable by a future catch-up trigger.
+- `-Force` switch available to override the guard for a manual re-run.
+- Purpose: make a future Capa 3 AtLogOn catch-up trigger safe from double-runs (no duplicate morning plan for the same date).
+
+**Remediation layers (status):**
+- ✅ **Capa 1 — operational telemetry ENABLED** (2026-06-05, commit fe0719e): `Microsoft-Windows-TaskScheduler/Operational` log turned on (was OFF). Future runs now leave per-run history.
+- ⏸️ **Capa 2 — WakeToRun: NOT applied** (proposed only).
+- ⏸️ **Capa 3 — AtLogOn catch-up trigger: NOT applied** (proposed only; guard is in place to make it safe).
 
 ## Google Sheet — DASHBOARD OPERATIVO (2026-06-04)
 El Sheet 1kHApd…Uf8U pasó de tabla plana a sistema de 10 pestañas (modo ADITIVO — Hoja 1 quedó INTACTA). Pestañas: 00 DASHBOARD · 01 CALENDARIO OPERATIVO (17 cols) · 02 PRODUCCIÓN (checkboxes) · 03 BANCO DE CONTENIDOS · 04 PROMOCIONES B2B · 05 MÉTRICAS · 06 ARANZA-TAREAS CM · 07 LÍNEAS DE PRODUCTO · 08 UGC-COMUNIDAD · 09 IDEAS DESCARTADAS O REPETIDAS. Cuentas: @animalfoodargentina, @canfeed.ar (Canfeed+Catfeed), @enercan.ar (Enercan+Enercat), @ironpet.ar. DASHBOARD con fórmulas vivas (semana, % listos+barra, pendientes/trabados, nuevas/carry-over, asignación Gonzalo/Aranza, cuenta más activa/atrasada, próximo post, próxima promo, 8 alertas). NOTAS TÉCNICAS: locale es-AR → fórmulas con ";"; formato condicional por grid (no cruza pestañas). Datos solo validados (CF-CAT-001, IronPet Gato 15kg/70, 3 carry-over, tareas Aranza, líneas).
@@ -48,13 +64,14 @@ Los 3 scripts viven sobre `01 · CALENDARIO OPERATIVO` (fuente única); `Hoja 1`
 - **ROLLBACK disponible:** `scripts/backup/animalfood-daily-{0600,1500,2300}.ps1.orig` (revierte los prompts a Hoja 1).
 
 ## Next Actions
-1. **Fill README.md** (repo overview — top priority next).
-2. **PRIMERA CORRIDA REAL MONITOREADA:** dejar que dispare sola la próxima ejecución automática programada (Task Scheduler) sobre `01 · CALENDARIO OPERATIVO`. NO ejecutar manualmente 06:00 ni 23:00. Después, revisar log (`logs/`) + Sheet (filas agregadas, sin duplicados, estados sin avances indebidos, dashboard correcto).
-3. Si falla algo, rollback desde `scripts/backup/*.ps1.orig`.
+1. **OBSERVE THE PASSIVE 0600 RUN (2026-06-06 06:00) — top priority.** Let the 06:00 task fire on its own; do NOT run it manually. Then check the now-enabled `Microsoft-Windows-TaskScheduler/Operational` log + `logs/` (new 0600 log + marker `logs/.animalfood-0600-lastrun.flag`) + Sheet `01` (carry-over + new rows added, no duplicates, no undue Estado advances).
+2. **If 0600 fails again:** decide remediation — **Capa 2 (WakeToRun)** if the PC is suspended at 06:00, and/or **Capa 3 (AtLogOn catch-up trigger)** if the PC is off/late-on. The once-per-day guard already makes Capa 3 safe from double-runs. (PC state at 06:00 = unknown/varies → use the operational log to determine which applies.)
+3. **Only AFTER scheduler stability** (0600 proven over real runs) continue with **Browser MCP** evaluation/install. Do not stack a new tool on a half-validated automation base.
 4. Stabilization testing durante varios días contra el Sheet real (confirm table-first output, carry-over chain, y reglas no-duplicado / update-on-status-change).
-5. Then audit/install browser MCP if useful.
-6. Test AnimalFood daily planning system: "qué tengo que hacer hoy".
-7. Test workflow from another machine (clone and continue).
+5. Build the Trend Signals Log (doctrine §16 schema) and wire it into the daily-plan flow (makes the trend doctrine non-inert).
+6. Si falla algo, rollback desde `scripts/backup/*.ps1.orig`.
+7. Test AnimalFood daily planning system: "qué tengo que hacer hoy".
+8. Test workflow from another machine (clone and continue).
 
 ## Key Files
 | File | Purpose |

@@ -34,7 +34,10 @@
 - [x] Create wrapper scripts + logs/ + .gitignore (scoped MCP tools; no --dangerously-skip-permissions).
 - [x] Manual test of 15:00 wrapper script (read-only, no Sheet change, clean exit, log written).
 - [x] Windows Task Scheduler (06:00/15:00/23:00) registered + verified (3 tasks Ready; Interactive, run-if-missed, no wake-to-run, on-battery OK).
-- [x] Validate one real scheduled run — AnimalFood-MiddayReview-1500 via Start-ScheduledTask (LastTaskResult=0, new log, Sheet unchanged, correct behavior). Scheduled workflow fully validated.
+- [~] Scheduler validation — PARTIAL (corrected 2026-06-05 after integrity audit):
+  - [x] 1500 validated in real scheduled production (recovered via run-if-missed 2026-06-05 18:42, LastTaskResult=0, new log, no signal → no changes, Sheet consistent).
+  - [x] 2300 validated (ran on time 2026-06-04 23:00, LastTaskResult=0, log written).
+  - [ ] **0600 NOT yet validated in production** — LastRunTime=1999, code 267011 (`task has not yet run`): the morning task has never executed. Root cause environmental (PC unavailable at 06:00 + catch-up recovers only the most-recent missed run). The 06:00 engine adds the day's rows, so workflow is currently 2/3 operational.
 - [x] Reestructurar el Google Sheet como dashboard operativo (10 pestañas + DASHBOARD con KPIs/alertas, datos validados, formato visual). Aditivo: Hoja 1 intacta.
 - [x] Repuntar los 3 scripts 06/15/23 de Hoja 1 → 01 · CALENDARIO OPERATIVO (solo bloque $Prompt; parseo 0 errores; doble fuente resuelta).
 - [x] Backup de rollback de los 3 scripts originales (scripts/backup/*.ps1.orig).
@@ -44,7 +47,12 @@
 - [x] Probar 23:00 de forma AISLADA sobre TEST · CALENDARIO OPERATIVO — EJECUTADO, VERIFICADO y APROBADO por Gonzalo (no avanzó estados, carry-over=Sí solo en filas no terminadas, no escribió métricas, no creó TEST · MÉTRICAS, 05/01 intactos, dashboard real sin cambios).
 - [x] Corregir bug de alertas por filas vacías en el dashboard (00, B30:B33): caption/visual/aprobación/dato pasaron de contar 399/397 filas vacías a contar solo filas reales (guarda Fecha o Cuenta o Pieza ≠ ""; SUMPRODUCT; locale es-AR ;). Verificado: 🔴2/🔴2/🔴2/🟢OK; alertas reales preservadas; sin errores.
 - [x] LIMPIEZA del entorno TEST: pestaña TEST · CALENDARIO OPERATIVO borrada + scripts/test/ eliminado (no se creó TEST · MÉTRICAS). Backups intactos; Hoja 1 sin tocar; Task Scheduler sin tocar.
-- [ ] PRIMERA CORRIDA REAL MONITOREADA: dejar que la próxima ejecución automática programada (06:00 / 15:00 / 23:00) sea la primera prueba real sobre 01 · CALENDARIO OPERATIVO. NO ejecutar manualmente. Revisar log + Sheet después. Rollback: scripts/backup/*.ps1.orig.
+- [x] 0600 once-per-day guard added (commit 19a2dcd; parse-validated 0 errors): marker logs/.animalfood-0600-lastrun.flag, written only on exit 0, -Force override. Makes a future AtLogOn catch-up safe from double-runs. NOT yet exercised in production.
+- [x] Capa 1 — enable Task Scheduler operational telemetry (commit fe0719e; log was OFF → now ON).
+- [ ] **OBSERVE passive 0600 run 2026-06-06 06:00** (do NOT run manually): check Operational log + logs/ (new 0600 log + marker) + Sheet 01 (carry-over + new rows, no duplicates, no undue Estado advances).
+- [ ] If 0600 fails: decide Capa 2 (WakeToRun) and/or Capa 3 (AtLogOn catch-up trigger) based on the Operational log; guard already makes Capa 3 safe.
+- [ ] Only AFTER scheduler stability (0600 proven): continue Browser MCP evaluation/install.
+- [ ] Build Trend Signals Log (doctrine §16 schema) + wire into daily-plan flow (trend doctrine is currently documented-only / inert).
 - [ ] Test AnimalFood daily planning system ("qué tengo que hacer hoy" → animalfood-daily-plan).
 - [ ] Test workflow from another machine (clone and continue).
 - [ ] Audit/install browser MCP if useful (after AnimalFood live workflow is stable).

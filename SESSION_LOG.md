@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Documentation drift fixed — scheduler validation reconciled
+- Integrity audit flagged a critical drift: HANDOFF.md claimed the scheduler was "FULLY VALIDATED" while the 0600 morning task has never run in production. Corrected HANDOFF + TASKS to the truth: **1500 + 2300 validated in real scheduled runs; 0600 NOT yet validated** (LastRunTime=1999, code 267011). Documented the 0600 once-per-day guard (marker logs/.animalfood-0600-lastrun.flag, writes only on exit 0, -Force available) and remediation layers (Capa 1 telemetry ENABLED; Capa 2 WakeToRun + Capa 3 AtLogOn NOT applied). Next Actions reordered: observe passive 2026-06-06 06:00 run → if it fails decide Capa 2/3 → only after scheduler stability continue Browser MCP. Docs only — no scripts/tasks/Sheet modified, no credentials read.
+
 ### Agency OS Integrity Audit skill created
 - Created `.claude/skills/agency-os-integrity-audit/SKILL.md` — strict read-only QA auditor (never a content generator) to run BEFORE major additions (Browser MCP, new agents/automations, paid-traffic, Trend Signals Log, new clients). Verifies 10 areas: core architecture, agents, skills, AnimalFood vertical, Sheets/live-workflow, scheduler+scripts, security, Git/GitHub, output quality, production-readiness score. Strict scoring (Security + Scheduler weighted; critical blocker caps overall at 5). Fixed output format (executive verdict → module scorecard → blockers → risks → security/automation/strategic reviews → next 5 actions → final go/no-go). Hard rules: never modify files / install / run tasks / read credentials; brutally honest, label uncertainty. Flags naming check (request said "lvanto-cosign"; on disk it's lvanto-copywriting).
 
