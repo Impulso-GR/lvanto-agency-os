@@ -3,6 +3,8 @@
 # SAFETY: scoped --allowedTools only. NEVER add --dangerously-skip-permissions.
 # Working directory is forced to the project root so the local-scope MCP + CLAUDE.md load.
 
+param([switch]$Force)   # -Force overrides the once-per-day guard (manual re-run)
+
 $ErrorActionPreference = "Stop"
 
 $ProjectDir = "C:\Proyecto Code\VSCODE"
@@ -12,6 +14,23 @@ $LogFile    = Join-Path $LogDir "animalfood-daily-0600_$Stamp.log"
 
 if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }
 Set-Location $ProjectDir
+
+# --- ONCE-PER-DAY GUARD ---------------------------------------------------
+# Prevents duplicate morning-plan runs when an AtLogOn catch-up trigger (or a
+# manual retry) fires after the 06:00 run already succeeded today.
+# The marker is written ONLY on exit 0 (below), so a FAILED 06:00 leaves no
+# marker and the catch-up is free to retry. Sheet-level Cuenta+Pieza+Fecha
+# dedup in the prompt remains the row-level backstop.
+$Today      = Get-Date -Format "yyyy-MM-dd"     # invariant format (not es-AR locale)
+$MarkerFile = Join-Path $LogDir ".animalfood-0600-lastrun.flag"
+
+if (-not $Force -and (Test-Path $MarkerFile) -and
+    ((Get-Content $MarkerFile -Raw -ErrorAction SilentlyContinue).Trim() -eq $Today)) {
+    "=== AnimalFood 06:00 SKIPPED $(Get-Date -Format o): already ran today ($Today); use -Force to override ===" |
+        Tee-Object -FilePath $LogFile
+    exit 0
+}
+# --------------------------------------------------------------------------
 
 # Only the google-sheets MCP tools this workflow needs. No file-write or shell tools.
 $AllowedTools = @(
@@ -29,4 +48,8 @@ TASK (06:00 PLAN): Read "01 · CALENDARIO OPERATIVO" (A1:Q). (1) CARRY-OVER: any
 
 "=== AnimalFood 06:00 MORNING run started $(Get-Date -Format o) ===" | Tee-Object -FilePath $LogFile
 claude -p $Prompt --allowedTools $AllowedTools --add-dir $ProjectDir *>&1 | Tee-Object -FilePath $LogFile -Append
-"=== AnimalFood 06:00 MORNING run finished $(Get-Date -Format o) exit=$LASTEXITCODE ===" | Tee-Object -FilePath $LogFile -Append
+$ClaudeExit = $LASTEXITCODE
+"=== AnimalFood 06:00 MORNING run finished $(Get-Date -Format o) exit=$ClaudeExit ===" | Tee-Object -FilePath $LogFile -Append
+
+# Mark today as done ONLY on success, so failures stay retryable by the catch-up trigger.
+if ($ClaudeExit -eq 0) { $Today | Set-Content -Path $MarkerFile -NoNewline -Encoding ascii }

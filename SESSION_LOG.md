@@ -2,6 +2,10 @@
 
 ## 2026-06-05
 
+### Once-per-day guard added to 06:00 morning workflow
+- Patched `scripts/animalfood-daily-0600.ps1` with a once-per-day guard (prep for the future AtLogOn catch-up trigger). Added `param([switch]$Force)`; marker file `logs/.animalfood-0600-lastrun.flag` holds the last *successful* run date (`yyyy-MM-dd`, invariant format). If marker == today and no `-Force` → logs SKIPPED and `exit 0`. Marker written ONLY when `claude` exits 0, so a failed 06:00 stays retryable by catch-up. Sheet-level Cuenta+Pieza+Fecha dedup in the prompt remains the row-level backstop.
+- Validation: parse-only (`Parser::ParseFile`, NOT executed) = **0 errors**. Confirmed scoped `--allowedTools` preserved, NO `--dangerously-skip-permissions` (only in the safety comment), marker path inside `logs/`, marker write gated on exit 0. Sheet untouched, no tasks modified/run, no credentials read. Apply this guard BEFORE attaching Capa 3 AtLogOn.
+
 ### Scheduler diagnosis + Capa 1 telemetry enabled
 - Diagnosed `AnimalFood-DailyPlan-0600`: never ran (LastRunTime 1999, code 267011). Config is identical to the working 1500 task (same LogonType=Interactive, StartWhenAvailable, settings) — only hour + script differ; script already validated in prior isolated test. Root cause: PC unavailable at 06:00 + StartWhenAvailable catch-up recovered the 15:00 run (18:42 today) but not the older 06:00 one. Confirmed via read-only Get-ScheduledTaskInfo + full task definition compare. Sheet `01` consistent (only 2026-06-04 rows; 0600 is the only script that adds daily rows → explains no Friday rows). Today's only run: 1500 recovered late (exit 0, no changes, state-change guard held). 2300 ran on time yesterday.
 - **Capa 1 applied:** enabled `Microsoft-Windows-TaskScheduler/Operational` log (`wevtutil set-log … /enabled:true`, exit 0, IsEnabled=True) — it was OFF, so prior runs had no per-run telemetry. Capa 2 (WakeToRun) and Capa 3 (AtLogOn catch-up trigger) proposed but NOT applied. No tasks/scripts/Sheet modified. Next: observe passive 6/6 06:00 run in the new log before deciding Capa 2/3.
