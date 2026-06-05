@@ -19,7 +19,65 @@ When Gonzalo asks **"qué tengo que hacer hoy"**, **"qué contenido toca hoy"**,
 - `docs/verticals/animalfood/animalfood-paid-traffic-system.md`
 - `docs/verticals/animalfood/animalfood-daily-operator.md`
 - `docs/verticals/animalfood/animalfood-content-log.md` (anti-repetición — do not repeat concepts/angles/images)
+- **STRATEGIC LAYER (read + apply before planning):**
+  - `docs/verticals/animalfood/animalfood-trend-intelligence.md` (signal-check doctrine + gates)
+  - `docs/verticals/animalfood/animalfood-trend-signals-log.md` (current signals — read before proposing anything)
+  - `docs/verticals/animalfood/animalfood-extraordinary-content-standard.md` (minimum quality bar + required fields)
+  - `docs/verticals/animalfood/animalfood-column-map.md` (canonical schema + dedup key for Sheet writes)
+  - `docs/verticals/animalfood/animalfood-operations-log.md` (what was acted on + outcomes)
 - `TASKS.md`, `HANDOFF.md`
+
+## Read First Rule (MANDATORY pre-flight before any output)
+
+Before suggesting any content, calendar, campaign, reel, carousel, story, ad creative, or daily plan, the skill MUST check, in order:
+1. **Live Google Sheet** (`01 · CALENDARIO OPERATIVO`) — current real state;
+2. **Current pending work** (carry-over / unfinished high-impact actions);
+3. **Trend signals log** (`animalfood-trend-signals-log.md`) — current signals + confidence;
+4. **Extraordinary content standard** (`animalfood-extraordinary-content-standard.md`) — quality bar + required fields;
+5. **Column map** (`animalfood-column-map.md`) — schema + dedup key for any Sheet proposal;
+6. **Operations log** (`animalfood-operations-log.md`) — what has already been acted on.
+
+If any of these cannot be read/confirmed, say so explicitly and treat the missing input as a gap (do not assume it passes).
+
+## Non-generic Output Rule (MANDATORY per proposed item)
+
+Every proposed content/action MUST include all of:
+- **Brand**
+- **Strategic pillar**
+- **Business objective**
+- **Format**
+- **Concept**
+- **Hook**
+- **Caption angle**
+- **Visual direction / prompt** (if relevant)
+- **Owner** (Gonzalo / Aranza / Both)
+- **Metric**
+- **Evidence / Confidence**
+- **Risk**
+- **Next action**
+
+A proposal missing any of these is incomplete and must be improved or rejected (per the extraordinary-content-standard §16 create/improve/reject rule). No generic ideas.
+
+## Hypothesis Labeling Rule (MANDATORY)
+
+If **no** current trend, performance, seller/client feedback, or internal metric supports a recommendation, label it explicitly as **HYPOTHESIS** and state **what signal is missing** to validate it. Add a corresponding *Needs data* row to `animalfood-trend-signals-log.md` when relevant. Never present an unsupported recommendation as validated fact.
+
+## Column-map Compliance Rule (MANDATORY for Sheet proposals)
+
+Any Sheet update proposal MUST respect `animalfood-column-map.md`:
+- map the 16-col human plan to the 17-col `01 · CALENDARIO OPERATIVO` schema (fold non-mapped fields into `Q · Observaciones`);
+- derive `Cuenta(D)` from the account map; split `Brand` → `Marca/línea(E)`;
+- **use the dedup key `Fecha + Cuenta + Pieza/contenido`** — never append a row that already exists for today; UPDATE instead.
+
+## No Full Calendar Without Signals Rule (MANDATORY)
+
+Do NOT generate a full weekly/monthly calendar unless at least one of:
+- current **signals** exist (in the signals log);
+- recent **metrics** exist (`05 · MÉTRICAS` / performance data);
+- **Gonzalo provided references**;
+- **or the output is explicitly labeled hypothesis-based**.
+
+A full calendar built on none of the above, without the hypothesis label, is not allowed (per trend-intelligence §17 Calendar Creation Gate).
 
 ## Sheet State Rule (read state before planning)
 

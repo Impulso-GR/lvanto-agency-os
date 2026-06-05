@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Strategic layer WIRED into animalfood-daily-plan skill
+- Wired the previously-inert strategic docs into `.claude/skills/animalfood-daily-plan/SKILL.md` (addresses the Opus audit's #1 architectural debt: docs existed but no consumer read them). Added trend-intelligence, trend-signals-log, extraordinary-content-standard, column-map, operations-log to "Read First". Added 5 mandatory rules: (1) Read First pre-flight (live Sheet → pending work → signals log → content standard → column map → operations log); (2) Non-generic Output (13 required fields per proposed item); (3) Hypothesis Labeling (label HYPOTHESIS + name missing signal when unsupported); (4) Column-map Compliance (map 16→17 cols, dedup key Fecha+Cuenta+Pieza/contenido); (5) No Full Calendar Without Signals (gate). Skill-only change — no scripts/Sheet/tasks modified, no tools installed, no credentials read. Layer is now operational, not inert.
+
 ### Extraordinary Content Standard created
 - Created `docs/verticals/animalfood/animalfood-extraordinary-content-standard.md` — minimum quality bar for every AnimalFood content idea/calendar/reel/carousel/story/ad/caption/AI-prompt/seller-comm/campaign. 20 sections: definition of extraordinary, forbidden list, 18-field required output per idea, 10 strategic pillars, brand pillar mapping (Canfeed/Catfeed/IronPet/Enercan-Enercat/AnimalFood), creative/caption/visual-prompt/seller-comm quality rules, Aranza delegation spec, metrics+learning, design review, trend-intelligence HYPOTHESIS requirement, paid-ads gate, create/improve/reject decision rule, compact review table, weak-vs-strong examples. Enforces: no generic content, every idea needs pillar+metric+evidence/confidence+owner, claims backed by product facts, no publishing/ads without Gonzalo. Links to doctrine, signals log, column map + content/ads/paid systems. Docs only — no tools/scripts/Sheet/tasks changed; enforcement wiring deferred behind scheduler stability.
 
