@@ -2,6 +2,10 @@
 
 ## 2026-06-05
 
+### Scheduler diagnosis + Capa 1 telemetry enabled
+- Diagnosed `AnimalFood-DailyPlan-0600`: never ran (LastRunTime 1999, code 267011). Config is identical to the working 1500 task (same LogonType=Interactive, StartWhenAvailable, settings) — only hour + script differ; script already validated in prior isolated test. Root cause: PC unavailable at 06:00 + StartWhenAvailable catch-up recovered the 15:00 run (18:42 today) but not the older 06:00 one. Confirmed via read-only Get-ScheduledTaskInfo + full task definition compare. Sheet `01` consistent (only 2026-06-04 rows; 0600 is the only script that adds daily rows → explains no Friday rows). Today's only run: 1500 recovered late (exit 0, no changes, state-change guard held). 2300 ran on time yesterday.
+- **Capa 1 applied:** enabled `Microsoft-Windows-TaskScheduler/Operational` log (`wevtutil set-log … /enabled:true`, exit 0, IsEnabled=True) — it was OFF, so prior runs had no per-run telemetry. Capa 2 (WakeToRun) and Capa 3 (AtLogOn catch-up trigger) proposed but NOT applied. No tasks/scripts/Sheet modified. Next: observe passive 6/6 06:00 run in the new log before deciding Capa 2/3.
+
 ### Trend Intelligence doctrine — confirmed committed
 - Verified `docs/verticals/animalfood/animalfood-trend-intelligence.md` is committed and pushed (origin/master). File unchanged since creation; implementation still deferred behind workflow stabilization. Next build step when ready: the normalized signals-log file, then the RSS pilot.
 
