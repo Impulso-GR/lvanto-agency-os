@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Canonical column map created (closes audit schema-drift risk)
+- Created `docs/verticals/animalfood/animalfood-column-map.md` — single source of truth mapping the 16-col daily-plan output ↔ 17-col live `01 · CALENDARIO OPERATIVO` (canonical) ↔ 21-col legacy `Hoja 1` ↔ 12-col `05 · MÉTRICAS` ↔ local state file. 16 sections incl. full field-mapping table, dedup key (Fecha+Cuenta+Pieza/contenido), Estado vocabulary mapping (Spanish canonical ↔ English state file), carry-over rules, metrics/Result/Learning rules, script + agent usage rules. Key documented nuance: human-plan fields without a dedicated `01` column (Hook/CTA/Community/Paid/Asset/Business impact/Next action/Evidence) fold into Observaciones(Q); "Brand" splits into Cuenta(D)+Marca(E) via the account map. UNCERTAIN items (En revisión English equiv, 05 dedup key, whether to add Evidence column to `01`) flagged, not invented. Rule: any new tab/CSV must be added here before automation writes to it. Docs only — no scripts/Sheet/tasks modified.
+
 ### Documentation drift fixed — scheduler validation reconciled
 - Integrity audit flagged a critical drift: HANDOFF.md claimed the scheduler was "FULLY VALIDATED" while the 0600 morning task has never run in production. Corrected HANDOFF + TASKS to the truth: **1500 + 2300 validated in real scheduled runs; 0600 NOT yet validated** (LastRunTime=1999, code 267011). Documented the 0600 once-per-day guard (marker logs/.animalfood-0600-lastrun.flag, writes only on exit 0, -Force available) and remediation layers (Capa 1 telemetry ENABLED; Capa 2 WakeToRun + Capa 3 AtLogOn NOT applied). Next Actions reordered: observe passive 2026-06-06 06:00 run → if it fails decide Capa 2/3 → only after scheduler stability continue Browser MCP. Docs only — no scripts/tasks/Sheet modified, no credentials read.
 
