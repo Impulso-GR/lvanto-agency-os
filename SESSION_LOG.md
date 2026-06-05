@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Guard patch tail — confirmed complete + re-validated
+- Verified `scripts/animalfood-daily-0600.ps1` run/finish tail is already final: captures `$ClaudeExit = $LASTEXITCODE` and writes marker `logs/.animalfood-0600-lastrun.flag` only when `$ClaudeExit -eq 0` (committed in 19a2dcd; no uncommitted changes). Re-ran parse-only validation (`Parser::ParseFile`, NOT executed) = 0 errors. No tasks run, Sheet untouched, no credentials read.
+
 ### Once-per-day guard added to 06:00 morning workflow
 - Patched `scripts/animalfood-daily-0600.ps1` with a once-per-day guard (prep for the future AtLogOn catch-up trigger). Added `param([switch]$Force)`; marker file `logs/.animalfood-0600-lastrun.flag` holds the last *successful* run date (`yyyy-MM-dd`, invariant format). If marker == today and no `-Force` → logs SKIPPED and `exit 0`. Marker written ONLY when `claude` exits 0, so a failed 06:00 stays retryable by catch-up. Sheet-level Cuenta+Pieza+Fecha dedup in the prompt remains the row-level backstop.
 - Validation: parse-only (`Parser::ParseFile`, NOT executed) = **0 errors**. Confirmed scoped `--allowedTools` preserved, NO `--dangerously-skip-permissions` (only in the safety comment), marker path inside `logs/`, marker write gated on exit 0. Sheet untouched, no tasks modified/run, no credentials read. Apply this guard BEFORE attaching Capa 3 AtLogOn.
