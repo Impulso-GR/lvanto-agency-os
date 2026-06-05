@@ -2,6 +2,9 @@
 
 ## 2026-06-05
 
+### Trend Signals Log created (doctrine roadmap step 2)
+- Created `docs/verticals/animalfood/animalfood-trend-signals-log.md` — normalized memory layer that makes the Trend Intelligence doctrine operational by hand (no tools installed). 14 sections + the 15-column signal table (Date…Status), 10 signal types, confidence/risk/brand-fit scoring, decision values (Use/Adapt/Watch/Reject/Needs data), and agent-usage gates. Seeded 5 honest signals: Catfeed +6% YoY (Needs data), Canfeed overview ~50 views → single-pillar (Adapt), June/winter AR angles (Watch/hypothesis), Enercan/IronPet dark accounts (Needs data), seller promo comms Ailen/WhatsApp (Use for B2B templates). All weak/undated signals labeled Low/Needs validation, not fact. Linked to [[animalfood-trend-intelligence]] + [[animalfood-column-map]]. Docs only — no scripts/Sheet/tasks modified, no credentials read.
+
 ### Canonical column map created (closes audit schema-drift risk)
 - Created `docs/verticals/animalfood/animalfood-column-map.md` — single source of truth mapping the 16-col daily-plan output ↔ 17-col live `01 · CALENDARIO OPERATIVO` (canonical) ↔ 21-col legacy `Hoja 1` ↔ 12-col `05 · MÉTRICAS` ↔ local state file. 16 sections incl. full field-mapping table, dedup key (Fecha+Cuenta+Pieza/contenido), Estado vocabulary mapping (Spanish canonical ↔ English state file), carry-over rules, metrics/Result/Learning rules, script + agent usage rules. Key documented nuance: human-plan fields without a dedicated `01` column (Hook/CTA/Community/Paid/Asset/Business impact/Next action/Evidence) fold into Observaciones(Q); "Brand" splits into Cuenta(D)+Marca(E) via the account map. UNCERTAIN items (En revisión English equiv, 05 dedup key, whether to add Evidence column to `01`) flagged, not invented. Rule: any new tab/CSV must be added here before automation writes to it. Docs only — no scripts/Sheet/tasks modified.
 
