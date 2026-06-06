@@ -53,6 +53,13 @@
 - [ ] If 0600 fails: decide Capa 2 (WakeToRun) and/or Capa 3 (AtLogOn catch-up trigger) based on the Operational log; guard already makes Capa 3 safe.
 - [ ] Only AFTER scheduler stability (0600 proven): continue Browser MCP evaluation/install.
 - [ ] Build Trend Signals Log (doctrine §16 schema) + wire into daily-plan flow (trend doctrine is currently documented-only / inert).
+- [~] **`animalfood-competitor-research` skill — conceptually APPROVED, DEFERRED** (design proposal done; NOT created):
+  - Purpose: competitor/reference research PRODUCER that feeds `animalfood-trend-signals-log.md` (separate from daily-plan = consumer; obeys extraordinary-content-standard = rulebook).
+  - Inputs: Gonzalo-provided competitor handles / URLs / screenshots · public Meta Ads Library findings · public TikTok Creative Center observations · Google Trends/RSS findings · manual Gonzalo/Aranza observations · own metrics when available.
+  - Output (14 fields): competitor/reference summary · what they're doing · why it may work · what NOT to copy · AnimalFood adaptation · brand fit · strategic pillar · content opportunity · hook/caption angle · visual direction · risk · evidence/confidence · metric to validate · suggested Trend Signals Log row.
+  - Rules: no unauthorized scraping · no automated likes/follows/comments/DMs/engagement · no copying competitor creative · no publishing/ads without Gonzalo approval · weak evidence = Low confidence · missing data = Needs data · produces content OPPORTUNITIES, not calendars.
+  - **Decision: implement ONLY after the 0600 scheduler is stable, OR if Gonzalo explicitly chooses manual research mode.** Reason: do not add a new producer while the automation base is unproven (Opus audit anti-pattern).
+  - Next future action: create SKILL.md (proposal first) → wire trigger into agency-command-center routing → validate with one real Gonzalo-provided competitor reference end-to-end.
 - [ ] Test AnimalFood daily planning system ("qué tengo que hacer hoy" → animalfood-daily-plan).
 - [ ] Test workflow from another machine (clone and continue).
 - [ ] Audit/install browser MCP if useful (after AnimalFood live workflow is stable).
