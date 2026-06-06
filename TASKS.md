@@ -34,10 +34,11 @@
 - [x] Create wrapper scripts + logs/ + .gitignore (scoped MCP tools; no --dangerously-skip-permissions).
 - [x] Manual test of 15:00 wrapper script (read-only, no Sheet change, clean exit, log written).
 - [x] Windows Task Scheduler (06:00/15:00/23:00) registered + verified (3 tasks Ready; Interactive, run-if-missed, no wake-to-run, on-battery OK).
-- [~] Scheduler validation — PARTIAL (corrected 2026-06-05 after integrity audit):
+- [x] Scheduler validation — VALIDATED (happy path) (updated 2026-06-06):
   - [x] 1500 validated in real scheduled production (recovered via run-if-missed 2026-06-05 18:42, LastTaskResult=0, new log, no signal → no changes, Sheet consistent).
   - [x] 2300 validated (ran on time 2026-06-04 23:00, LastTaskResult=0, log written).
-  - [ ] **0600 NOT yet validated in production** — LastRunTime=1999, code 267011 (`task has not yet run`): the morning task has never executed. Root cause environmental (PC unavailable at 06:00 + catch-up recovers only the most-recent missed run). The 06:00 engine adds the day's rows, so workflow is currently 2/3 operational.
+  - [x] **0600 VALIDATED for PC-on/logged-in happy path (2026-06-06)** — fired auto 06:00:01, clean lifecycle, LastTaskResult=0, NextRun 2026-06-07 06:00; log + marker (2026-06-06) written; wrote rows 5–8 to `01` (3 carry-over + 1 new IronPet), no duplicates, header intact, `Hoja 1` untouched, standards respected.
+  - [ ] **Caveat — reliability when PC is off/suspended at 06:00 is UNPROVEN.** Today worked because PC was on/logged in. AtLogOn (Capa 3) / WakeToRun (Capa 2) remain **optional/future** — apply only if real misses occur. Do not claim absolute scheduler reliability.
 - [x] Reestructurar el Google Sheet como dashboard operativo (10 pestañas + DASHBOARD con KPIs/alertas, datos validados, formato visual). Aditivo: Hoja 1 intacta.
 - [x] Repuntar los 3 scripts 06/15/23 de Hoja 1 → 01 · CALENDARIO OPERATIVO (solo bloque $Prompt; parseo 0 errores; doble fuente resuelta).
 - [x] Backup de rollback de los 3 scripts originales (scripts/backup/*.ps1.orig).
@@ -49,9 +50,10 @@
 - [x] LIMPIEZA del entorno TEST: pestaña TEST · CALENDARIO OPERATIVO borrada + scripts/test/ eliminado (no se creó TEST · MÉTRICAS). Backups intactos; Hoja 1 sin tocar; Task Scheduler sin tocar.
 - [x] 0600 once-per-day guard added (commit 19a2dcd; parse-validated 0 errors): marker logs/.animalfood-0600-lastrun.flag, written only on exit 0, -Force override. Makes a future AtLogOn catch-up safe from double-runs. NOT yet exercised in production.
 - [x] Capa 1 — enable Task Scheduler operational telemetry (commit fe0719e; log was OFF → now ON).
-- [ ] **OBSERVE passive 0600 run 2026-06-06 06:00** (do NOT run manually): check Operational log + logs/ (new 0600 log + marker) + Sheet 01 (carry-over + new rows, no duplicates, no undue Estado advances).
-- [ ] If 0600 fails: decide Capa 2 (WakeToRun) and/or Capa 3 (AtLogOn catch-up trigger) based on the Operational log; guard already makes Capa 3 safe.
-- [ ] Only AFTER scheduler stability (0600 proven): continue Browser MCP evaluation/install.
+- [x] **OBSERVE passive 0600 run 2026-06-06 06:00** — DONE. Fired auto, exit 0, log + marker written, rows 5–8 verified in `01` (no duplicates, header intact, `Hoja 1` untouched, standards respected). 0600 happy path validated.
+- [ ] Observe 2–3 more mornings for consistency; if a miss occurs (PC off/suspended), decide Capa 2 (WakeToRun) and/or Capa 3 (AtLogOn catch-up) — guard already makes Capa 3 safe. Optional/future.
+- [ ] Operational: advance the 3 stuck carry-over pieces (Catfeed/Canfeed/institucional) so the chain stops re-carrying daily; set Estado=Descartado if abandoned.
+- [ ] Browser MCP evaluation now unblocked — prefer lighter Playwright MCP for public reads (agent-browser rejected); sequence after a few more stable mornings.
 - [ ] Build Trend Signals Log (doctrine §16 schema) + wire into daily-plan flow (trend doctrine is currently documented-only / inert).
 - [~] **`animalfood-competitor-research` skill — conceptually APPROVED, DEFERRED** (design proposal done; NOT created):
   - Purpose: competitor/reference research PRODUCER that feeds `animalfood-trend-signals-log.md` (separate from daily-plan = consumer; obeys extraordinary-content-standard = rulebook).
