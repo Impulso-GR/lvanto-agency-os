@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lvanto">
+  <rect width="64" height="64" rx="14" fill="#070707"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="rgba(255,255,255,0.07)"/>
+  <path d="M22 15 V45 H45" fill="none" stroke="#FF6B2B" stroke-width="6" stroke-linecap="square"/>
+  <path d="M25 50 H44" stroke="#C4A35A" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

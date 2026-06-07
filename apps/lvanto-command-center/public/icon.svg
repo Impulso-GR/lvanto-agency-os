@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lvanto Command Center">
+  <rect width="512" height="512" rx="112" fill="#070707"/>
+  <rect x="1" y="1" width="510" height="510" rx="111" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+  <!-- subtle orange glow -->
+  <circle cx="256" cy="232" r="160" fill="#FF6B2B" opacity="0.07"/>
+  <!-- stylized L mark -->
+  <path d="M168 120 V360 H360" fill="none" stroke="#FF6B2B" stroke-width="46" stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- gold strategic accent line -->
+  <path d="M200 396 H352" stroke="#C4A35A" stroke-width="16" stroke-linecap="round"/>
+</svg>

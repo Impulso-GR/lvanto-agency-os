@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #070707;
+  color: #f2efe9;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Thin, premium scrollbars (used by the horizontal task board) */
+.scroll-thin::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl2 border border-hair bg-panel;
+  }
+  .panel-2 {
+    @apply rounded-xl2 border border-hair bg-panel2;
+  }
+  .section-label {
+    @apply text-[11px] font-medium uppercase tracking-[0.14em] text-mute2;
+  }
+  .meta {
+    @apply font-mono text-[11px] text-mute;
+  }
+}
