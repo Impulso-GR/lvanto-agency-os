@@ -6,6 +6,15 @@ const labels: Record<string, string> = {
   brands: 'Brands',
   canfeed: 'Canfeed',
   tasks: 'Tasks',
+  signals: 'Signals',
+  metrics: 'Metrics',
+  notifications: 'Notifications',
+  decisions: 'Decisions',
+  claims: 'Claims Guard',
+  'paid-media': 'Paid Media',
+  reports: 'Reports',
+  'system-health': 'System Health',
+  settings: 'Settings',
 }
 
 function useBreadcrumb(): string[] {

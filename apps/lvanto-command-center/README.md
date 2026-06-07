@@ -27,15 +27,25 @@ npm run build     # type-check + production build
 npm run preview   # serve the production build locally
 ```
 
-## Routes / screens
+## Routes / screens (v0.1 — all sidebar items now navigable)
 | Route | Screen |
 |---|---|
 | `/` | Lvanto Main Dashboard (multi-client overview) |
+| `/clients` | Clients Center (all workspaces) |
 | `/clients/animalfood` | AnimalFood Workspace (9-brand portfolio) |
 | `/clients/animalfood/brands/canfeed` | Canfeed Brand Dashboard (production module + Claims Guard) |
 | `/clients/animalfood/tasks` | Task Board (10-state kanban + selected-task detail panel) |
+| `/signals` | Signal Center |
+| `/metrics` | Metrics Center (honest empty state + manual capture checklist) |
+| `/notifications` | Notification Center (grouped by priority) |
+| `/decisions` | Decision Inbox (visual-only Review/Approve/Defer) |
+| `/claims` | Claims Guard (per-brand allowed/blocked/needs-data) |
+| `/paid-media` | Paid Media / Traficker Center (manual, read-only) |
+| `/reports` | Reports Center (template placeholders) |
+| `/system-health` | System Health (status tiles) |
+| `/settings` | Settings (static, read-only) |
 
-Sidebar links to **Dashboard / Clients / Tasks** are routed. **Signals, Metrics, Notifications, Decisions, Claims Guard, Paid Media, Reports, Settings, System Health** are shown as **"soon"** (disabled) — future phases.
+**Every sidebar item is now routed.** All pages use **static mock data**; all action buttons are **visual only** (except local UI state like the Task Board selection).
 
 ## What is static / mock
 - All data lives in `src/data/mockData.ts` (clients, brands, tasks, signals, alerts, health, activity, Canfeed claims).

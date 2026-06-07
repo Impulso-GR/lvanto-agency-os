@@ -1,9 +1,19 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import Shell from './components/Shell'
 import Dashboard from './pages/Dashboard'
+import Clients from './pages/Clients'
 import AnimalFoodWorkspace from './pages/AnimalFoodWorkspace'
 import CanfeedDashboard from './pages/CanfeedDashboard'
 import TaskBoard from './pages/TaskBoard'
+import Signals from './pages/Signals'
+import Metrics from './pages/Metrics'
+import Notifications from './pages/Notifications'
+import Decisions from './pages/Decisions'
+import Claims from './pages/Claims'
+import PaidMedia from './pages/PaidMedia'
+import Reports from './pages/Reports'
+import SystemHealthPage from './pages/SystemHealthPage'
+import Settings from './pages/Settings'
 
 function NotFound() {
   return (
@@ -25,9 +35,19 @@ export default function App() {
     <Routes>
       <Route element={<Shell />}>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/clients" element={<Clients />} />
         <Route path="/clients/animalfood" element={<AnimalFoodWorkspace />} />
         <Route path="/clients/animalfood/brands/canfeed" element={<CanfeedDashboard />} />
         <Route path="/clients/animalfood/tasks" element={<TaskBoard />} />
+        <Route path="/signals" element={<Signals />} />
+        <Route path="/metrics" element={<Metrics />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/decisions" element={<Decisions />} />
+        <Route path="/claims" element={<Claims />} />
+        <Route path="/paid-media" element={<PaidMedia />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/system-health" element={<SystemHealthPage />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -282,3 +282,294 @@ export const canfeedProductionChecklist = [
   'Export PNGs',
   'Handoff to Aranza',
 ]
+
+// --- Per-brand Claims Guard ------------------------------------------------
+
+export interface BrandClaims {
+  brand: string
+  highlight?: boolean
+  allowed: string[]
+  blocked: string[]
+  needsData: string[]
+}
+
+export const claimsByBrand: BrandClaims[] = [
+  {
+    brand: 'Canfeed',
+    highlight: true,
+    allowed: canfeedClaims.allowed,
+    blocked: canfeedClaims.blocked,
+    needsData: canfeedClaims.needsData,
+  },
+  {
+    brand: 'IronPet',
+    allowed: ['accessible / fair-price positioning', 'community invitation', 'life-stage framing (verify)'],
+    blocked: ['"Canfeed más barato"', 'medical claims', 'shared-plant used to undercut Canfeed'],
+    needsData: ['nutrition specifics'],
+  },
+  {
+    brand: 'Enercan',
+    allowed: ['monoprotein pork + turmeric direction (careful)'],
+    blocked: ['medical / therapeutic claims', 'new wet / pouch / snack'],
+    needsData: ['specific functional outcomes'],
+  },
+  {
+    brand: 'Enercat',
+    allowed: ['"owned feline line" only'],
+    blocked: ['all ingredient / functional claims (do not invent)'],
+    needsData: ['ingredients (until confirmed)'],
+  },
+  {
+    brand: 'Catfeed',
+    allowed: ['general feline-nutrition facts (verify each)', 'clear feline positioning'],
+    blocked: ['"+6% YoY" as fact'],
+    needsData: ['Catfeed-specific product specs'],
+  },
+  {
+    brand: 'AnimalFood',
+    allowed: ['manufacturer credibility', 'family of brands (premium → value)'],
+    blocked: ['fixed B2B prices / margins', 'child-brand specifics', 'implying wet/pouch/snack exists'],
+    needsData: ['per-line product specs'],
+  },
+]
+
+// --- Decisions -------------------------------------------------------------
+
+export interface Decision {
+  id: string
+  title: string
+  why: string
+  owner: string
+  urgency: 'High' | 'Medium' | 'Low'
+  client: string
+  brand: string
+}
+
+export const decisions: Decision[] = [
+  {
+    id: 'd-ironpet',
+    title: 'Approve IronPet community post',
+    why: 'Reactivates a dormant account at near-zero risk.',
+    owner: 'Gonzalo',
+    urgency: 'High',
+    client: 'AnimalFood',
+    brand: 'IronPet',
+  },
+  {
+    id: 'd-catfeed-status',
+    title: 'Confirm Catfeed design status',
+    why: 'Alta carry-over piece — advance or produce.',
+    owner: 'Gonzalo',
+    urgency: 'Medium',
+    client: 'AnimalFood',
+    brand: 'Catfeed',
+  },
+  {
+    id: 'd-enercan',
+    title: 'Set Enercan objective',
+    why: 'Unlocks the approved functional direction.',
+    owner: 'Gonzalo',
+    urgency: 'Medium',
+    client: 'AnimalFood',
+    brand: 'Enercan',
+  },
+  {
+    id: 'd-plus6',
+    title: 'Locate +6% YoY source',
+    why: 'Resolve the hypothesis or discard it; currently constrains Catfeed.',
+    owner: 'Gonzalo',
+    urgency: 'Low',
+    client: 'AnimalFood',
+    brand: 'Catfeed',
+  },
+  {
+    id: 'd-enercat',
+    title: 'Confirm Enercat ingredient data',
+    why: 'Unblocks Enercat positioning (currently Needs data).',
+    owner: 'Gonzalo',
+    urgency: 'Low',
+    client: 'AnimalFood',
+    brand: 'Enercat',
+  },
+]
+
+// --- Notifications ---------------------------------------------------------
+
+export interface Notification {
+  id: string
+  severity: 'High' | 'Medium' | 'Low' | 'System'
+  title: string
+  owner: string
+  scope: string
+  action: string
+  status: string
+}
+
+export const notifications: Notification[] = [
+  {
+    id: 'n1',
+    severity: 'High',
+    title: 'Canfeed PSD still in design',
+    owner: 'Gonzalo',
+    scope: 'AnimalFood · Canfeed',
+    action: 'Design S1 + S4',
+    status: 'Open',
+  },
+  {
+    id: 'n2',
+    severity: 'Medium',
+    title: '05 · MÉTRICAS empty',
+    owner: 'Aranza',
+    scope: 'AnimalFood',
+    action: 'Run manual capture',
+    status: 'Open',
+  },
+  {
+    id: 'n3',
+    severity: 'Medium',
+    title: 'IronPet community post needs approval',
+    owner: 'Gonzalo',
+    scope: 'AnimalFood · IronPet',
+    action: 'Approve / Reject',
+    status: 'Open',
+  },
+  {
+    id: 'n4',
+    severity: 'Low',
+    title: 'Enercat — Needs data',
+    owner: 'Gonzalo',
+    scope: 'AnimalFood · Enercat',
+    action: 'Confirm ingredients',
+    status: 'Open',
+  },
+  {
+    id: 'n5',
+    severity: 'System',
+    title: 'Integrations not connected',
+    owner: 'Admin',
+    scope: 'System',
+    action: 'Review System Health',
+    status: 'Info',
+  },
+]
+
+// --- Metrics ---------------------------------------------------------------
+
+export const metricDefs: { key: string; label: string; future?: boolean }[] = [
+  { key: 'saves', label: 'Saves' },
+  { key: 'shares', label: 'Shares' },
+  { key: 'comments', label: 'Comments' },
+  { key: 'reach', label: 'Reach' },
+  { key: 'profile', label: 'Profile visits' },
+  { key: 'dms', label: 'DMs' },
+  { key: 'leads', label: 'Leads / messages' },
+  { key: 'cpl', label: 'CPL (paid, future)', future: true },
+]
+
+export const manualCaptureChecklist = [
+  'Capture reach',
+  'Capture saves',
+  'Capture shares',
+  'Capture comments',
+  'Capture profile visits',
+  'Capture DMs / leads if available',
+]
+
+// --- Paid media (manual / read-only) ---------------------------------------
+
+export const paidFunnel = [
+  'Awareness',
+  'Consideration',
+  'Engagement',
+  'Lead / WhatsApp / DM',
+  'Distributor Inquiry',
+  'Remarketing / Retention',
+]
+
+export interface PaidRow {
+  campaign: string
+  brand: string
+  stage: string
+  spend: string
+  ctr: string
+  cpc: string
+  leads: string
+  cpl: string
+  diagnosis: string
+  nextAction: string
+}
+
+// All values are placeholders — manual entry only, no live data.
+export const paidCampaigns: PaidRow[] = [
+  {
+    campaign: '— (manual entry)',
+    brand: 'Canfeed',
+    stage: 'Awareness',
+    spend: '—',
+    ctr: '—',
+    cpc: '—',
+    leads: '—',
+    cpl: '—',
+    diagnosis: 'No data',
+    nextAction: 'Enter manual report',
+  },
+  {
+    campaign: '— (manual entry)',
+    brand: 'IronPet',
+    stage: 'Engagement',
+    spend: '—',
+    ctr: '—',
+    cpc: '—',
+    leads: '—',
+    cpl: '—',
+    diagnosis: 'No data',
+    nextAction: 'Enter manual report',
+  },
+  {
+    campaign: '— (manual entry)',
+    brand: 'Enercan',
+    stage: 'Lead / WhatsApp / DM',
+    spend: '—',
+    ctr: '—',
+    cpc: '—',
+    leads: '—',
+    cpl: '—',
+    diagnosis: 'No data',
+    nextAction: 'Enter manual report',
+  },
+]
+
+// --- Reports ---------------------------------------------------------------
+
+export const reports: { id: string; title: string; desc: string }[] = [
+  { id: 'r-monday', title: 'Monday operating report', desc: 'Daily priorities, owners, blocked items.' },
+  { id: 'r-af-weekly', title: 'AnimalFood weekly report', desc: 'Portfolio, signals, decisions, metrics.' },
+  { id: 'r-canfeed', title: 'Canfeed production report', desc: 'Protect Pack production + checklist.' },
+  { id: 'r-paid', title: 'Paid media report', desc: 'Manual funnel + campaign snapshot.' },
+]
+
+// --- System health (frontend view) -----------------------------------------
+
+export const frontendHealth: HealthTile[] = [
+  { label: 'Frontend app', status: 'Running (local, mock data)', tone: 'ok' },
+  { label: 'Repository', status: 'Tracked in git', tone: 'ok' },
+  { label: 'Google Sheets', status: 'Not connected in frontend', tone: 'off' },
+  { label: 'Scheduler', status: 'External / manual', tone: 'warn' },
+  { label: 'Integrations', status: 'None connected', tone: 'off' },
+  { label: 'Local launcher', status: 'Available (desktop shortcut)', tone: 'ok' },
+]
+
+export const lastCommitInfo = 'static build — see git log / SESSION_LOG'
+
+// --- Settings (static, read-only) ------------------------------------------
+
+export const settingsInfo: { k: string; v: string; tone?: 'ok' | 'off' }[] = [
+  { k: 'User', v: 'Gonzalo' },
+  { k: 'Role', v: 'Admin' },
+  { k: 'Workspace', v: 'Lvanto' },
+  { k: 'Active client', v: 'AnimalFood' },
+  { k: 'Theme', v: 'Dark', tone: 'ok' },
+  { k: 'Integrations', v: 'Blocked', tone: 'off' },
+  { k: 'Data mode', v: 'Mock / static', tone: 'off' },
+  { k: 'Environment', v: 'Local', tone: 'ok' },
+]

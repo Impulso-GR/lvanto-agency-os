@@ -154,3 +154,90 @@ export function PageHeader({
     </div>
   )
 }
+
+// --- Visual-only action button --------------------------------------------
+
+export function ActionButton({
+  label,
+  tone = 'default',
+  className = '',
+}: {
+  label: ReactNode
+  tone?: 'default' | 'accent'
+  className?: string
+}) {
+  return (
+    <button
+      type="button"
+      className={`rounded-[10px] border px-3 py-2 text-[12px] transition-colors ${
+        tone === 'accent'
+          ? 'border-accent/40 bg-accent/10 text-accent hover:bg-accent/15'
+          : 'border-hair bg-panel2 text-mute hover:text-warm hover:border-white/15'
+      } ${className}`}
+    >
+      {label}
+    </button>
+  )
+}
+
+// --- Status tile (system health style) ------------------------------------
+
+export function StatusTile({
+  label,
+  status,
+  tone,
+}: {
+  label: string
+  status: string
+  tone: 'ok' | 'warn' | 'off'
+}) {
+  return (
+    <div className="rounded-xl2 border border-hair bg-panel p-3">
+      <div className="flex items-center gap-2">
+        <StatDot tone={tone} />
+        <span className="text-xs text-warm">{label}</span>
+      </div>
+      <p className="meta mt-1.5">{status}</p>
+    </div>
+  )
+}
+
+// --- Simple data table -----------------------------------------------------
+
+export function DataTable({
+  columns,
+  rows,
+}: {
+  columns: string[]
+  rows: ReactNode[][]
+}) {
+  return (
+    <div className="scroll-thin overflow-x-auto rounded-xl2 border border-hair">
+      <table className="w-full min-w-[720px] text-left text-[12px]">
+        <thead>
+          <tr className="border-b border-hair bg-panel2">
+            {columns.map((c) => (
+              <th
+                key={c}
+                className="whitespace-nowrap px-3 py-2 font-mono text-[10px] uppercase tracking-wide text-mute2"
+              >
+                {c}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i} className="border-b border-hair last:border-0">
+              {r.map((cell, j) => (
+                <td key={j} className="whitespace-nowrap px-3 py-2 text-mute">
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}

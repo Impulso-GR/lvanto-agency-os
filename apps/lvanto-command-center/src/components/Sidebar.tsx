@@ -16,26 +16,33 @@ const groups: NavGroup[] = [
     heading: 'Core',
     items: [
       { label: 'Dashboard', to: '/' },
-      { label: 'Clients', to: '/clients/animalfood' },
+      { label: 'Clients', to: '/clients' },
       { label: 'Tasks', to: '/clients/animalfood/tasks' },
     ],
   },
   {
     heading: 'Intelligence',
     items: [
-      { label: 'Signals' },
-      { label: 'Metrics' },
-      { label: 'Notifications' },
-      { label: 'Decisions' },
+      { label: 'Signals', to: '/signals' },
+      { label: 'Metrics', to: '/metrics' },
+      { label: 'Notifications', to: '/notifications' },
+      { label: 'Decisions', to: '/decisions' },
     ],
   },
   {
     heading: 'Controls',
-    items: [{ label: 'Claims Guard' }, { label: 'Paid Media' }, { label: 'Reports' }],
+    items: [
+      { label: 'Claims Guard', to: '/claims' },
+      { label: 'Paid Media', to: '/paid-media' },
+      { label: 'Reports', to: '/reports' },
+    ],
   },
   {
     heading: 'System',
-    items: [{ label: 'Settings' }, { label: 'System Health' }],
+    items: [
+      { label: 'Settings', to: '/settings' },
+      { label: 'System Health', to: '/system-health' },
+    ],
   },
 ]
 
