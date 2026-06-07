@@ -20,7 +20,7 @@ const labels: Record<string, string> = {
 
 function useBreadcrumb(): string[] {
   const { pathname } = useLocation()
-  if (pathname === '/') return ['Lvanto', 'All Clients']
+  if (pathname === '/') return ['Lvanto', 'Dashboard']
   // Drop purely-structural segments (e.g. "brands") that aren't navigable pages.
   const segs = pathname.split('/').filter(Boolean).filter((s) => s !== 'brands')
   return ['Lvanto', ...segs.map((s) => labels[s] ?? s)]

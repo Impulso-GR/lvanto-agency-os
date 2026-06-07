@@ -157,6 +157,8 @@ export function PageHeader({
 
 // --- Visual-only action button --------------------------------------------
 
+// Visual-only by default: these buttons take no action in the prototype, so they
+// carry a not-allowed cursor, reduced opacity, and an explanatory title.
 export function ActionButton({
   label,
   tone = 'default',
@@ -169,10 +171,12 @@ export function ActionButton({
   return (
     <button
       type="button"
-      className={`rounded-[10px] border px-3 py-2 text-[12px] transition-colors ${
+      aria-disabled="true"
+      title="Visual only — no action in this prototype"
+      className={`cursor-not-allowed rounded-[10px] border px-3 py-2 text-[12px] opacity-70 ${
         tone === 'accent'
-          ? 'border-accent/40 bg-accent/10 text-accent hover:bg-accent/15'
-          : 'border-hair bg-panel2 text-mute hover:text-warm hover:border-white/15'
+          ? 'border-accent/40 bg-accent/10 text-accent'
+          : 'border-hair bg-panel2 text-mute'
       } ${className}`}
     >
       {label}

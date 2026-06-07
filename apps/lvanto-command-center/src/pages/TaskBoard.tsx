@@ -205,8 +205,11 @@ export default function TaskBoard() {
                           />
                         ))
                       ) : (
-                        <div className="rounded-[10px] border border-dashed border-hair px-3 py-6 text-center">
-                          <span className="meta">empty</span>
+                        <div className="rounded-[10px] border border-dashed border-hair px-3 py-5 text-center">
+                          <p className="text-[11px] text-mute2">No tasks in this state</p>
+                          <p className="mt-0.5 text-[10px] text-mute2/70">
+                            Tasks moved here will appear below.
+                          </p>
                         </div>
                       )}
                     </div>

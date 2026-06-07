@@ -2,6 +2,7 @@ import { allSignals } from '../data/mockData'
 import {
   Chip,
   DataTable,
+  EmptyState,
   PageHeader,
   Panel,
   SectionTitle,
@@ -32,10 +33,15 @@ export default function Signals() {
         />
       </Panel>
 
-      <p className="meta">
+      <p className="meta mb-6">
         Read-only intelligence. Signals come from the documented Trend Signals Log; nothing here is
         wired to a live source.
       </p>
+
+      <Panel>
+        <SectionTitle right={<Chip tone="gray">0</Chip>}>Archived signals</SectionTitle>
+        <EmptyState title="No resolved signals yet" hint="Signals marked resolved or rejected will move here." />
+      </Panel>
     </>
   )
 }

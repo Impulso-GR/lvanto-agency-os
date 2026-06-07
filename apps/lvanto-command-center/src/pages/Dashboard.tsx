@@ -64,7 +64,7 @@ export default function Dashboard() {
     <>
       <PageHeader
         title="Lvanto Command Center"
-        subtitle="Multi-client operating system · 1 active workspace"
+        subtitle="Multi-client operating system · 1 active client workspace"
         chip={<Chip tone="green">● Operational</Chip>}
       />
 

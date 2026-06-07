@@ -32,10 +32,12 @@ function BrandPanel({ b }: { b: BrandClaims }) {
         b.highlight ? 'border-accent/40' : 'border-hair'
       }`}
     >
-      <div className="mb-3 flex items-center gap-2">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
         <h3 className="text-sm font-medium text-warm">{b.brand}</h3>
         {b.highlight && <Chip tone="accent">Protect Pack focus</Chip>}
+        {b.note && <Chip tone="amber">Needs definition</Chip>}
       </div>
+      {b.note && <p className="meta mb-3">{b.note}</p>}
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
         <Column title="Allowed" items={b.allowed} tone="green" />
         <Column title="Blocked" items={b.blocked} tone="red" />

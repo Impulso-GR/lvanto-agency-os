@@ -301,10 +301,19 @@ export const canfeedProductionChecklist = [
 export interface BrandClaims {
   brand: string
   highlight?: boolean
+  note?: string
   allowed: string[]
   blocked: string[]
   needsData: string[]
 }
+
+const economicBrandClaims = (brand: string): BrandClaims => ({
+  brand,
+  note: 'Claims boundaries not yet defined for this brand.',
+  allowed: ['Economic / value positioning only'],
+  blocked: ['unconfirmed nutrition claims', 'fixed prices / margins', 'functional or medical claims'],
+  needsData: ['product specs', 'confirmed brand role', 'claim boundaries'],
+})
 
 export const claimsByBrand: BrandClaims[] = [
   {
@@ -344,6 +353,9 @@ export const claimsByBrand: BrandClaims[] = [
     blocked: ['fixed B2B prices / margins', 'child-brand specifics', 'implying wet/pouch/snack exists'],
     needsData: ['per-line product specs'],
   },
+  economicBrandClaims('Puro'),
+  economicBrandClaims('SuperPet'),
+  economicBrandClaims('Ulyses'),
 ]
 
 // --- Decisions -------------------------------------------------------------
@@ -524,7 +536,7 @@ export const paidCampaigns: PaidRow[] = [
     leads: '—',
     cpl: '—',
     diagnosis: 'No data',
-    nextAction: 'Enter manual report',
+    nextAction: 'Manual entry required',
   },
   {
     campaign: '— (manual entry)',
@@ -536,7 +548,7 @@ export const paidCampaigns: PaidRow[] = [
     leads: '—',
     cpl: '—',
     diagnosis: 'No data',
-    nextAction: 'Enter manual report',
+    nextAction: 'Manual entry required',
   },
   {
     campaign: '— (manual entry)',
@@ -548,7 +560,7 @@ export const paidCampaigns: PaidRow[] = [
     leads: '—',
     cpl: '—',
     diagnosis: 'No data',
-    nextAction: 'Enter manual report',
+    nextAction: 'Manual entry required',
   },
 ]
 
@@ -565,7 +577,7 @@ export const reports: { id: string; title: string; desc: string }[] = [
 
 // v0.2: `frontendHealth` removed — use the canonical `systemHealth` above.
 
-export const lastCommitInfo = 'static build — see git log / SESSION_LOG'
+export const lastCommitInfo = 'v0.3 static frontend · June 2026'
 
 // --- Settings (static, read-only) ------------------------------------------
 

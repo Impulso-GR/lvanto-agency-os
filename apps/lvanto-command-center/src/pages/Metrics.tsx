@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { manualCaptureChecklist, metricDefs } from '../data/mockData'
 import {
   Chip,
@@ -8,6 +9,10 @@ import {
 } from '../components/ui'
 
 export default function Metrics() {
+  // Local UI state only — not persisted, not connected to anything.
+  const [checked, setChecked] = useState<Record<string, boolean>>({})
+  const toggle = (c: string) => setChecked((prev) => ({ ...prev, [c]: !prev[c] }))
+
   return (
     <>
       <PageHeader
@@ -21,6 +26,9 @@ export default function Metrics() {
           title="No real performance data yet"
           hint="05 · MÉTRICAS pending manual capture. No fake charts are shown — metrics appear once real numbers are captured."
         />
+        <p className="meta mt-3 text-center">
+          Performance charts will appear here once numbers are captured manually into 05 · MÉTRICAS.
+        </p>
       </Panel>
 
       <SectionTitle>Metric cards (disabled until captured)</SectionTitle>
@@ -41,19 +49,45 @@ export default function Metrics() {
       </div>
 
       <Panel>
-        <SectionTitle right={<Chip tone="gold">Aranza</Chip>}>Manual capture checklist</SectionTitle>
+        <SectionTitle
+          right={
+            <span className="flex items-center gap-2">
+              <Chip tone="gray">visual only</Chip>
+              <Chip tone="gold">Aranza</Chip>
+            </span>
+          }
+        >
+          Manual capture checklist
+        </SectionTitle>
         <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {manualCaptureChecklist.map((c) => (
-            <li
-              key={c}
-              className="flex items-center gap-2 rounded-[10px] border border-hair bg-panel2 px-3 py-2"
-            >
-              <span className="h-3.5 w-3.5 rounded-[4px] border border-hair" />
-              <span className="text-[13px] text-mute">{c}</span>
-            </li>
-          ))}
+          {manualCaptureChecklist.map((c) => {
+            const isOn = !!checked[c]
+            return (
+              <li key={c}>
+                <button
+                  type="button"
+                  onClick={() => toggle(c)}
+                  className="flex w-full items-center gap-2 rounded-[10px] border border-hair bg-panel2 px-3 py-2 text-left hover:border-white/15"
+                >
+                  <span
+                    className={`grid h-3.5 w-3.5 place-items-center rounded-[4px] border ${
+                      isOn ? 'border-accent bg-accent/20 text-accent' : 'border-hair'
+                    }`}
+                  >
+                    {isOn && <span className="text-[9px] leading-none">✓</span>}
+                  </span>
+                  <span className={`text-[13px] ${isOn ? 'text-warm line-through' : 'text-mute'}`}>
+                    {c}
+                  </span>
+                </button>
+              </li>
+            )
+          })}
         </ul>
-        <p className="meta mt-3">Capture into 05 · MÉTRICAS by hand. Real numbers only — never invent.</p>
+        <p className="meta mt-3">
+          Checklist is a local visual aid (not saved). Capture into 05 · MÉTRICAS by hand — real
+          numbers only, never invent.
+        </p>
       </Panel>
     </>
   )

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import type { ReactNode } from 'react'
 
 interface NavItem {
@@ -46,6 +46,22 @@ const groups: NavGroup[] = [
   },
 ]
 
+const allTos = groups.flatMap((g) => g.items.map((i) => i.to).filter(Boolean) as string[])
+
+// Route-aware active item: the longest `to` that prefixes the path wins.
+// "/" matches only exactly; "/clients" stays active on its child pages
+// (e.g. /clients/animalfood, /clients/animalfood/brands/canfeed) but yields to
+// the more specific "/clients/animalfood/tasks" (Tasks) when present.
+function activeTo(pathname: string): string | null {
+  let best: string | null = null
+  for (const to of allTos) {
+    const matches =
+      to === '/' ? pathname === '/' : pathname === to || pathname.startsWith(to + '/')
+    if (matches && (best === null || to.length > best.length)) best = to
+  }
+  return best
+}
+
 function Wordmark() {
   return (
     <div className="flex items-center gap-2.5 px-3 py-4">
@@ -87,9 +103,9 @@ function Soon() {
   )
 }
 
-function Item({ item }: { item: NavItem }) {
+function Item({ item, active }: { item: NavItem; active: boolean }) {
   const base =
-    'group flex items-center gap-2 rounded-[10px] px-3 py-2 text-[13px] transition-colors'
+    'group relative flex items-center gap-2 rounded-[10px] px-3 py-2 text-[13px] transition-colors'
   if (!item.to) {
     return (
       <div className={`${base} cursor-not-allowed text-mute2`}>
@@ -99,30 +115,23 @@ function Item({ item }: { item: NavItem }) {
     )
   }
   return (
-    <NavLink
+    <Link
       to={item.to}
-      end
-      className={({ isActive }) =>
-        `${base} relative ${
-          isActive
-            ? 'bg-panel2 text-warm'
-            : 'text-mute hover:bg-white/[0.03] hover:text-warm'
-        }`
-      }
+      className={`${base} ${
+        active ? 'bg-panel2 text-warm' : 'text-mute hover:bg-white/[0.03] hover:text-warm'
+      }`}
     >
-      {({ isActive }) => (
-        <>
-          {isActive && (
-            <span className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-accent" />
-          )}
-          <span className="truncate">{item.label}</span>
-        </>
+      {active && (
+        <span className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-accent" />
       )}
-    </NavLink>
+      <span className="truncate">{item.label}</span>
+    </Link>
   )
 }
 
 export default function Sidebar(): ReactNode {
+  const { pathname } = useLocation()
+  const active = activeTo(pathname)
   return (
     <aside className="flex h-full w-60 shrink-0 flex-col border-r border-hair bg-panel">
       <Wordmark />
@@ -135,7 +144,7 @@ export default function Sidebar(): ReactNode {
             </div>
             <div className="space-y-0.5">
               {g.items.map((it) => (
-                <Item key={it.label} item={it} />
+                <Item key={it.label} item={it} active={it.to === active} />
               ))}
             </div>
           </div>
