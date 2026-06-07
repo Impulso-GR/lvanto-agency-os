@@ -1,5 +1,10 @@
 # Session Log
 
+## 2026-06-07
+
+### Future Meta read-only pilot plan created (deferred, gated)
+- Created `docs/verticals/animalfood/animalfood-meta-readonly-pilot.md` — standalone blueprint for a future supervised, **read-only** Meta metrics pilot, derived from the 2026-06-07 Claude CoWork audit (CoWork browser/computer-use REJECTED for Meta; connector/MCP + OAuth read-only approved later). Two approved paths: Instagram Graph API read-only for organic IG/FB insights (read scopes only, never ads/publish/messaging) and official Meta Ads MCP **Read tier** for paid (never read-write/financial). Rejected: CoWork browser/computer-use on logged-in Meta, Chrome session reuse, Ads Manager browser navigation, scraping, broad third-party connectors. Guardrails: read-only only, no publish/campaign/budget/DM/comment, no "act without asking", no Sheet writes during pilot. Safe sequence (test asset → connect read-only → CSV export → manual verify → revoke/review token → only later consider Sheet write). Targets existing 12-col `05 · MÉTRICAS` schema + dedup key. Includes risks/mitigations table, a 6-point decision gate, and why it's deferred until after Monday (manual workflow stays source of truth). Docs/plan only — connects nothing, nothing installed/configured, Sheet untouched, no credentials read.
+
 ## 2026-06-05
 
 ### Metrics dedup guard added to 23:00 workflow
