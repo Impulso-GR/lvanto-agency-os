@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import {
   activity,
   clients,
-  globalAlerts,
+  notifications,
   systemHealth,
   tasks,
 } from '../data/mockData'
@@ -12,7 +12,7 @@ import {
   PageHeader,
   Panel,
   SectionTitle,
-  StatDot,
+  StatusTile,
   priorityTone,
   severityTone,
   estadoTone,
@@ -122,13 +122,13 @@ export default function Dashboard() {
         <Panel className="lg:col-span-2">
           <SectionTitle>Global alerts</SectionTitle>
           <ul className="divide-y divide-white/[0.05]">
-            {globalAlerts.map((al) => (
-              <li key={al.id} className="flex items-center gap-3 py-2.5">
-                <Chip tone={al.severity === 'System' ? 'gray' : severityTone(al.severity)}>
-                  {al.severity}
+            {notifications.map((n) => (
+              <li key={n.id} className="flex items-center gap-3 py-2.5">
+                <Chip tone={n.severity === 'System' ? 'gray' : severityTone(n.severity)}>
+                  {n.severity}
                 </Chip>
-                <span className="flex-1 text-sm text-warm">{al.title}</span>
-                <span className="meta">{al.owner}</span>
+                <span className="flex-1 text-sm text-warm">{n.title}</span>
+                <span className="meta">{n.owner}</span>
               </li>
             ))}
           </ul>
@@ -147,15 +147,9 @@ export default function Dashboard() {
       {/* System health strip */}
       <div className="mt-6">
         <SectionTitle>System health</SectionTitle>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {systemHealth.map((h) => (
-            <div key={h.label} className="rounded-xl2 border border-hair bg-panel p-3">
-              <div className="flex items-center gap-2">
-                <StatDot tone={h.tone} />
-                <span className="text-xs text-warm">{h.label}</span>
-              </div>
-              <p className="meta mt-1.5">{h.status}</p>
-            </div>
+            <StatusTile key={h.label} label={h.label} status={h.status} tone={h.tone} />
           ))}
         </div>
       </div>

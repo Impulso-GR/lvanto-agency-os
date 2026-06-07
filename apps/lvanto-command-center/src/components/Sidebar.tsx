@@ -101,7 +101,7 @@ function Item({ item }: { item: NavItem }) {
   return (
     <NavLink
       to={item.to}
-      end={item.to === '/'}
+      end
       className={({ isActive }) =>
         `${base} relative ${
           isActive

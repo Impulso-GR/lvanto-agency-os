@@ -230,20 +230,33 @@ export const signals: Signal[] = [
   },
 ]
 
-export const globalAlerts: AlertItem[] = [
-  { id: 'a1', severity: 'High', title: 'Canfeed PSD still in design', owner: 'Gonzalo' },
-  { id: 'a2', severity: 'Medium', title: '05 · MÉTRICAS empty', owner: 'Aranza' },
-  { id: 'a3', severity: 'Medium', title: 'IronPet community post needs approval', owner: 'Gonzalo' },
-  { id: 'a4', severity: 'Low', title: 'Enercat — Needs data', owner: 'Gonzalo' },
-  { id: 'a5', severity: 'System', title: 'Sheets API intermittent · scheduler check', owner: 'Admin' },
+// Portfolio/operational signals (kept separate so brand pages can keep using `signals` only).
+export const portfolioSignals: Signal[] = [
+  {
+    id: 'dark-accounts',
+    title: 'Dark accounts / inactive brands',
+    confidence: 'Medium',
+    risk: 'Medium',
+    brands: 'Enercan / Enercat / Puro / SuperPet / Ulyses',
+    decision: 'Needs data',
+    meaning: 'Set an objective before activating; Enercan first.',
+  },
 ]
 
+// Canonical full list for the Signal Center.
+export const allSignals: Signal[] = [...signals, ...portfolioSignals]
+
+// v0.2: `globalAlerts` removed — `notifications` (below) is the single canonical alert source.
+
+// Canonical system-health source — used by BOTH the Dashboard strip and the System Health page.
+// Truthful for the frontend: it connects to nothing.
 export const systemHealth: HealthTile[] = [
-  { label: 'Repository', status: 'Clean', tone: 'ok' },
-  { label: 'Google Sheets', status: 'Read-only · intermittent', tone: 'warn' },
-  { label: 'Scheduler', status: 'Unverified', tone: 'warn' },
+  { label: 'Frontend app', status: 'Running (local, mock data)', tone: 'ok' },
+  { label: 'Repository', status: 'Tracked in git', tone: 'ok' },
+  { label: 'Google Sheets', status: 'Mock only · not connected', tone: 'off' },
+  { label: 'Scheduler', status: 'External / manual', tone: 'warn' },
   { label: 'Integrations', status: 'None connected', tone: 'off' },
-  { label: 'Docs sync', status: 'Up to date', tone: 'ok' },
+  { label: 'Local launcher', status: 'Available (desktop shortcut)', tone: 'ok' },
 ]
 
 export const activity: ActivityItem[] = [
@@ -550,14 +563,7 @@ export const reports: { id: string; title: string; desc: string }[] = [
 
 // --- System health (frontend view) -----------------------------------------
 
-export const frontendHealth: HealthTile[] = [
-  { label: 'Frontend app', status: 'Running (local, mock data)', tone: 'ok' },
-  { label: 'Repository', status: 'Tracked in git', tone: 'ok' },
-  { label: 'Google Sheets', status: 'Not connected in frontend', tone: 'off' },
-  { label: 'Scheduler', status: 'External / manual', tone: 'warn' },
-  { label: 'Integrations', status: 'None connected', tone: 'off' },
-  { label: 'Local launcher', status: 'Available (desktop shortcut)', tone: 'ok' },
-]
+// v0.2: `frontendHealth` removed — use the canonical `systemHealth` above.
 
 export const lastCommitInfo = 'static build — see git log / SESSION_LOG'
 

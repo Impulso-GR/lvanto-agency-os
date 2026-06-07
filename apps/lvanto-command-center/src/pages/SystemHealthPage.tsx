@@ -1,4 +1,4 @@
-import { frontendHealth, lastCommitInfo } from '../data/mockData'
+import { systemHealth, lastCommitInfo } from '../data/mockData'
 import { Chip, PageHeader, Panel, SectionTitle, StatusTile } from '../components/ui'
 
 export default function SystemHealthPage() {
@@ -12,7 +12,7 @@ export default function SystemHealthPage() {
 
       <SectionTitle>Status</SectionTitle>
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-        {frontendHealth.map((h) => (
+        {systemHealth.map((h) => (
           <StatusTile key={h.label} label={h.label} status={h.status} tone={h.tone} />
         ))}
       </div>

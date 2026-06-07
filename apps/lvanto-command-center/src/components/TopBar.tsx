@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { notifications } from '../data/mockData'
 
 const labels: Record<string, string> = {
   clients: 'Clients',
@@ -20,7 +21,8 @@ const labels: Record<string, string> = {
 function useBreadcrumb(): string[] {
   const { pathname } = useLocation()
   if (pathname === '/') return ['Lvanto', 'All Clients']
-  const segs = pathname.split('/').filter(Boolean)
+  // Drop purely-structural segments (e.g. "brands") that aren't navigable pages.
+  const segs = pathname.split('/').filter(Boolean).filter((s) => s !== 'brands')
   return ['Lvanto', ...segs.map((s) => labels[s] ?? s)]
 }
 
@@ -52,7 +54,7 @@ export default function TopBar() {
         >
           <span className="text-sm">◔</span>
           <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 font-mono text-[9px] text-carbon">
-            3
+            {notifications.length}
           </span>
         </button>
 
