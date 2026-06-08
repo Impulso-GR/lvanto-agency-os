@@ -5,6 +5,8 @@ import { useLocalState, KEYS } from '../state/localStore'
 const EMPTY_READ: Record<string, boolean> = {}
 
 const labels: Record<string, string> = {
+  hoy: 'Hoy',
+  'auditoria-meta': 'Auditoría Meta',
   clients: 'Clientes',
   animalfood: 'AnimalFood',
   brands: 'Marcas',

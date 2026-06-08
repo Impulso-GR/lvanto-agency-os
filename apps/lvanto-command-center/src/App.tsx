@@ -1,11 +1,13 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import Shell from './components/Shell'
+import Hoy from './pages/Hoy'
 import Dashboard from './pages/Dashboard'
 import Clients from './pages/Clients'
 import AnimalFoodWorkspace from './pages/AnimalFoodWorkspace'
 import CanfeedDashboard from './pages/CanfeedDashboard'
 import TaskBoard from './pages/TaskBoard'
 import Signals from './pages/Signals'
+import AuditoriaMeta from './pages/AuditoriaMeta'
 import Metrics from './pages/Metrics'
 import Notifications from './pages/Notifications'
 import Decisions from './pages/Decisions'
@@ -35,11 +37,13 @@ export default function App() {
     <Routes>
       <Route element={<Shell />}>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/hoy" element={<Hoy />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/clients/animalfood" element={<AnimalFoodWorkspace />} />
         <Route path="/clients/animalfood/brands/canfeed" element={<CanfeedDashboard />} />
         <Route path="/clients/animalfood/tasks" element={<TaskBoard />} />
         <Route path="/signals" element={<Signals />} />
+        <Route path="/auditoria-meta" element={<AuditoriaMeta />} />
         <Route path="/metrics" element={<Metrics />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/decisions" element={<Decisions />} />

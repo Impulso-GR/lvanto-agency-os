@@ -8,6 +8,8 @@ export default function Metrics() {
   const [checked, setChecked] = useLocalState<Record<string, boolean>>(KEYS.metricsChecklist, EMPTY_CHECK)
   const toggle = (c: string) => setChecked((prev) => ({ ...prev, [c]: !prev[c] }))
   const reset = () => setChecked(() => ({}))
+  const done = manualCaptureChecklist.filter((c) => checked[c]).length
+  const total = manualCaptureChecklist.length
 
   return (
     <>
@@ -45,6 +47,7 @@ export default function Metrics() {
         <SectionTitle
           right={
             <span className="flex items-center gap-2">
+              <Chip tone={done === total && total > 0 ? 'green' : 'gray'}>{done}/{total}</Chip>
               <Chip tone="gray">solo visual</Chip>
               <Chip tone="gold">Aranza</Chip>
               <button

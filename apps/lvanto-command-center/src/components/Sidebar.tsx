@@ -15,6 +15,7 @@ const groups: NavGroup[] = [
   {
     heading: 'Núcleo',
     items: [
+      { label: 'Hoy', to: '/hoy' },
       { label: 'Panel principal', to: '/' },
       { label: 'Clientes', to: '/clients' },
       { label: 'Tareas', to: '/clients/animalfood/tasks' },
@@ -24,6 +25,7 @@ const groups: NavGroup[] = [
     heading: 'Inteligencia',
     items: [
       { label: 'Señales', to: '/signals' },
+      { label: 'Auditoría Meta', to: '/auditoria-meta' },
       { label: 'Métricas', to: '/metrics' },
       { label: 'Notificaciones', to: '/notifications' },
       { label: 'Decisiones', to: '/decisions' },

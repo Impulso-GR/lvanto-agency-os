@@ -1,4 +1,6 @@
-# Lvanto Command Center — Local Interactive Prototype (v0.4)
+# Lvanto Command Center — Local Interactive Prototype (v0.5)
+
+> v0.5 adds the **Hoy / Operación diaria** screen (and a Hoy hero on the Dashboard), Task Board **local filters** (Marca / Responsable / Prioridad / Estado), a Canfeed **S1/S4 modo-producción** block + Aranza handoff condition + compact blocked-claims strip, a Metrics progress counter, a Paid Media manual-report template, and a static **Auditoría Meta** sensor page (Hipótesis · no fuente de verdad). Still 100% local/mock — no external services.
 
 A **local, Spanish-language, interactive prototype** of the Lvanto Command Center — a private, multi-client operating system for the Lvanto agency. **AnimalFood is the first active workspace, not the whole system.**
 
@@ -43,13 +45,15 @@ npm run preview   # serve the production build locally
 ## Routes / screens (v0.1 — all sidebar items now navigable)
 | Route | Screen |
 |---|---|
-| `/` | Lvanto Main Dashboard (multi-client overview) |
+| `/` | Lvanto Main Dashboard (multi-client overview, con acceso a Hoy) |
+| `/hoy` | **Hoy · Operación diaria** (qué hacer ahora, prioridades, bloqueadas, decisiones, recordatorio de métricas) |
 | `/clients` | Clients Center (all workspaces) |
 | `/clients/animalfood` | AnimalFood Workspace (9-brand portfolio) |
 | `/clients/animalfood/brands/canfeed` | Canfeed Brand Dashboard (production module + Claims Guard) |
 | `/clients/animalfood/tasks` | Task Board (10-state kanban + selected-task detail panel) |
 | `/signals` | Signal Center |
-| `/metrics` | Metrics Center (honest empty state + manual capture checklist) |
+| `/auditoria-meta` | **Auditoría Meta** (sensor estático: Hipótesis · no fuente de verdad · no publicar sin Control de claims) |
+| `/metrics` | Metrics Center (honest empty state + manual capture checklist, con progreso) |
 | `/notifications` | Notification Center (grouped by priority) |
 | `/decisions` | Decision Inbox (visual-only Review/Approve/Defer) |
 | `/claims` | Claims Guard (per-brand allowed/blocked/needs-data) |

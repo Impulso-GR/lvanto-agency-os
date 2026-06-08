@@ -54,9 +54,24 @@ export default function CanfeedDashboard() {
               <Meta k="Objetivo" v="Hoy / semana" />
             </div>
             <div className="mt-4 rounded-[8px] border border-hair bg-panel px-3 py-2">
-              <span className="section-label">Próxima acción</span>
+              <span className="section-label">Próxima acción (Photoshop)</span>
               <p className="mt-0.5 text-sm text-warm">Diseñar S1 Portada + S4 héroe Protect Pack</p>
             </div>
+
+            {/* Modo producción · foco S1 + S4 (toggle local) */}
+            <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <StepCard label="S1 · Portada" note="Bloquea la base PSD reutilizable" on={!!checked['S1 Cover']} onToggle={() => toggle('S1 Cover')} />
+              <StepCard label="S4 · Héroe Protect Pack" note="Packshot real · solo wording oficial" on={!!checked['S4 Protect Pack hero']} onToggle={() => toggle('S4 Protect Pack hero')} />
+            </div>
+            <div className="mt-3 rounded-[8px] border border-red-400/20 bg-red-400/[0.04] px-3 py-2">
+              <span className="section-label text-red-300">No decir (claims bloqueados)</span>
+              <p className="mt-0.5 text-[12px] text-mute">
+                barrera humedad/oxígeno · multicapa · válvula · cierre hermético · materiales · días de frescura · AAFCO · stats no verificadas
+              </p>
+            </div>
+            <p className="meta mt-2">
+              Handoff a Aranza: cuando el PSD base esté listo (S1 + S4 + export), Aranza deriva pilares 2–5.
+            </p>
           </div>
 
           {/* Local toggleable production checklist */}
@@ -150,6 +165,36 @@ function Meta({ k, v }: { k: string; v: string }) {
       <div className="section-label">{k}</div>
       <div className="mt-0.5 text-[13px] text-warm">{v}</div>
     </div>
+  )
+}
+
+function StepCard({
+  label,
+  note,
+  on,
+  onToggle,
+}: {
+  label: string
+  note: string
+  on: boolean
+  onToggle: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className={`flex items-start gap-2 rounded-[10px] border px-3 py-2 text-left transition-colors ${
+        on ? 'border-accent/40 bg-accent/10' : 'border-hair bg-panel2 hover:border-white/15'
+      }`}
+    >
+      <span className={`mt-0.5 grid h-4 w-4 place-items-center rounded-[4px] border ${on ? 'border-accent bg-accent/20 text-accent' : 'border-hair'}`}>
+        {on && <span className="text-[10px] leading-none">✓</span>}
+      </span>
+      <span>
+        <span className="block text-[13px] font-medium text-warm">{label}</span>
+        <span className="meta">{note}</span>
+      </span>
+    </button>
   )
 }
 

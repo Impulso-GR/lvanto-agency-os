@@ -52,6 +52,42 @@ export default function PaidMedia() {
           Todos los valores son placeholders. Los números se cargan a mano desde Ads Manager; el sistema nunca lee ni cambia la inversión.
         </p>
       </div>
+
+      {/* Plantilla de informe manual (estática) */}
+      <div className="mt-6">
+        <SectionTitle right={<Chip tone="gray">plantilla</Chip>}>Plantilla de informe manual</SectionTitle>
+        <Panel>
+          <p className="text-[13px] text-mute">
+            Para cada campaña, completá a mano (desde Ads Manager) y traé el resumen acá:
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              'Campaña',
+              'Marca',
+              'Objetivo',
+              'Etapa de funnel',
+              'Inversión',
+              'Alcance',
+              'Impresiones',
+              'CTR',
+              'CPC',
+              'Mensajes / leads',
+              'CPL',
+              'Diagnóstico',
+              'Próxima acción',
+              'Aprobación requerida',
+            ].map((f) => (
+              <div key={f} className="rounded-[10px] border border-hair bg-panel2 px-3 py-2">
+                <span className="section-label">{f}</span>
+                <p className="meta mt-0.5">—</p>
+              </div>
+            ))}
+          </div>
+          <p className="meta mt-3">
+            Sin conexión a Meta. Sin control de presupuesto. Toda recomendación de pauta la revisa Gonzalo.
+          </p>
+        </Panel>
+      </div>
     </>
   )
 }

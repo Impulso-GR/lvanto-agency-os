@@ -161,6 +161,36 @@ function Field({ k, v }: { k: string; v: string }) {
   )
 }
 
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string
+  value: string
+  onChange: (v: string) => void
+  options: readonly string[]
+}) {
+  return (
+    <label className="flex items-center gap-1.5">
+      <span className="meta">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="rounded-[10px] border border-hair bg-panel2 px-2.5 py-1.5 text-[12px] text-warm focus:border-accent/50 focus:outline-none"
+      >
+        <option value="" className="bg-panel2">Todas</option>
+        {options.map((o) => (
+          <option key={o} value={o} className="bg-panel2">
+            {o}
+          </option>
+        ))}
+      </select>
+    </label>
+  )
+}
+
 export default function TaskBoard() {
   const [selectedId, setSelectedId] = useState<string>('canfeed-protect-pack')
   const [overrides, setOverrides] = useLocalState<Record<string, Estado>>(KEYS.taskStatus, EMPTY_STATUS)
@@ -168,6 +198,25 @@ export default function TaskBoard() {
   const estadoOf = (t: Task): Estado => overrides[t.id] ?? t.estado
   const selected = tasks.find((t) => t.id === selectedId) ?? tasks[0]
   const setEstado = (id: string, e: Estado) => setOverrides((prev) => ({ ...prev, [id]: e }))
+
+  // Local-only filters
+  const [fMarca, setFMarca] = useState('')
+  const [fResp, setFResp] = useState('')
+  const [fPrio, setFPrio] = useState('')
+  const [fEstado, setFEstado] = useState('')
+  const brands = Array.from(new Set(tasks.map((t) => t.brand)))
+  const matches = (t: Task) =>
+    (!fMarca || t.brand === fMarca) &&
+    (!fResp || t.owner.toLowerCase().includes(fResp.toLowerCase())) &&
+    (!fPrio || t.prioridad === fPrio) &&
+    (!fEstado || estadoOf(t) === fEstado)
+  const anyFilter = !!(fMarca || fResp || fPrio || fEstado)
+  const clearFilters = () => {
+    setFMarca('')
+    setFResp('')
+    setFPrio('')
+    setFEstado('')
+  }
 
   return (
     <>
@@ -179,8 +228,25 @@ export default function TaskBoard() {
 
       <div className="mb-4 rounded-xl2 border border-amber-400/20 bg-amber-400/[0.03] px-4 py-2.5">
         <p className="text-[13px] text-mute">
-          Los cambios son locales. No modifican el calendario real (05 · MÉTRICAS / 01 · CALENDARIO).
+          Cambios locales. No modifican Google Sheets ni el calendario real (05 · MÉTRICAS / 01 · CALENDARIO).
         </p>
+      </div>
+
+      {/* Local filters */}
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <FilterSelect label="Marca" value={fMarca} onChange={setFMarca} options={brands} />
+        <FilterSelect label="Responsable" value={fResp} onChange={setFResp} options={['Gonzalo', 'Aranza']} />
+        <FilterSelect label="Prioridad" value={fPrio} onChange={setFPrio} options={['Alta', 'Media', 'Baja']} />
+        <FilterSelect label="Estado" value={fEstado} onChange={setFEstado} options={COLUMNS} />
+        {anyFilter && (
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="rounded-[10px] border border-hair bg-panel2 px-3 py-1.5 text-[12px] text-mute hover:text-warm hover:border-white/15"
+          >
+            Limpiar filtros
+          </button>
+        )}
       </div>
 
       <div className="flex flex-col gap-6 lg:flex-row">
@@ -188,7 +254,7 @@ export default function TaskBoard() {
           <div className="scroll-thin overflow-x-auto pb-3">
             <div className="flex gap-3" style={{ minWidth: 'max-content' }}>
               {COLUMNS.map((col) => {
-                const colTasks = tasks.filter((t) => estadoOf(t) === col)
+                const colTasks = tasks.filter((t) => estadoOf(t) === col && matches(t))
                 return (
                   <div key={col} className="w-60 shrink-0">
                     <div className="mb-2 flex items-center justify-between px-1">

@@ -55,6 +55,23 @@ export default function Dashboard() {
         chip={<Chip tone="green">● Operativo</Chip>}
       />
 
+      {/* Hoy — quick entry to the daily operating view */}
+      <Link
+        to="/hoy"
+        className="mb-6 flex flex-col gap-3 rounded-xl2 border border-accent/40 bg-accent/[0.05] p-5 transition-colors hover:bg-accent/[0.08] sm:flex-row sm:items-center"
+      >
+        <div className="min-w-0 flex-1">
+          <div className="section-label text-accent">Hoy · qué hacer ahora</div>
+          <h2 className="mt-1 text-base font-semibold text-warm">
+            Diseñar Canfeed S1 Portada + S4 héroe Protect Pack
+          </h2>
+          <p className="mt-1 text-sm text-mute">Pieza activa #1 · abrí la vista de operación diaria.</p>
+        </div>
+        <span className="shrink-0 rounded-[10px] border border-accent/50 bg-accent/15 px-4 py-2.5 text-sm font-medium text-accent">
+          Abrir Hoy →
+        </span>
+      </Link>
+
       <div className="mb-6">
         <SectionTitle>Clientes</SectionTitle>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
