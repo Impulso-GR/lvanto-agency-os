@@ -1,11 +1,5 @@
 import { Link } from 'react-router-dom'
-import {
-  activity,
-  clients,
-  notifications,
-  systemHealth,
-  tasks,
-} from '../data/mockData'
+import { activity, clients, notifications, systemHealth, tasks } from '../data/mockData'
 import {
   Chip,
   EmptyState,
@@ -17,23 +11,16 @@ import {
   severityTone,
   estadoTone,
 } from '../components/ui'
+import { sevLabel } from '../i18n'
 
-function ClientCard({
-  id,
-  name,
-  status,
-  brands,
-  openTasks,
-  alerts,
-  note,
-}: (typeof clients)[number]) {
+function ClientCard({ id, name, status, brands, openTasks, alerts, note }: (typeof clients)[number]) {
   const active = status === 'Active'
   if (!active) {
     return (
       <div className="rounded-xl2 border border-dashed border-hair bg-white/[0.01] p-4">
         <div className="flex items-center justify-between">
           <span className="text-sm text-mute">{name}</span>
-          <Chip tone="gray">Not onboarded</Chip>
+          <Chip tone="gray">No incorporado</Chip>
         </div>
         <p className="mt-3 text-xs text-mute2">{note}</p>
       </div>
@@ -47,12 +34,12 @@ function ClientCard({
       <span className="absolute inset-x-0 -top-px mx-4 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-warm">{name}</span>
-        <Chip tone="green">Active</Chip>
+        <Chip tone="green">Activo</Chip>
       </div>
       <div className="mt-4 flex items-center gap-4 font-mono text-[11px] text-mute">
-        <span>{brands} brands</span>
-        <span>{openTasks} open</span>
-        <span className="text-amber-300">⚠ {alerts} alerts</span>
+        <span>{brands} marcas</span>
+        <span>{openTasks} abiertas</span>
+        <span className="text-amber-300">⚠ {alerts} alertas</span>
       </div>
     </Link>
   )
@@ -64,13 +51,12 @@ export default function Dashboard() {
     <>
       <PageHeader
         title="Lvanto Command Center"
-        subtitle="Multi-client operating system · 1 active client workspace"
-        chip={<Chip tone="green">● Operational</Chip>}
+        subtitle="Sistema operativo multi-cliente · 1 espacio de trabajo activo"
+        chip={<Chip tone="green">● Operativo</Chip>}
       />
 
-      {/* Clients */}
       <div className="mb-6">
-        <SectionTitle>Clients</SectionTitle>
+        <SectionTitle>Clientes</SectionTitle>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {clients.map((c) => (
             <ClientCard key={c.id} {...c} />
@@ -79,11 +65,8 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Priorities */}
         <Panel className="lg:col-span-2">
-          <SectionTitle right={<Chip tone="gray">cross-client</Chip>}>
-            Today&apos;s priorities
-          </SectionTitle>
+          <SectionTitle right={<Chip tone="gray">multi-cliente</Chip>}>Prioridades de hoy</SectionTitle>
           <ul className="divide-y divide-white/[0.05]">
             {priorities.map((t) => (
               <li key={t.id} className="flex items-center gap-3 py-2.5">
@@ -100,9 +83,8 @@ export default function Dashboard() {
           </ul>
         </Panel>
 
-        {/* Activity */}
         <Panel>
-          <SectionTitle>Activity</SectionTitle>
+          <SectionTitle>Actividad</SectionTitle>
           <ul className="space-y-3">
             {activity.map((a) => (
               <li key={a.id} className="flex gap-2.5">
@@ -118,14 +100,15 @@ export default function Dashboard() {
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Global alerts */}
         <Panel className="lg:col-span-2">
-          <SectionTitle>Global alerts</SectionTitle>
+          <SectionTitle right={<Link to="/notifications" className="meta hover:text-warm">Ver todas →</Link>}>
+            Alertas globales
+          </SectionTitle>
           <ul className="divide-y divide-white/[0.05]">
-            {notifications.map((n) => (
+            {notifications.slice(0, 3).map((n) => (
               <li key={n.id} className="flex items-center gap-3 py-2.5">
                 <Chip tone={n.severity === 'System' ? 'gray' : severityTone(n.severity)}>
-                  {n.severity}
+                  {sevLabel[n.severity]}
                 </Chip>
                 <span className="flex-1 text-sm text-warm">{n.title}</span>
                 <span className="meta">{n.owner}</span>
@@ -134,19 +117,17 @@ export default function Dashboard() {
           </ul>
         </Panel>
 
-        {/* Decisions empty state */}
         <Panel>
-          <SectionTitle>Decisions</SectionTitle>
+          <SectionTitle>Decisiones</SectionTitle>
           <EmptyState
-            title="No client decisions pending"
-            hint="Decision Inbox is a Phase 2 surface (needs a canonical decisions source)."
+            title="No hay decisiones pendientes"
+            hint="La Bandeja de decisiones es una superficie de Fase 2 (requiere una fuente canónica)."
           />
         </Panel>
       </div>
 
-      {/* System health strip */}
       <div className="mt-6">
-        <SectionTitle>System health</SectionTitle>
+        <SectionTitle>Estado del sistema</SectionTitle>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {systemHealth.map((h) => (
             <StatusTile key={h.label} label={h.label} status={h.status} tone={h.tone} />

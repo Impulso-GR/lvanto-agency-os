@@ -11,6 +11,7 @@ import {
   priorityTone,
   statusTone,
 } from '../components/ui'
+import { confLabel, laneLabel, statusLabel } from '../i18n'
 
 function BrandCard({ brand }: { brand: (typeof animalfoodBrands)[number] }) {
   const isCanfeed = brand.id === 'canfeed'
@@ -22,10 +23,10 @@ function BrandCard({ brand }: { brand: (typeof animalfoodBrands)[number] }) {
     >
       <div className="flex items-start justify-between gap-2">
         <span className="text-sm font-medium text-warm">{brand.name}</span>
-        <Chip tone={statusTone(brand.status)}>{brand.status}</Chip>
+        <Chip tone={statusTone(brand.status)}>{statusLabel[brand.status] ?? brand.status}</Chip>
       </div>
-      <p className="mt-1 text-xs text-mute">{brand.lane}</p>
-      <p className="meta mt-2 truncate">{brand.account ?? 'no account'}</p>
+      <p className="mt-1 text-xs text-mute">{laneLabel[brand.lane] ?? brand.lane}</p>
+      <p className="meta mt-2 truncate">{brand.account ?? 'sin cuenta'}</p>
       <p className="mt-2 line-clamp-2 text-[11px] leading-snug text-mute2">{brand.note}</p>
     </div>
   )
@@ -45,14 +46,13 @@ export default function AnimalFoodWorkspace() {
   return (
     <>
       <PageHeader
-        title="AnimalFood Workspace"
-        subtitle="Client workspace · 9 brands"
-        chip={<Chip tone="green">Active</Chip>}
+        title="Espacio de trabajo AnimalFood"
+        subtitle="Espacio de trabajo de cliente · 9 marcas"
+        chip={<Chip tone="green">Activo</Chip>}
       />
 
-      {/* Portfolio grid — all 9 brands */}
       <div className="mb-6">
-        <SectionTitle right={<Chip tone="gray">portfolio · 9</Chip>}>Brand portfolio</SectionTitle>
+        <SectionTitle right={<Chip tone="gray">portafolio · 9</Chip>}>Portafolio de marcas</SectionTitle>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {animalfoodBrands.map((b) => (
             <BrandCard key={b.id} brand={b} />
@@ -61,9 +61,8 @@ export default function AnimalFoodWorkspace() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Top priorities (dominant) */}
         <Panel className="lg:col-span-2">
-          <SectionTitle right={<Chip tone="accent">action-first</Chip>}>Top priorities</SectionTitle>
+          <SectionTitle right={<Chip tone="accent">acción primero</Chip>}>Prioridades principales</SectionTitle>
           <ul className="divide-y divide-white/[0.05]">
             {priorities.map((t) => (
               <li key={t.id} className="flex items-center gap-3 py-3">
@@ -81,40 +80,31 @@ export default function AnimalFoodWorkspace() {
           </ul>
         </Panel>
 
-        {/* Action required / decisions */}
         <Panel>
-          <SectionTitle>Action required</SectionTitle>
+          <SectionTitle>Acción requerida</SectionTitle>
           {actionRequired.length ? (
             <ul className="space-y-3">
               {actionRequired.map((t) => (
                 <li key={t.id} className="rounded-[10px] border border-hair bg-panel2 p-3">
                   <p className="text-sm text-warm">{t.title}</p>
                   <p className="meta mt-1">{t.flag}</p>
-                  <div className="mt-2 flex gap-2">
-                    <span className="rounded-md border border-accent/40 bg-accent/10 px-2 py-1 text-[11px] text-accent">
-                      Approve
-                    </span>
-                    <span className="rounded-md border border-hair px-2 py-1 text-[11px] text-mute">
-                      Hold
-                    </span>
-                  </div>
+                  <p className="meta mt-2">Decidir en la Bandeja de decisiones →</p>
                 </li>
               ))}
             </ul>
           ) : (
-            <EmptyState title="Nothing awaiting decision" />
+            <EmptyState title="Nada pendiente de decisión" />
           )}
         </Panel>
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Strategic signals */}
         <Panel className="lg:col-span-2">
-          <SectionTitle>Strategic signals</SectionTitle>
+          <SectionTitle>Señales estratégicas</SectionTitle>
           <ul className="divide-y divide-white/[0.05]">
             {signals.map((s) => (
               <li key={s.id} className="flex items-center gap-3 py-2.5">
-                <Chip tone={confidenceTone(s.confidence)}>{s.confidence}</Chip>
+                <Chip tone={confidenceTone(s.confidence)}>{confLabel[s.confidence] ?? s.confidence}</Chip>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm text-warm">{s.title}</p>
                   <p className="meta truncate">
@@ -129,17 +119,16 @@ export default function AnimalFoodWorkspace() {
           </ul>
         </Panel>
 
-        {/* Metrics empty state + activity */}
         <div className="space-y-6">
           <Panel>
-            <SectionTitle>Metrics</SectionTitle>
+            <SectionTitle>Métricas</SectionTitle>
             <EmptyState
-              title="No real performance data yet"
-              hint="05 · MÉTRICAS pending manual capture."
+              title="Todavía no hay métricas reales"
+              hint="05 · MÉTRICAS pendiente de carga manual."
             />
           </Panel>
           <Panel>
-            <SectionTitle>Activity</SectionTitle>
+            <SectionTitle>Actividad</SectionTitle>
             <ul className="space-y-2.5">
               {activity.slice(0, 4).map((a) => (
                 <li key={a.id} className="flex gap-2.5">

@@ -5,12 +5,12 @@ export default function SystemHealthPage() {
   return (
     <>
       <PageHeader
-        title="System Health"
-        subtitle="Local frontend status & integration state"
+        title="Estado del sistema"
+        subtitle="Estado del frontend local y de las integraciones"
         chip={<Chip tone="green">● Local</Chip>}
       />
 
-      <SectionTitle>Status</SectionTitle>
+      <SectionTitle>Estado</SectionTitle>
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
         {systemHealth.map((h) => (
           <StatusTile key={h.label} label={h.label} status={h.status} tone={h.tone} />
@@ -18,20 +18,20 @@ export default function SystemHealthPage() {
       </div>
 
       <Panel>
-        <SectionTitle>Build info</SectionTitle>
+        <SectionTitle>Información de versión</SectionTitle>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="rounded-[10px] border border-hair bg-panel2 px-3 py-2">
-            <span className="section-label">Last commit</span>
+            <span className="section-label">Versión</span>
             <p className="meta mt-0.5">{lastCommitInfo}</p>
           </div>
           <div className="rounded-[10px] border border-hair bg-panel2 px-3 py-2">
-            <span className="section-label">Data mode</span>
-            <p className="meta mt-0.5">Static mock — no Sheets / backend / API connected</p>
+            <span className="section-label">Modo de datos</span>
+            <p className="meta mt-0.5">Mock estático / localStorage — sin Sheets / backend / API</p>
           </div>
         </div>
         <p className="meta mt-3">
-          This page reflects the frontend prototype only. Sheets, scheduler, and integrations live
-          outside this app and are intentionally not connected here.
+          Esta página refleja solo el prototipo de frontend. Sheets, scheduler e integraciones viven fuera de
+          esta app y están intencionalmente sin conectar.
         </p>
       </Panel>
     </>

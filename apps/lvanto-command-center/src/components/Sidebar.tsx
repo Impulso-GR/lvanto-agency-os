@@ -13,35 +13,35 @@ interface NavGroup {
 
 const groups: NavGroup[] = [
   {
-    heading: 'Core',
+    heading: 'Núcleo',
     items: [
-      { label: 'Dashboard', to: '/' },
-      { label: 'Clients', to: '/clients' },
-      { label: 'Tasks', to: '/clients/animalfood/tasks' },
+      { label: 'Panel principal', to: '/' },
+      { label: 'Clientes', to: '/clients' },
+      { label: 'Tareas', to: '/clients/animalfood/tasks' },
     ],
   },
   {
-    heading: 'Intelligence',
+    heading: 'Inteligencia',
     items: [
-      { label: 'Signals', to: '/signals' },
-      { label: 'Metrics', to: '/metrics' },
-      { label: 'Notifications', to: '/notifications' },
-      { label: 'Decisions', to: '/decisions' },
+      { label: 'Señales', to: '/signals' },
+      { label: 'Métricas', to: '/metrics' },
+      { label: 'Notificaciones', to: '/notifications' },
+      { label: 'Decisiones', to: '/decisions' },
     ],
   },
   {
-    heading: 'Controls',
+    heading: 'Controles',
     items: [
-      { label: 'Claims Guard', to: '/claims' },
-      { label: 'Paid Media', to: '/paid-media' },
-      { label: 'Reports', to: '/reports' },
+      { label: 'Control de claims', to: '/claims' },
+      { label: 'Traficker / Pauta', to: '/paid-media' },
+      { label: 'Informes', to: '/reports' },
     ],
   },
   {
-    heading: 'System',
+    heading: 'Sistema',
     items: [
-      { label: 'Settings', to: '/settings' },
-      { label: 'System Health', to: '/system-health' },
+      { label: 'Configuración', to: '/settings' },
+      { label: 'Estado del sistema', to: '/system-health' },
     ],
   },
 ]
@@ -74,7 +74,7 @@ function Wordmark() {
       <div className="leading-tight">
         <div className="text-[13px] font-semibold tracking-tight text-warm">Lvanto</div>
         <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-mute2">
-          Command Center
+          Centro de comando
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@ function ClientSwitcher() {
 function Soon() {
   return (
     <span className="ml-auto rounded-full border border-hair px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mute2">
-      soon
+      pronto
     </span>
   )
 }

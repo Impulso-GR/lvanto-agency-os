@@ -251,12 +251,12 @@ export const allSignals: Signal[] = [...signals, ...portfolioSignals]
 // Canonical system-health source — used by BOTH the Dashboard strip and the System Health page.
 // Truthful for the frontend: it connects to nothing.
 export const systemHealth: HealthTile[] = [
-  { label: 'Frontend app', status: 'Running (local, mock data)', tone: 'ok' },
-  { label: 'Repository', status: 'Tracked in git', tone: 'ok' },
-  { label: 'Google Sheets', status: 'Mock only · not connected', tone: 'off' },
-  { label: 'Scheduler', status: 'External / manual', tone: 'warn' },
-  { label: 'Integrations', status: 'None connected', tone: 'off' },
-  { label: 'Local launcher', status: 'Available (desktop shortcut)', tone: 'ok' },
+  { label: 'Frontend local', status: 'Activo (local, datos mock)', tone: 'ok' },
+  { label: 'Repositorio', status: 'Versionado en Git', tone: 'ok' },
+  { label: 'Google Sheets', status: 'Sin conexión en frontend', tone: 'off' },
+  { label: 'Scheduler', status: 'Externo / manual', tone: 'warn' },
+  { label: 'Integraciones', status: 'Ninguna conectada', tone: 'off' },
+  { label: 'Launcher local', status: 'Disponible (acceso directo)', tone: 'ok' },
 ]
 
 export const activity: ActivityItem[] = [
@@ -536,7 +536,7 @@ export const paidCampaigns: PaidRow[] = [
     leads: '—',
     cpl: '—',
     diagnosis: 'No data',
-    nextAction: 'Manual entry required',
+    nextAction: 'Carga manual requerida',
   },
   {
     campaign: '— (manual entry)',
@@ -548,7 +548,7 @@ export const paidCampaigns: PaidRow[] = [
     leads: '—',
     cpl: '—',
     diagnosis: 'No data',
-    nextAction: 'Manual entry required',
+    nextAction: 'Carga manual requerida',
   },
   {
     campaign: '— (manual entry)',
@@ -560,7 +560,7 @@ export const paidCampaigns: PaidRow[] = [
     leads: '—',
     cpl: '—',
     diagnosis: 'No data',
-    nextAction: 'Manual entry required',
+    nextAction: 'Carga manual requerida',
   },
 ]
 
@@ -577,7 +577,7 @@ export const reports: { id: string; title: string; desc: string }[] = [
 
 // v0.2: `frontendHealth` removed — use the canonical `systemHealth` above.
 
-export const lastCommitInfo = 'v0.3 static frontend · June 2026'
+export const lastCommitInfo = 'v0.4 · prototipo local interactivo · junio 2026'
 
 // --- Settings (static, read-only) ------------------------------------------
 

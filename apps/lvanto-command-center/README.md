@@ -1,8 +1,21 @@
-# Lvanto Command Center — Static Frontend MVP
+# Lvanto Command Center — Local Interactive Prototype (v0.4)
 
-A **local, static visual prototype** of the Lvanto Command Center — a private, multi-client operating system for the Lvanto agency. **AnimalFood is the first active workspace, not the whole system.**
+A **local, Spanish-language, interactive prototype** of the Lvanto Command Center — a private, multi-client operating system for the Lvanto agency. **AnimalFood is the first active workspace, not the whole system.**
 
-> ⚠️ Prototype only. **Mock data, no backend, no auth, no live Google Sheets, no APIs.** Nothing here is wired to anything.
+> ⚠️ Prototype only. **Mock data + localStorage, no backend, no auth, no live Google Sheets, no APIs, no Meta.** Nothing is wired to any external service.
+
+## v0.4 — what's interactive (local only)
+All interactivity is **localStorage-backed prototype state** (no persistence beyond this browser, no external effects):
+- **Notifications:** mark as read / mark all as read; TopBar badge shows the **unread** count.
+- **Decisions:** Revisar / Aprobar / Diferir set a local status (Pendiente / Revisada / Aprobada / Diferida).
+- **Task Board:** change a task's status via the detail panel (select + Marcar listo → En revisión, Diferir → Pausado); cards move columns locally.
+- **Canfeed dashboard:** production checklist is locally toggleable.
+- **Metrics:** manual-capture checklist toggle + "Resetear checklist".
+- **Settings → "Resetear datos locales":** confirms, then clears all prototype localStorage and reloads.
+
+**localStorage keys** (namespaced `lcc:v0.4:`): `notifRead`, `decisionStatus`, `taskStatus`, `canfeedChecklist`, `metricsChecklist`.
+**Reset:** Settings → *Resetear datos locales* (or clear site data for `localhost:5173`).
+The UI is in **Spanish**; operational statuses stay in Spanish (Idea, Brief listo, En diseño, …). Logged signal/brand content is preserved as written.
 
 ## Stack
 - Vite + React 18 + TypeScript

@@ -27,21 +27,17 @@ function Column({ title, items, tone }: { title: string; items: string[]; tone: 
 
 function BrandPanel({ b }: { b: BrandClaims }) {
   return (
-    <div
-      className={`rounded-xl2 border bg-panel2 p-4 ${
-        b.highlight ? 'border-accent/40' : 'border-hair'
-      }`}
-    >
+    <div className={`rounded-xl2 border bg-panel2 p-4 ${b.highlight ? 'border-accent/40' : 'border-hair'}`}>
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <h3 className="text-sm font-medium text-warm">{b.brand}</h3>
-        {b.highlight && <Chip tone="accent">Protect Pack focus</Chip>}
-        {b.note && <Chip tone="amber">Needs definition</Chip>}
+        {b.highlight && <Chip tone="accent">Foco Protect Pack</Chip>}
+        {b.note && <Chip tone="amber">Falta definir</Chip>}
       </div>
-      {b.note && <p className="meta mb-3">{b.note}</p>}
+      {b.note && <p className="meta mb-3">Límites de comunicación todavía no definidos para esta marca.</p>}
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-        <Column title="Allowed" items={b.allowed} tone="green" />
-        <Column title="Blocked" items={b.blocked} tone="red" />
-        <Column title="Needs data" items={b.needsData} tone="amber" />
+        <Column title="Permitido" items={b.allowed} tone="green" />
+        <Column title="Bloqueado" items={b.blocked} tone="red" />
+        <Column title="Necesita datos" items={b.needsData} tone="amber" />
       </div>
     </div>
   )
@@ -51,12 +47,12 @@ export default function Claims() {
   return (
     <>
       <PageHeader
-        title="Claims Guard"
-        subtitle="Brand-specific claim boundaries — safety surface"
-        chip={<Chip tone="gold">safety</Chip>}
+        title="Control de claims"
+        subtitle="Límites de comunicación por marca — superficie de seguridad"
+        chip={<Chip tone="gold">seguridad</Chip>}
       />
-      <SectionTitle right={<Chip tone="gray">{claimsByBrand.length} brands</Chip>}>
-        Per-brand claim panels
+      <SectionTitle right={<Chip tone="gray">{claimsByBrand.length} marcas</Chip>}>
+        Paneles por marca
       </SectionTitle>
       <div className="space-y-4">
         {claimsByBrand.map((b) => (

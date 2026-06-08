@@ -18,13 +18,13 @@ import Settings from './pages/Settings'
 function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
-      <p className="text-lg text-warm">Screen not implemented yet</p>
-      <p className="mt-1 text-sm text-mute">This route is part of a future phase.</p>
+      <p className="text-lg text-warm">Pantalla todavía no implementada</p>
+      <p className="mt-1 text-sm text-mute">Esta ruta es parte de una fase futura.</p>
       <Link
         to="/"
         className="mt-4 rounded-[10px] border border-hair bg-panel px-4 py-2 text-sm text-warm hover:border-white/15"
       >
-        Back to Dashboard
+        Volver al Panel principal
       </Link>
     </div>
   )

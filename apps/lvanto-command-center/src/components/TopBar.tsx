@@ -1,26 +1,29 @@
 import { useLocation } from 'react-router-dom'
 import { notifications } from '../data/mockData'
+import { useLocalState, KEYS } from '../state/localStore'
+
+const EMPTY_READ: Record<string, boolean> = {}
 
 const labels: Record<string, string> = {
-  clients: 'Clients',
+  clients: 'Clientes',
   animalfood: 'AnimalFood',
-  brands: 'Brands',
+  brands: 'Marcas',
   canfeed: 'Canfeed',
-  tasks: 'Tasks',
-  signals: 'Signals',
-  metrics: 'Metrics',
-  notifications: 'Notifications',
-  decisions: 'Decisions',
-  claims: 'Claims Guard',
-  'paid-media': 'Paid Media',
-  reports: 'Reports',
-  'system-health': 'System Health',
-  settings: 'Settings',
+  tasks: 'Tareas',
+  signals: 'Señales',
+  metrics: 'Métricas',
+  notifications: 'Notificaciones',
+  decisions: 'Decisiones',
+  claims: 'Control de claims',
+  'paid-media': 'Traficker / Pauta',
+  reports: 'Informes',
+  'system-health': 'Estado del sistema',
+  settings: 'Configuración',
 }
 
 function useBreadcrumb(): string[] {
   const { pathname } = useLocation()
-  if (pathname === '/') return ['Lvanto', 'Dashboard']
+  if (pathname === '/') return ['Lvanto', 'Panel principal']
   // Drop purely-structural segments (e.g. "brands") that aren't navigable pages.
   const segs = pathname.split('/').filter(Boolean).filter((s) => s !== 'brands')
   return ['Lvanto', ...segs.map((s) => labels[s] ?? s)]
@@ -28,6 +31,9 @@ function useBreadcrumb(): string[] {
 
 export default function TopBar() {
   const crumbs = useBreadcrumb()
+  const [read] = useLocalState<Record<string, boolean>>(KEYS.notifRead, EMPTY_READ)
+  const unread = notifications.filter((n) => !read[n.id]).length
+
   return (
     <header className="flex h-14 shrink-0 items-center gap-4 border-b border-hair bg-carbon/80 px-5 backdrop-blur">
       {/* breadcrumb */}
@@ -43,19 +49,21 @@ export default function TopBar() {
       <div className="ml-auto flex items-center gap-3">
         {/* search placeholder */}
         <div className="hidden items-center gap-2 rounded-[10px] border border-hair bg-panel px-3 py-1.5 text-xs text-mute2 sm:flex">
-          <span>Search…</span>
+          <span>Buscar…</span>
           <span className="rounded border border-hair px-1 font-mono text-[10px] text-mute2">⌘K</span>
         </div>
 
-        {/* notifications */}
+        {/* notifications — unread count */}
         <button
-          aria-label="Notifications"
+          aria-label="Notificaciones"
           className="relative grid h-8 w-8 place-items-center rounded-[10px] border border-hair bg-panel text-mute hover:text-warm"
         >
           <span className="text-sm">◔</span>
-          <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 font-mono text-[9px] text-carbon">
-            {notifications.length}
-          </span>
+          {unread > 0 && (
+            <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 font-mono text-[9px] text-carbon">
+              {unread}
+            </span>
+          )}
         </button>
 
         {/* user */}
