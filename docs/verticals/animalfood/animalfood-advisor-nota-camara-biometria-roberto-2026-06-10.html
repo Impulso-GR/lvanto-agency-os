@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nota estratégica — Cámaras y biometría en los totems · AnimalFood Advisor</title>
+<style>
+  :root{
+    --ink:#0d0b09;
+    --ink2:#171310;
+    --brand:#FFD21A;
+    --brand-dark:#E6B400;
+    --cream:#F5F1EA;
+    --mute:#a89f93;
+    --line:#2b251f;
+    --danger:#E5484D;
+    --ok:#46A758;
+    --warn:#FF9500;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#m;color:var(--cream);line-height:1.55;background:#181410;}
+  .page{max-width:880px;margin:0 auto;background:var(--ink);}
+  .pad{padding:42px 56px;}
+  header.cover{background:radial-gradient(120% 90% at 50% 0%, #241c12 0%, var(--ink) 65%);padding:56px 56px 40px;border-bottom:1px solid var(--line);}
+  .logo{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .logo b{color:var(--brand);font-weight:800}
+  .kicker{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--brand);margin:26px 0 10px;font-weight:700}
+  h1{font-size:38px;line-height:1.08;margin:0 0 12px;font-weight:800;color:#fff}
+  h1 .y{color:var(--brand)}
+  .sub{font-size:17px;color:var(--mute);margin:0;max-width:620px}
+  .meta{display:flex;gap:26px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:16px;margin-top:28px}
+  .meta b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#6e655a;margin-bottom:2px}
+  h2{font-size:22px;margin:0 0 6px;font-weight:800;color:#fff}
+  h2 .n{color:var(--brand)}
+  .lead{color:var(--mute);font-size:15px;margin:0 0 22px}
+  section{border-top:1px solid var(--line)}
+  p{margin:0 0 14px}
+
+  .idea{background:var(--ink2);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:0 14px 14px 0;padding:18px 22px;font-size:16px;margin:0 0 8px}
+  .idea b{color:var(--brand)}
+
+  .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+  .chip{background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13.5px;color:var(--cream)}
+  .chip b{display:block;color:var(--brand);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+
+  /* Titular de diario falso — el golpe visual */
+  .news{background:#f4efe6;color:#15110c;border-radius:14px;padding:26px 30px;margin:20px 0;transform:rotate(-.6deg);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  .news .tag{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:#8a8175;border-bottom:2px solid #15110c;padding-bottom:6px;margin-bottom:12px;display:flex;justify-content:space-between}
+  .news h3{font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.12;margin:0 0 8px;font-weight:900}
+  .news p{font-size:13px;color:#5d564c;margin:0}
+  .news-cap{text-align:center;color:var(--mute);font-size:12.5px;font-style:italic;margin:10px 0 0}
+
+  .risks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+  .risk{background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .risk .ic{font-size:22px;margin-bottom:8px;display:block}
+  .risk h4{margin:0 0 6px;font-size:15px;color:#fff}
+  .risk p{font-size:13.5px;color:var(--mute);margin:0}
+  .risk.legal{border-color:rgba(229,72,77,.45)}
+  .risk.legal h4{color:#ff8a8d}
+
+  .law{background:rgba(229,72,77,.08);border:1px solid rgba(229,72,77,.35);border-radius:14px;padding:18px 22px;margin:16px 0;font-size:14px}
+  .law b{color:#ff8a8d}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+  th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);background:var(--ink2)}
+  .v{font-weight:800;white-space:nowrap}
+  .v.ok{color:var(--ok)} .v.warn{color:var(--warn)} .v.no{color:var(--danger)}
+
+  .quote{background:linear-gradient(135deg,#241c10,#1a150d);border:1px solid rgba(255,210,26,.35);border-radius:16px;padding:26px 30px;margin:8px 0;text-align:center}
+  .quote p{font-size:19px;font-weight:700;color:#fff;margin:0}
+  .quote .y{color:var(--brand)}
+  .quote small{display:block;margin-top:10px;color:var(--mute);font-size:13px;font-weight:400}
+
+  footer{padding:24px 56px;color:#6e655a;font-size:11.5px;border-top:1px solid var(--line)}
+  @media print{
+    body{background:#181410}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .page{max-width:none}
+    section,header.cover,.news,.quote{break-inside:avoid}
+  }
+  @page{size:A4;margin:0}
+  @media (max-width:640px){.chips,.risks{grid-template-columns:1fr}.pad{padding:30px 22px}header.cover{padding:38px 22px 30px}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <div class="logo">Animal<b>food</b> <span style="color:#6e655a;font-weight:400;font-size:14px">· Advisor</span></div>
+    <p class="kicker">Nota estratégica · Lvanto para Roberto</p>
+    <h1>Cámaras con detección de género:<br><span class="y">por qué te recomendamos decir NO</span></h1>
+    <p class="sub">Apareció una idea tentadora para los totems: una cámara que detecta si quien se acerca es hombre o mujer y cambia la publicidad. Suena futurista. Acá está el análisis honesto — y la alternativa inteligente.</p>
+    <div class="meta">
+      <div><b>Para</b>Roberto — AnimalFood</div>
+      <div><b>De</b>Gonzalo — Lvanto</div>
+      <div><b>Fecha</b>10 / 06 / 2026</div>
+      <div><b>Tema</b>Visión artificial en los 100 totems</div>
+    </div>
+  </header>
+
+  <!-- 1 -->
+  <section class="pad">
+    <h2><span class="n">1.</span> La idea sobre la mesa</h2>
+    <p class="lead">Y qué tiene de cierta — porque no todo es humo.</p>
+    <div class="idea">Conectar una <b>cámara</b> a cada totem para que detecte a la persona que se acerca, estime <b>si es hombre o mujer</b> y su edad, y cambie el anuncio según ese perfil. Todo procesado dentro del equipo, <b>sin costo por uso</b>.</div>
+    <div class="chips">
+      <div class="chip"><b>✓ Cierto</b>La tecnología existe y puede correr local, sin pagar servicios en la nube.</div>
+      <div class="chip"><b>✓ Cierto</b>Medir cuánta gente pasa, se detiene e interactúa es información valiosísima.</div>
+      <div class="chip"><b>✗ Omitido</b>El costo real no es la tecnología: es legal y de marca. Y nadie lo mencionó.</div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="pad">
+    <h2><span class="n">2.</span> El titular que no queremos ver</h2>
+    <p class="lead">Antes de hablar de leyes, hagamos el ejercicio más simple: imaginá esto publicado.</p>
+
+    <div class="news">
+      <div class="tag"><span>Actualidad · Tecnología</span><span>Buenos Aires</span></div>
+      <h3>«Una marca de alimento para mascotas escanea las caras de los clientes en 100 veterinarias del país»</h3>
+      <p>Cámaras instaladas en tótems analizaban el rostro de cada persona que se acercaba — sin cartel, sin aviso y sin consentimiento — para clasificarla por género y edad…</p>
+    </div>
+    <p class="news-cap">Este titular es ficticio. El riesgo de que exista, no.</p>
+
+    <p>No importa que la intención sea inocente ni que "no se guarde ninguna foto". Si un cliente, un empleado de una veterinaria o un periodista descubre la cámara, <b style="color:#fff">esta es la historia que se cuenta</b> — y compite contra años de construcción de marca.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="pad">
+    <h2><span class="n">3.</span> Los cuatro problemas concretos</h2>
+    <p class="lead">No es una opinión conservadora: son riesgos medibles.</p>
+
+    <div class="law">⚖️ <b>Ley 25.326 de Protección de Datos Personales:</b> analizar el rostro de una persona para clasificarla es tratamiento de <b>datos biométricos</b> — de gente que <b>no dio consentimiento</b>. La autoridad argentina de datos viene siendo especialmente dura con biometría en espacios comerciales. Y la sugerencia que circulaba era literalmente poner la cámara <b>"de forma oculta"</b>: eso es exactamente lo que la ley no permite.</div>
+
+    <div class="risks">
+      <div class="risk legal"><span class="ic">⚖️</span><h4>Riesgo legal</h4><p>Multas, denuncias ante la autoridad de datos y responsabilidad para AnimalFood <b>y para cada veterinaria</b> que aloja el equipo. Son 100 puntos de exposición simultáneos.</p></div>
+      <div class="risk"><span class="ic">🤝</span><h4>Riesgo de confianza</h4><p>Todo el proyecto Advisor está construido sobre confianza: claims cuidados, derivación al veterinario, consentimiento explícito en el Club. Una cámara oculta dinamita ese relato completo.</p></div>
+      <div class="risk"><span class="ic">🎯</span><h4>Riesgo de precisión</h4><p>Los modelos que "adivinan" género son imprecisos y sesgados. Equivocarle el género a un cliente en su cara es un papelón de marca — para un beneficio dudoso en un petshop.</p></div>
+      <div class="risk"><span class="ic">🔧</span><h4>Riesgo técnico</h4><p>Los 100 totems <b>no traen cámara</b> y su Android es cerrado. Habría que comprar 100 cámaras, modificar los equipos y mantener todo eso — un proyecto entero, no un agregado.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="pad">
+    <h2><span class="n">4.</span> Lo inteligente: mismo valor de negocio, cero riesgo</h2>
+    <p class="lead">La parte buena de la idea se puede capturar sin escanear a nadie.</p>
+
+    <table>
+      <tr><th>Qué</th><th>Cómo</th><th style="text-align:right">Veredicto</th></tr>
+      <tr>
+        <td><b>Métricas de interacción por local</b><br><span style="color:var(--mute);font-size:13px">Cuántos usan el Advisor, completan el recorrido, escanean el QR — el tablero de conversión por veterinaria.</span></td>
+        <td>Ya lo hace el software del totem. <b>Sin cámara, sin hardware extra.</b></td>
+        <td class="v ok" style="text-align:right">✅ HACER YA</td>
+      </tr>
+      <tr>
+        <td><b>El totem "despierta" cuando alguien se acerca</b><br><span style="color:var(--mute);font-size:13px">Pasa de los reels a un saludo con audio: el efecto mágico que enganchaba de la idea original.</span></td>
+        <td>Con un <b>sensor de presencia</b> (cuesta centavos): detecta cercanía <b>sin capturar ninguna imagen</b>. Cero exposición legal.</td>
+        <td class="v warn" style="text-align:right">🟡 PILOTO FASE 2</td>
+      </tr>
+      <tr>
+        <td><b>Conteo anónimo de personas</b><br><span style="color:var(--mute);font-size:13px">Cuánta gente pasa vs. cuánta se detiene.</span></td>
+        <td>Solo con cartelería visible, datos 100% agregados y prueba en 1-2 locales. Proyecto aparte, con revisión legal previa.</td>
+        <td class="v warn" style="text-align:right">🟡 EVALUAR DESPUÉS</td>
+      </tr>
+      <tr>
+        <td><b>Clasificar género/edad por la cara</b><br><span style="color:var(--mute);font-size:13px">La idea original.</span></td>
+        <td>—</td>
+        <td class="v no" style="text-align:right">🔴 DESCARTAR</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 5 -->
+  <section class="pad">
+    <div class="quote">
+      <p>El Advisor no necesita adivinar <span class="y">nada</span> sobre el humano.<br>El cliente nos cuenta <span class="y">todo</span> sobre su mascota — que es lo que vende.</p>
+      <small>Esa es la ventaja del modelo conversacional: los datos los da la persona, con consentimiento, conversando. Sin cámaras, sin zonas grises, sin titulares.</small>
+    </div>
+  </section>
+
+  <footer>
+    Lvanto · Nota estratégica — Visión artificial en los totems AnimalFood Advisor · 10/06/2026 · Documento interno para decisión.<br>
+    Análisis preliminar de carácter estratégico; la implementación de cualquier variante con cámara requiere validación legal formal previa (Ley 25.326).
+  </footer>
+
+</div>
+</body>
+</html>
