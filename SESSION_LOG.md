@@ -1,5 +1,29 @@
 # Session Log
 
+## 2026-06-09
+
+### AnimalFood Advisor — prototipo del totem construido (repo separado)
+- Prototipo navegable del totem **"AnimalFood Advisor"** en **repo SEPARADO** `C:\Proyecto Code\animalfood-advisor` (NO en este repo). Stack: Vite + React 18 + TS + Tailwind + PWA (mirror del Command Center). Decisión de Gonzalo: repo aparte + prototipo-first con datos provisorios. Plan aprobado en `~/.claude/plans/ok-como-me-recomendas-velvet-summit.md`.
+- **Arquitectura decidida:** web app en **modo kiosko** sobre Android (no Microsoft Store / no APK manual; updates server-side instantáneos), **motor de reglas** (multiple-choice con cara de IA → $0 tokens, sin riesgo de claims, offline-capable); IA conversacional = evolución opcional futura con topes. Estimación de costos a 100 totems documentada (todo-IA ~USD 2,1k/mes con caché; híbrido reglas-primero ~USD 400-700/mes).
+- **Experiencia:** chat estilo WhatsApp con **motor de variantes** (~10 fraseos por momento, rotan sin repetir el último), **cuestionario adaptativo** (saltea preguntas que no aplican; gato no pregunta porte/actividad; actividad solo en perro adulto), **extracción de nombre** ("mi nombre es X" → "X", sin IA), **reposo full-screen con reels**, **veredicto** con packshot real + beneficios (tilde amarillo) + "Pedila en mostrador" + confeti, **Club AnimalFood** con **QR real** (qrcode.react), **panel del local** (login PIN 1234 con largo-presión esquina sup-izq; edita promo/precio; localStorage), **sonidos** perro/gato (guau/miau — faltan los mp3), **idle "¿Seguís ahí?"** (aviso 48s, reset 60s).
+- **Branding real:** auditoría completa de **animalfood.com.ar** → `docs/verticals/animalfood/animalfood-site-product-audit-2026-06-09.md` (8 líneas, etapas, presentaciones, bocado Canfeed Mordida SSB/SMB/LB, claims por línea). **16 packshots + logos descargados** a `public/assets/packs`. Color de marca corregido a **negro + amarillo #FFD21A** (del logo "animal**food**"; el naranja era de Enercan). Tipografía **Plus Jakarta Sans**. Animaciones **Framer Motion** (botón inicio animado con glow/brillo/manito, opciones escalonadas, header, veredicto spring, confeti) + avatar de Tobi en burbujas.
+- **Claims (claimsGuard):** alergia → deriva al veterinario (sin producto); Enercan NO dice "menos alergias"; sin precios fijos de AnimalFood; IronPet nunca "Canfeed más barato".
+- **Lógica de recomendación: PROVISORIA** (mapeo Lvanto desde la auditoría). Plantilla para cerrar con Roberto: `docs/verticals/animalfood/animalfood-advisor-recommendation-table-template-2026-06-09.md`.
+- **Presentaciones cliente** (HTML→PDF, estética AnimalFood): `animalfood-advisor-presentacion-roberto-2026-06-09.html` (visión/funciones/resultados, sin números) y `...-gustavo-2026-06-09.html` (costos + fee + app web). Nombre del totem: **AnimalFood Advisor**.
+- **Notificaciones:** hooks **Stop** + **Notification** en `~/.claude/settings.json` (sonido + toast Windows) + push móvil (`inputNeededNotifEnabled`, `agentPushNotifEnabled`, `remoteControlAtStartup`) + `additionalDirectories` del repo advisor.
+- **Pendiente:** diseño/fotos hero de Gonzalo (salto visual final), mp3 guau/miau, comprimir reels (~458 MB → MB), Roberto completa la tabla, confirmar micrófono con fábrica (voz descartada por ahora). Build verde en cada paso. Dev en localhost:5174. Sin deploy / sin integraciones reales (Sheets/OAuth/IA/backend).
+
+### Totem project pricing audit + fee recommendation (web-audited)
+- Resumed context from HANDOFF/SESSION_LOG/TASKS. Active thread = **AnimalFood Smart Seller** (totem + comunidad) commissioned by Roberto; proposal HTML `docs/verticals/animalfood/animalfood-totem-proposal-roberto-2026-06-08.html` is **untracked in git** (along with `apps/lvanto-command-center/start-lvanto-command-center.ps1` + `lvanto-icon.ico`).
+- Gonzalo asked: how much to charge for the totem project (billed **separately**) and how much to raise his **monthly fee** — explicitly wanted **market-audited numbers, not opinion**, focus Argentina + USD.
+- **agent-browser CLI is down on this machine** (bundled Chrome-for-Testing crashes on launch — exit 0, no DevToolsActivePort; cleaned **257 zombie chrome.exe**; system Chrome unusable because Gonzalo has ~117 real-Chrome procs open and it hands off). Gonzalo chose to proceed with **WebSearch/WebFetch** instead. Logged in memory `agent-browser-broken-this-machine`.
+- **Audit delivered (FX anchor ~$1.450 ARS/USD, MEP/blue 8-jun-2026):**
+  - **Project build (one-time, phased):** ~USD 32–35k (≈ ARS 46–51M). Fase 1 packaging+video ~USD 1.800 (urgent, first invoice) · Fase 2 totem app offline 8–11k · Fase 3 AI agent 4–5,5k · Fase 4 comunidad/loyalty 13–19k · Rollout 2,5–4k.
+  - **Infra (recurring, capped pass-through):** USD 250–600/mes.
+  - **Fee:** current 3M ARS (~USD 2.070) is cheap vs market (marketing manager B2C mediano 6,2–7,7M/mes). Recommend **3M → 4M now → 4,5–5M when comunidad goes live**.
+  - **Salary refs (jun 2026):** SMVM $367.800; administrativo en blanco (Comercio CCT 130/75) cat A inicial básico ~$1,21M, bolsillo ~$1,3M, costo cargado p/ empleador ~$1,7–2M.
+- Saved persistent memory: `animalfood-totem-project`, `gonzalo-fee-and-project-pricing`, `agent-browser-broken-this-machine` (+ MEMORY.md index created). **Open question for next session:** turn pricing into a quote sheet for Roberto vs keep as internal note; and whether Gonzalo is considering hiring an asistente/administrativo. Docs/memory only — no Sheet/scripts/tasks/credentials touched; proposal HTML still untracked (not committed).
+
 ## 2026-06-07
 
 ### Lvanto Command Center v0.5 — local Agency OS (Hoy + workbench + integration gates)

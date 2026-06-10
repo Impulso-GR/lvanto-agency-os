@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnimalFood Smart Seller — Propuesta de Proyecto</title>
+<style>
+  :root{
+    /* Paleta provisoria — reemplazar por los colores oficiales de AnimalFood */
+    --ink:#16201c;
+    --brand:#1f7a52;
+    --brand-soft:#e8f4ee;
+    --accent:#0f1714;
+    --muted:#5d6b64;
+    --line:#e2e8e4;
+    --bg:#ffffff;
+    --card:#f7faf8;
+    --warn:#9a6b00;
+    --warn-bg:#fff6e0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);line-height:1.55;background:#eef2f0;
+  }
+  .page{max-width:880px;margin:0 auto;background:var(--bg);}
+  .pad{padding:48px 56px;}
+  header.cover{
+    background:linear-gradient(135deg,var(--accent),var(--brand));
+    color:#fff;padding:64px 56px;
+  }
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:12px;opacity:.8;margin:0 0 14px}
+  header.cover h1{font-size:40px;line-height:1.1;margin:0 0 10px;font-weight:800;}
+  header.cover .sub{font-size:18px;opacity:.92;margin:0 0 28px;font-weight:500}
+  .meta{display:flex;flex-wrap:wrap;gap:24px;font-size:13px;opacity:.9;border-top:1px solid rgba(255,255,255,.25);padding-top:18px}
+  .meta b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;opacity:.7;margin-bottom:3px;font-weight:600}
+  h2{font-size:24px;margin:0 0 6px;font-weight:800;color:var(--accent)}
+  h2 .num{color:var(--brand);font-weight:800;}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 24px}
+  h3{font-size:16px;margin:24px 0 8px;font-weight:700}
+  section{border-top:1px solid var(--line);}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px;padding-left:20px}
+  li{margin:6px 0}
+  .one-liner{
+    background:var(--brand-soft);border-left:4px solid var(--brand);
+    padding:18px 22px;border-radius:0 10px 10px 0;font-size:17px;font-weight:600;color:var(--accent);margin:0 0 8px
+  }
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .card h4{margin:0 0 8px;font-size:15px;color:var(--brand)}
+  .card.small p{font-size:14px;margin:0;color:var(--muted)}
+  .pill{display:inline-block;background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+  .pill.alt{background:#dfe7e3;color:var(--accent)}
+  .pill.warn{background:var(--warn);color:#fff}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--card);font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .flow{display:flex;align-items:stretch;gap:0;margin:18px 0;flex-wrap:wrap}
+  .step{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;position:relative}
+  .step .n{width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+  .step b{font-size:14px;display:block;margin-bottom:3px}
+  .step span{font-size:12px;color:var(--muted)}
+  .arrow{display:flex;align-items:center;color:var(--brand);font-size:22px;padding:0 6px}
+  .note{background:var(--warn-bg);border:1px solid #f0dca5;border-radius:10px;padding:14px 18px;font-size:14px;margin:16px 0}
+  .note b{color:var(--warn)}
+  .timeline{margin:18px 0}
+  .phase{display:flex;gap:16px;padding:16px 0;border-bottom:1px dashed var(--line)}
+  .phase:last-child{border-bottom:none}
+  .phase .tag{flex:0 0 110px}
+  .phase .tag .pill{display:block;text-align:center}
+  .phase .tag small{display:block;text-align:center;color:var(--muted);margin-top:6px;font-size:12px}
+  .phase .body h4{margin:0 0 6px;font-size:15px}
+  .phase .body p{margin:0;font-size:14px;color:var(--muted)}
+  .checklist li{list-style:none;position:relative;padding-left:26px}
+  .checklist{padding-left:0}
+  .checklist li:before{content:"?";position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;background:var(--warn-bg);border:1px solid #f0dca5;color:var(--warn);font-size:12px;font-weight:700;text-align:center;line-height:18px}
+  .cta{background:var(--accent);color:#fff;border-radius:14px;padding:28px 32px;margin-top:8px}
+  .cta h3{color:#fff;margin-top:0;font-size:20px}
+  .cta p{opacity:.9;margin-bottom:0}
+  footer{padding:28px 56px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);background:var(--card)}
+  .disclaimer{font-size:12px;color:var(--muted);font-style:italic;margin-top:6px}
+  @media print{body{background:#fff}.page{max-width:none}header.cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}section{break-inside:avoid}}
+  @media (max-width:640px){.grid2,.grid3{grid-template-columns:1fr}.pad{padding:32px 24px}header.cover{padding:40px 24px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <p class="kicker">Propuesta de Proyecto · Lvanto para AnimalFood</p>
+    <h1>AnimalFood Smart Seller</h1>
+    <p class="sub">El asistente digital para petshops y veterinarias — más una comunidad de clientes que vuelven a comprar.</p>
+    <div class="meta">
+      <div><b>Preparado para</b>Roberto — AnimalFood Argentina</div>
+      <div><b>Preparado por</b>Gonzalo — Lvanto</div>
+      <div><b>Fecha</b>08 / 06 / 2026</div>
+      <div><b>Estado</b>Para aprobación</div>
+    </div>
+  </header>
+
+  <!-- 1 -->
+  <section class="pad">
+    <h2><span class="num">1.</span> Qué vamos a construir</h2>
+    <p class="lead">No es solo un totem ni solo una caja. Son dos piezas conectadas que se potencian.</p>
+    <div class="one-liner">Un asistente digital de 50" que orienta al cliente y ayuda a vender en el local, conectado a una comunidad AnimalFood donde ese mismo cliente acumula puntos y recibe un descuento mensual en su bolsa.</div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>🖥️ El Totem (en el local)</h4>
+        <p>Pantalla táctil que recibe al cliente, le hace unas preguntas simples sobre su mascota y le recomienda qué línea AnimalFood le conviene. Cuando nadie lo usa, muestra videos y la promoción del mes del local.</p>
+      </div>
+      <div class="card">
+        <h4>🐾 La Comunidad (online)</h4>
+        <p>Una sección en <b>animalfood.com.ar/comunidad</b> donde el cliente se registra, suma puntos para canjear por merch y recibe <b>una vez al mes</b> un descuento para la compra de su bolsa. Funciona aunque el cliente nunca haya tocado un totem.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card small"><h4>Valor para el petshop / veterinaria</h4><p>Vende más y mejor, profesionaliza el local y fideliza al cliente con un beneficio mensual concreto.</p></div>
+      <div class="card small"><h4>Valor para AnimalFood</h4><p>Controla el relato de marca en el punto de venta, genera recompra recurrente y construye una base de clientes propia con datos reales.</p></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="pad">
+    <h2><span class="num">2.</span> Cómo va a funcionar el totem</h2>
+    <p class="lead">El recorrido del cliente, paso a paso. Simple, guiado y siempre termina acercándolo a una compra.</p>
+
+    <div class="flow">
+      <div class="step"><div class="n">1</div><b>Reposo</b><span>Videos + promo del local + "Tocá para empezar"</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">2</div><b>Preguntas</b><span>¿Perro o gato? Raza, peso, edad, qué tan activo</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">3</div><b>Veredicto</b><span>Qué línea del universo AnimalFood le conviene</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">4</div><b>Comunidad</b><span>QR para sumarse, ganar puntos y el descuento mensual</span></div>
+    </div>
+
+    <h3>El agente con IA adentro</h3>
+    <p>El totem incluye un <b>agente conversacional</b> que le pregunta al consumidor cuánto pesa su mascota, qué raza es, cuántos años tiene, qué tan activa es y si es perro o gato. Con eso, da un <b>veredicto de orientación</b>: qué línea AnimalFood le conviene y por qué, en lenguaje simple.</p>
+
+    <div class="note">
+      <b>Importante — cómo lo vamos a hacer de forma realista:</b> el hardware del totem (Android, memoria limitada) <b>no puede correr la IA por sí solo</b>. El agente conversacional funciona conectándose a un servicio de IA en la nube, es decir, <b>necesita internet en el local</b>. Para que el totem <b>nunca quede inservible</b>, lo construimos así:
+      <ul style="margin-top:8px;margin-bottom:0">
+        <li><b>Con internet:</b> agente IA conversacional completo (charla natural con el cliente).</li>
+        <li><b>Sin internet:</b> el mismo cuestionario guiado por botones, con la recomendación resuelta localmente. Mismo resultado, sin charla.</li>
+      </ul>
+    </div>
+
+    <h3>Panel del local (login para la promo)</h3>
+    <p>Cada petshop o veterinaria entra con su propio usuario y contraseña a un panel donde puede <b>definir el precio de su promoción del mes</b> y elegir qué productos destacar. Así cada local controla su oferta sin depender de nosotros.</p>
+
+    <h3>Guía y tutorial en la caja</h3>
+    <p>La caja incluye un <b>QR que lleva a un video tutorial en YouTube</b> (sencillo, lo producimos nosotros) y un <b>instructivo breve impreso</b> para evitar daños, explicar el uso e invitar a ver el video. Es la forma más barata y simple de que el local instale el totem bien y sin soporte telefónico.</p>
+
+    <p class="disclaimer">El agente entrega orientación de producto, no diagnóstico ni prescripción veterinaria. No realiza afirmaciones médicas, terapéuticas ni de salud sin validación previa.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="pad">
+    <h2><span class="num">3.</span> La comunidad AnimalFood</h2>
+    <p class="lead">El motor que convierte una compra suelta en recompra todos los meses.</p>
+    <div class="grid3">
+      <div class="card small"><h4>Registro</h4><p>El cliente carga su mascota: tipo, raza, peso, edad. Desde el totem (QR) o directo desde la web.</p></div>
+      <div class="card small"><h4>Puntos → merch</h4><p>Suma puntos por sus compras y los canjea por merchandising AnimalFood.</p></div>
+      <div class="card small"><h4>Descuento mensual</h4><p>Una vez por mes recibe un beneficio para la compra de su bolsa.</p></div>
+    </div>
+    <p>Vive en una sección nueva del sitio: <b>animalfood.com.ar/comunidad</b> <span class="pill alt">nombre a definir — propuesta: "Manada AnimalFood"</span>. El totem redirige ahí, pero <b>cualquier persona puede sumarse desde su casa</b>, haya o no usado un totem. Sobre esa base montamos el <b>email marketing</b>: recordatorio de recompra, tips de cuidado y la promo del mes.</p>
+    <div class="note"><b>A definir con Roberto:</b> valor de los puntos, qué merch se ofrece y quién lo envía, monto/política del descuento mensual y dónde se canjea (en el local o en la web). Sin esto definido, el sistema se diseña pero no se puede activar.</div>
+  </section>
+
+  <!-- 4 -->
+  <section class="pad">
+    <h2><span class="num">4.</span> Cómo lo vamos a desarrollar</h2>
+    <p class="lead">Por etapas, para que cada paso se apruebe antes de invertir en el siguiente. Apenas Roberto da el OK, arrancamos por el packaging.</p>
+
+    <div class="timeline">
+      <div class="phase">
+        <div class="tag"><span class="pill">Fase 0</span><small>Hoy</small></div>
+        <div class="body"><h4>Aprobación</h4><p>Roberto aprueba esta propuesta y confirma las definiciones pendientes (sección 6). Recién con el OK avanzamos.</p></div>
+      </div>
+      <div class="phase">
+        <div class="tag"><span class="pill">Fase 1</span><small>~10 días</small></div>
+        <div class="body"><h4>Packaging + tutorial + guía</h4><p>Diseño de la caja con QR al tutorial de YouTube, instructivo impreso anti-daños y producción del video tutorial. Es lo urgente, por la fecha de impresión.</p></div>
+      </div>
+      <div class="phase">
+        <div class="tag"><span class="pill">Fase 2</span><small>App base</small></div>
+        <div class="body"><h4>Totem funcionando (offline)</h4><p>App en modo kiosko: reposo con videos/promos, cuestionario guiado, recomendación local y login del local para la promo. Funciona sin internet.</p></div>
+      </div>
+      <div class="phase">
+        <div class="tag"><span class="pill">Fase 3</span><small>IA</small></div>
+        <div class="body"><h4>Agente IA conversacional</h4><p>Conexión al servicio de IA en la nube para la charla natural con el cliente (cuando hay internet), con todas las reglas de seguridad de marca.</p></div>
+      </div>
+      <div class="phase">
+        <div class="tag"><span class="pill">Fase 4</span><small>Comunidad</small></div>
+        <div class="body"><h4>animalfood.com.ar/comunidad</h4><p>Registro, cuentas, puntos, merch, descuento mensual y email marketing. Es la parte más valiosa y la que más trabajo lleva.</p></div>
+      </div>
+      <div class="phase">
+        <div class="tag"><span class="pill alt">Rollout</span><small>100 totems</small></div>
+        <div class="body"><h4>Despliegue</h4><p>Preparación de los 100 equipos, asignación por local, carga de contenido y plan de actualización y mantenimiento remoto.</p></div>
+      </div>
+    </div>
+    <p class="disclaimer">Las fases 2 a 4 dependen de una validación técnica con el equipo de desarrollo. Los plazos exactos de cada una se confirman tras esa revisión.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="pad">
+    <h2><span class="num">5.</span> Qué se necesita para sostenerlo (infraestructura y costos)</h2>
+    <p class="lead">Seamos transparentes: la comunidad y la IA son servicios que viven en internet, y eso tiene un costo mensual recurrente. Lo dejamos claro desde el día uno.</p>
+    <table>
+      <tr><th>Componente</th><th>Para qué sirve</th><th>Tipo de costo</th></tr>
+      <tr><td><b>Hosting de la web/comunidad</b></td><td>Aloja la sección de comunidad, las cuentas y los datos de los clientes.</td><td>Mensual recurrente</td></tr>
+      <tr><td><b>Base de datos + login</b></td><td>Guarda usuarios, mascotas, puntos y promociones de cada local.</td><td>Mensual recurrente</td></tr>
+      <tr><td><b>Servicio de IA (en la nube)</b></td><td>Hace funcionar el agente conversacional del totem.</td><td>Por uso (por conversación) — se puede poner un tope</td></tr>
+      <tr><td><b>Almacenamiento de videos/contenido</b></td><td>Guarda y distribuye los videos y promos de los totems.</td><td>Mensual recurrente</td></tr>
+      <tr><td><b>Plataforma de email marketing</b></td><td>Envía recordatorios de recompra y promos a la comunidad.</td><td>Mensual recurrente (según cantidad de contactos)</td></tr>
+      <tr><td><b>Dominio animalfood.com.ar</b></td><td>Ya existe; solo agregamos la sección /comunidad.</td><td>Sin costo nuevo (requiere acceso al sitio actual)</td></tr>
+      <tr><td><b>Video tutorial en YouTube</b></td><td>Aloja el tutorial al que apunta el QR de la caja.</td><td>Gratis</td></tr>
+    </table>
+    <div class="note"><b>Sobre los montos:</b> no ponemos números todavía porque dependen de las herramientas que elijamos y del volumen real de uso (cantidad de totems activos, conversaciones por día y contactos de email). Una vez aprobada la dirección, <b>cotizamos el costo mensual estimado con un tope claro</b> para que no haya sorpresas.</div>
+  </section>
+
+  <!-- 6 -->
+  <section class="pad">
+    <h2><span class="num">6.</span> Qué necesitamos que Roberto defina</h2>
+    <p class="lead">Estas respuestas destraban el proyecto. Las de arriba frenan el packaging (urgente); las de abajo, la comunidad y la IA.</p>
+    <h3>Para arrancar el packaging (urgente)</h3>
+    <ul class="checklist">
+      <li>Plantilla/medidas reales de la caja (dieline) del proveedor del totem.</li>
+      <li>Colores y logos oficiales de AnimalFood y de las líneas a mostrar.</li>
+      <li>Método de impresión y proveedor de packaging.</li>
+      <li>¿El totem trae parlantes? (define si el tutorial y el agente usan audio).</li>
+    </ul>
+    <h3>Para la comunidad y la IA</h3>
+    <ul class="checklist">
+      <li>¿Quién administra hoy animalfood.com.ar? ¿Podemos crear la sección /comunidad y tener los accesos?</li>
+      <li>¿Hay internet (wifi) en los locales? ¿Es estable? (define dónde funciona el agente IA).</li>
+      <li>Política del descuento mensual: monto, quién lo financia y dónde se canjea.</li>
+      <li>Sistema de puntos: qué merch se ofrece, cuántos puntos vale cada cosa y quién envía la merch.</li>
+      <li>¿El local fija libremente el precio de su promo, o dentro de un rango que define AnimalFood?</li>
+      <li>Tope de presupuesto mensual aceptable para los servicios en la nube.</li>
+      <li>Quién valida legalmente los textos/claims y los términos de datos de los clientes.</li>
+    </ul>
+  </section>
+
+  <!-- 7 -->
+  <section class="pad">
+    <div class="cta">
+      <h3>Próximo paso</h3>
+      <p>Con el <b>OK de Roberto</b> y las definiciones del packaging (dieline, colores, logos), arrancamos de inmediato con el <b>diseño de la caja, el instructivo y el video tutorial</b> — la parte de fecha más ajustada. En paralelo, cerramos con el equipo de desarrollo el alcance y el costo de la app, la IA y la comunidad para presentarte el plan de inversión completo.</p>
+    </div>
+  </section>
+
+  <footer>
+    Lvanto · Propuesta AnimalFood Smart Seller + Comunidad AnimalFood · 08/06/2026 · Documento de trabajo para aprobación.<br>
+    El agente y los materiales entregan orientación de producto; no constituyen diagnóstico ni prescripción veterinaria. Sin afirmaciones médicas, terapéuticas ni de salud sin validación previa. Sin precios, márgenes ni certificaciones definitivos hasta confirmación de AnimalFood.
+  </footer>
+
+</div>
+</body>
+</html>

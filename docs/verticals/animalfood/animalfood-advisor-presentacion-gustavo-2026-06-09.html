@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnimalFood Advisor — Resumen Ejecutivo e Inversión · Gustavo</title>
+<style>
+  :root{
+    --ink:#15110d;
+    --brand:#E8631A;
+    --brand-dark:#C24E0E;
+    --brand-soft:#fbeee3;
+    --accent:#0d0b09;
+    --muted:#6b625a;
+    --line:#ece6df;
+    --bg:#ffffff;
+    --card:#faf7f3;
+    --warn:#8a5a00;
+    --warn-bg:#fff5e1;
+    --ok:#1f7a52;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55;background:#e9e4dd;}
+  .page{max-width:900px;margin:0 auto;background:var(--bg);}
+  .pad{padding:50px 60px;}
+  header.cover{background:linear-gradient(140deg,var(--accent) 0%,#241a12 55%,var(--brand-dark) 130%);color:#fff;padding:70px 60px;}
+  .logo-row{display:flex;align-items:center;gap:10px;margin:0 0 34px;font-weight:800;font-size:18px;letter-spacing:.02em}
+  .logo-dot{width:11px;height:11px;border-radius:50%;background:var(--brand);display:inline-block}
+  .kicker{text-transform:uppercase;letter-spacing:.2em;font-size:12px;color:var(--brand);margin:0 0 14px;font-weight:700}
+  header.cover h1{font-size:44px;line-height:1.05;margin:0 0 12px;font-weight:800;}
+  header.cover h1 span{color:var(--brand)}
+  header.cover .sub{font-size:19px;opacity:.92;margin:0 0 30px;font-weight:500;max-width:640px}
+  .meta{display:flex;flex-wrap:wrap;gap:26px;font-size:13px;opacity:.92;border-top:1px solid rgba(255,255,255,.2);padding-top:20px}
+  .meta b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;opacity:.65;margin-bottom:3px;font-weight:600}
+  h2{font-size:25px;margin:0 0 6px;font-weight:800;color:var(--accent)}
+  h2 .num{color:var(--brand);}
+  .lead{color:var(--muted);font-size:15.5px;margin:0 0 24px}
+  h3{font-size:16px;margin:26px 0 8px;font-weight:700}
+  section{border-top:1px solid var(--line);}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px;padding-left:20px}
+  li{margin:7px 0}
+  .one-liner{background:var(--brand-soft);border-left:4px solid var(--brand);padding:20px 24px;border-radius:0 12px 12px 0;font-size:17px;font-weight:600;color:var(--accent);margin:0 0 10px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px}
+  .card h4{margin:0 0 8px;font-size:15px;color:var(--brand-dark)}
+  .card.small p{font-size:14px;margin:0;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+  th,td{text-align:left;padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--card);font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  td.num,th.num{text-align:right;white-space:nowrap}
+  tr.total td{font-weight:700;border-top:2px solid var(--brand);background:var(--brand-soft)}
+  .tag-now{display:inline-block;background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;margin-left:6px}
+  .tag-later{display:inline-block;background:#e6ddd3;color:var(--accent);font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;margin-left:6px}
+  .note{background:var(--warn-bg);border:1px solid #f0dca5;border-radius:11px;padding:15px 19px;font-size:14px;margin:16px 0}
+  .note b{color:var(--warn)}
+  .big{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0}
+  .big .b{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px}
+  .big .b .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .big .b .val{font-size:24px;font-weight:800;color:var(--accent)}
+  .big .b .sub{font-size:13px;color:var(--muted);margin-top:6px}
+  .cta{background:linear-gradient(135deg,var(--accent),var(--brand-dark));color:#fff;border-radius:16px;padding:32px 36px;margin-top:8px}
+  .cta h3{color:#fff;margin-top:0;font-size:21px}
+  .cta p{opacity:.92;margin-bottom:0}
+  footer{padding:30px 60px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);background:var(--card)}
+  @media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff}.page{max-width:none}header.cover,section{break-inside:avoid}}
+  @page{size:A4;margin:10mm}
+  @media (max-width:660px){.grid2,.grid3{grid-template-columns:1fr}.pad{padding:34px 26px}header.cover{padding:44px 26px}header.cover h1{font-size:33px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <div class="logo-row"><span class="logo-dot"></span> animalfood</div>
+    <p class="kicker">Resumen Ejecutivo e Inversión · Lvanto para AnimalFood</p>
+    <h1>AnimalFood <span>Advisor</span></h1>
+    <p class="sub">El plan de inversión para poner en marcha el asistente digital en 100 locales y la comunidad de clientes de AnimalFood.</p>
+    <div class="meta">
+      <div><b>Preparado para</b>Gustavo — AnimalFood Argentina</div>
+      <div><b>Preparado por</b>Gonzalo — Lvanto</div>
+      <div><b>Fecha</b>09 / 06 / 2026</div>
+      <div><b>Estado</b>Para aprobación</div>
+    </div>
+  </header>
+
+  <!-- 1 -->
+  <section class="pad">
+    <h2><span class="num">1.</span> El proyecto, en una línea</h2>
+    <div class="one-liner">Un asistente digital inteligente en 100 totems, que asesora al cliente y ayuda a vender en el local, conectado a una comunidad propia de AnimalFood que genera recompra mensual.</div>
+    <p class="lead">AnimalFood pone el hardware (los 100 totems en comodato). Lvanto desarrolla y opera el <b>software, la inteligencia, el contenido y la comunidad</b> — la capa que genera el valor recurrente y los datos propios de clientes.</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="pad">
+    <h2><span class="num">2.</span> Qué construimos hoy: el app web del totem</h2>
+    <p class="lead">La inversión inmediata. Es el cerebro del Advisor: el mismo desarrollo sirve para los 100 equipos y se actualiza para todos a la vez, sin tocar cada local.</p>
+    <div class="grid2">
+      <div class="card small"><h4>Asesor digital experto</h4><p>Guía al cliente y le recomienda la línea AnimalFood ideal según su mascota.</p></div>
+      <div class="card small"><h4>Modo reposo</h4><p>Reproduce contenido de marca y la promo del mes de cada local.</p></div>
+      <div class="card small"><h4>Panel por local</h4><p>Cada petshop define el precio de su promoción desde su propio acceso.</p></div>
+      <div class="card small"><h4>Puerta a la comunidad</h4><p>Invita al cliente a sumarse y captura su alta para fidelizarlo.</p></div>
+    </div>
+    <p>Lo construimos como una <b>única aplicación web</b> que corre en los totems en modo pantalla completa. Esta decisión técnica es la que hace el proyecto eficiente: un solo desarrollo, una sola actualización para los 100 equipos, y la misma base sirve después para la comunidad en la web.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="pad">
+    <h2><span class="num">3.</span> Estructura de inversión</h2>
+    <p class="lead">Tres flujos separados y transparentes. No se mezclan: cada uno se aprueba y factura por separado.</p>
+    <table>
+      <tr><th>Flujo</th><th>Qué incluye</th><th class="num">Inversión estimada (USD)</th></tr>
+      <tr><td><b>A · Desarrollo</b><br><span style="color:var(--muted);font-size:13px">Pago único, por etapas</span></td>
+          <td>Diseño del packaging + manual + video tutorial <span class="tag-now">HOY</span><br>App web del totem (Advisor con IA, reposo, panel del local) <span class="tag-now">HOY</span><br>Comunidad online + beneficio mensual + email <span class="tag-later">LUEGO</span><br>Despliegue de los 100 equipos</td>
+          <td class="num">~32.000 – 35.000<br>por etapas</td></tr>
+      <tr><td><b>B · Infraestructura</b><br><span style="color:var(--muted);font-size:13px">Recurrente, con tope</span></td>
+          <td>Hosting, base de datos, almacenamiento de contenido y plataforma de email para los 100 totems activos. Se factura aparte, con un tope claro.</td>
+          <td class="num">~250 – 600 / mes</td></tr>
+      <tr><td><b>C · Fee de operación</b><br><span style="color:var(--muted);font-size:13px">Mensual</span></td>
+          <td>Dirección creativa, growth, contenido y operación del sistema sobre las marcas de AnimalFood + mantenimiento del Advisor y la comunidad.</td>
+          <td class="num">Ver punto 5</td></tr>
+    </table>
+    <div class="note"><b>Sobre los montos:</b> son estimaciones de referencia de mercado (Argentina, junio 2026). El número fino del desarrollo se confirma con el equipo técnico una vez aprobada la dirección. Por eso se presenta <b>por etapas</b>: cada una se aprueba antes de invertir en la siguiente.</div>
+  </section>
+
+  <!-- 4 -->
+  <section class="pad">
+    <h2><span class="num">4.</span> Una decisión que cuida tu presupuesto</h2>
+    <p class="lead">Tomamos una decisión técnica clave que mantiene el costo bajo control y elimina las sorpresas.</p>
+    <p>El Advisor <b>no usa una "IA en la nube" que cobra por cada conversación</b>. Funciona con un motor de recomendación propio: definimos junto a AnimalFood la respuesta correcta para cada caso (mascota, peso, actividad) y el totem la entrega solo.</p>
+    <div class="grid3">
+      <div class="card small"><h4>Sin gasto mensual de IA</h4><p>No se paga por uso a ninguna API externa: el costo variable de inteligencia artificial es cero.</p></div>
+      <div class="card small"><h4>Presupuesto predecible</h4><p>No hay factura sorpresa que crezca con el uso de los 100 equipos. Lo recurrente se limita al hosting y los datos, con tope.</p></div>
+      <div class="card small"><h4>Sin riesgo de claims</h4><p>Una IA libre puede "inventar" respuestas; en temas de salud o alergia, eso es un riesgo legal y de marca. El motor propio dice solo lo aprobado.</p></div>
+    </div>
+    <div class="note"><b>Para el futuro:</b> conectar una IA conversacional real es posible más adelante, pero implica un costo mensual variable y controles de gasto. Lo dejamos preparado como <b>evolución opcional</b>, no como un costo obligatorio de hoy.</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="pad">
+    <h2><span class="num">5.</span> La decisión de hoy</h2>
+    <p class="lead">Para no perder la ventana de impresión del packaging y arrancar el desarrollo, lo que se aprueba ahora es:</p>
+    <div class="big">
+      <div class="b"><div class="lbl">Arranca ya</div><div class="val">Packaging + tutorial</div><div class="sub">Diseño de la caja, manual de cuidado y video. Primera factura standalone — la parte de fecha más ajustada.</div></div>
+      <div class="b"><div class="lbl">Inversión central de hoy</div><div class="val">App web del totem</div><div class="sub">El Advisor, el reposo y el panel del local. El cerebro que opera en los 100 equipos.</div></div>
+    </div>
+    <p>Aprobando estas dos piezas, el proyecto entra en producción: se imprime el packaging en China con el arte de AnimalFood y arranca el desarrollo del Advisor. La comunidad (flujo A · etapa siguiente) se aprueba después, ya con el totem funcionando.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="pad">
+    <h2><span class="num">6.</span> Aumento de fee por mantenimiento y operación</h2>
+    <p class="lead">El Advisor y la comunidad no son un entregable que se apaga: son un sistema vivo que hay que operar, alimentar de contenido y mantener todos los meses.</p>
+    <table>
+      <tr><th>Momento</th><th>Fee mensual</th><th>Por qué</th></tr>
+      <tr><td>Hoy → arranque del proyecto</td><td><b>3M → 4M ARS</b></td><td>La coordinación y dirección del proyecto suma carga operativa desde ya.</td></tr>
+      <tr><td>Con la comunidad y los totems en operación</td><td><b>4M → 4,5–5M ARS</b></td><td>Operación continua del sistema: contenido, mantenimiento del Advisor, gestión de la comunidad y los datos.</td></tr>
+    </table>
+    <p>Aun en el escalón más alto, el fee sigue <b>por debajo del costo de un responsable de marketing full-time</b> para una empresa de la escala de AnimalFood — y con Lvanto, AnimalFood obtiene dirección creativa, growth, contenido, automatización y la operación de un sistema propietario sobre todas sus marcas, no una sola persona.</p>
+  </section>
+
+  <!-- 6 -->
+  <section class="pad">
+    <h2><span class="num">7.</span> Por qué tiene sentido</h2>
+    <div class="grid3">
+      <div class="card small"><h4>Activo propio</h4><p>AnimalFood construye una base de datos de clientes y un canal directo — un activo que hoy no tiene y que no depende de terceros.</p></div>
+      <div class="card small"><h4>Recompra recurrente</h4><p>El beneficio mensual convierte ventas sueltas en clientes que vuelven, mes a mes.</p></div>
+      <div class="card small"><h4>Eficiencia</h4><p>Un solo desarrollo para 100 locales, actualizable a la vez. El costo no se multiplica por equipo.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="pad">
+    <div class="cta">
+      <h3>Próximo paso</h3>
+      <p>Con la aprobación de la <b>creación del app web del totem</b> y del <b>packaging</b>, arrancamos producción esta semana. Cerramos con el equipo técnico el alcance final y el cronograma, y dejamos planteado el aumento de fee escalonado para la etapa de operación. Quedamos a disposición para revisar cada número en detalle.</p>
+    </div>
+  </section>
+
+  <footer>
+    Lvanto · AnimalFood Advisor — Resumen Ejecutivo e Inversión · 09/06/2026 · Documento de trabajo para aprobación.<br>
+    Montos en USD y ARS son estimaciones de referencia de mercado (junio 2026, tipo de cambio aprox. $1.450/USD); el costo final del desarrollo se confirma con el equipo técnico. Identidad visual provisoria, a reemplazar por el material de marca oficial de AnimalFood.
+  </footer>
+
+</div>
+</body>
+</html>
