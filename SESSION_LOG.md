@@ -1,5 +1,16 @@
 # Session Log
 
+## 2026-06-10
+
+### Advisor EN VIVO (Vercel) + fotos reales + métricas + brief de packaging
+- **Deploy a producción: https://animalfood-advisor.vercel.app** (Vercel CLI, cuenta gonzamdq25-8586 ya logueada; proyecto `animalfood-advisor`). Roberto lo vio desde el celular: **"le encanta"** — pidió el diseño de las cajas. Notas técnicas: originales de reels movidos FUERA del repo a `C:\Proyecto Code\animalfood-reels-originales\` (rompían el límite de 100 MB de Vercel; también había copia vieja en `dist/`); `.vercelignore` = dist + originals + PNGs fuente.
+- **Fotos de Aranza cableadas** (llegaron a `public/assets/heroes/` con doble extensión → renombradas y convertidas a **WebP** ~150 KB c/u con ffmpeg): perro/gato en tarjetas de especie, **Tobi foto real** como avatar (header + burbujas, fallback SVG), **duo** de fondo en la placa de bienvenida del reposo. PNGs fuente gitignoreados.
+- **Chat premium pass** (referencias de Gonzalo, negro+amarillo): header con volver circular + wordmark centrado + chip Tobi online; **progreso segmentado adaptativo (n/total)**; **nombres de mascota/dueño resaltados en amarillo** dentro de las burbujas; opciones con hints ("0 a 12 meses", "10 a 25 kg"); burbujas vidrio; input pill + enviar circular amarillo; **GoldDust** (partículas doradas), ondas más intensas, **viñeta cinematográfica**; tarjetas de especie foto-ready con glow; glow pulsante tras el packshot.
+- **Métricas locales anónimas** (el "✅ HACER YA" de la nota de cámaras): contadores agregados en localStorage (iniciaron / completaron / derivación vet / llegaron al Club), ventana 60 días, visibles en el panel del local (hoy + total). Sin datos personales, sin cámara.
+- **Nota estratégica cámaras/biometría para Roberto** (HTML+PDF, commit `7ae2561`): recomienda NO a detección de género (Ley 25.326, titular ficticio como golpe visual, 4 riesgos) + alternativa segura (métricas ya / sensor de presencia en piloto / conteo anónimo a evaluar / género nunca).
+- **Brief de packaging entregado a Gonzalo** (`animalfood-advisor-packaging-brief-2026-06-10.md`): medidas por cara (1920×205×805), dirección visual negro+amarillo, copy listo por cara (frente/dorso/laterales/tapa), íconos de manipulación, checklist de lo prohibido, entregables para fábrica. Gonzalo diseña en Photoshop ahora.
+- **Pendiente:** mp3 guau/miau · tabla de recomendación (Roberto) · brand kit oficial · dieline del proveedor · URL del tutorial (QR).
+
 ## 2026-06-09
 
 ### AnimalFood Advisor — auditoría + skill ui-ux-pro-max + pase pro de UI
