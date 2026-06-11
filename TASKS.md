@@ -17,7 +17,7 @@
 ## 📦 PRÓXIMA FASE — Club AnimalFood (comunidad + ruleta) — PENDIENTE DE APROBACIÓN
 
 > Plan completo: `docs/verticals/animalfood/animalfood-comunidad-ruleta-plan-2026-06-10.md`
-> Decisión tomada: **app separada** del Advisor, misma base de datos (Supabase). **La ruleta vive dentro de la comunidad** (girar requiere registro); el totem la promociona vía QR.
+> Decisión (Gonzalo): **ruleta TOTEM-FIRST** — gira en el totem (hype en el local), el premio se reclama registrándose vía QR; socios del Club giran además 1×/mes desde el celular. ✅ Ruleta del totem YA construida en el Advisor (premios provisorios, canje demo); falta backend real (Sprint Club).
 
 - [ ] Definiciones de Roberto (bloqueantes): premios/probabilidades de la ruleta y quién financia · regla de giro · monto y mecánica del descuento mensual · canje en mostrador · acceso al dominio animalfood.com.ar · validación legal (Ley 25.326 + bases de juegos promocionales).
 - [ ] Sprint 1: Supabase (Auth Google + DB + storage) + landing Club + registro + consentimiento.

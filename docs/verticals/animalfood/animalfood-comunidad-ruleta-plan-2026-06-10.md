@@ -1,7 +1,9 @@
 # Club AnimalFood (Comunidad) + Ruleta — Plan de la próxima fase
 
 > **Estado:** PENDIENTE (backlog priorizado) · **Fecha:** 2026-06-10 · **Origen:** pedido de Roberto (juegos en el totem, ej. ruleta) + comunidad con registro Google.
-> **Decisión de arquitectura (Lvanto):** la comunidad es una **app web separada** del Advisor, ambas comparten **la misma base de datos**. La ruleta vive **dentro de la comunidad** (el registro es el requisito para jugar); el totem la **promociona** vía QR. El Advisor queda como kiosko puro (sin auth, sin datos personales en el local).
+> **Decisión de arquitectura (ACTUALIZADA por Gonzalo 2026-06-10 — ruleta TOTEM-FIRST):** la comunidad es una **app web separada** del Advisor, ambas comparten **la misma base de datos**. **La ruleta gira EN EL TOTEM** (espectáculo/hype en el local, giro libre tras completar el Advisor); el premio se **RECLAMA escaneando el QR y registrándose en el Club** → el premio es el anzuelo del registro. Los socios del Club además tienen **1 giro mensual desde el celular**. El Advisor sigue sin auth ni datos personales (el código de canje viaja en el QR).
+>
+> ✅ **YA CONSTRUIDO (2026-06-10):** la ruleta del totem está implementada en el Advisor (rueda animada negra+amarilla, premios PROVISORIOS, premio + QR con código de canje demo, métrica de giros en el panel del local). Falta el backend real de canje (Sprint Club).
 
 ---
 
