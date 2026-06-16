@@ -1,11 +1,12 @@
 # Tareas activas — Lvanto Agency OS
 
-> Actualizado: 2026-06-10. Frente activo: **AnimalFood Advisor** (totem) + próxima fase **Club AnimalFood**.
+> Actualizado: 2026-06-16. Frente activo: **AnimalFood Advisor** (totem) + próxima fase **Club AnimalFood** + **propuesta comercial Próximo Nivel**.
 
 ## 🔥 En curso
 
-- [ ] **Packaging del totem** (Gonzalo, Photoshop) — brief listo: `docs/verticals/animalfood/animalfood-advisor-packaging-brief-2026-06-10.md`. Roberto lo pidió explícitamente.
-- [ ] **Animaciones de interfaz extra** (Gonzalo busca repos de referencia → Claude adapta).
+- [ ] **Propuesta "Próximo Nivel" a Roberto** (lista 16/06) — `docs/verticals/animalfood/animalfood-propuesta-proximo-nivel-roberto-2026-06-16.html/.pdf` + guion interno `animalfood-guion-conversacion-roberto-2026-06-16.md`. **Decisión: hablar DIRECTO con Roberto** (dueño + canal histórico de plata), 1:1, NO reunión con Gustavo todavía. 3 líneas: A) Programa Totem (desarrollo por fases USD + operación mensual ARS), B) fee marketing 1.8M→3M→4-5M escalonado, C) a demanda (viajes/dron/IA otras áreas). **Falta que Gonzalo cierre los montos en blanco** (dev Fase 2/3 USD, operación mensual ARS, jornada en sitio ARS) + plantear el atraso 1.8 vs 3 con calma.
+- [x] **Packaging del totem** — DISEÑADO por Gonzalo (frente "ASISTENTE DIGITAL INTELIGENTE", caja + render en local; recibido 16/06).
+- [ ] **Animaciones de interfaz extra** (Gonzalo busca repos de referencia → Claude adapta). Incluye **animación al elegir perro/gato** (pizarra Roberto — evaluar video generado vs motion).
 
 ## ⏳ Esperando assets / definiciones
 

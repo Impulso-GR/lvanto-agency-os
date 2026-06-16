@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lvanto × AnimalFood — El próximo nivel</title>
+<style>
+  :root{
+    --ink:#0d0b09; --ink2:#171310; --ink3:#211b14;
+    --brand:#FFD21A; --brand-dark:#E6B400;
+    --cream:#F5F1EA; --mute:#a89f93; --mute2:#6e655a;
+    --line:#2b251f; --ok:#46A758;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#181410;color:var(--cream);line-height:1.55}
+  .page{max-width:900px;margin:0 auto;background:var(--ink)}
+  .pad{padding:44px 58px}
+  header.cover{background:radial-gradient(120% 90% at 50% 0%, #241c12 0%, var(--ink) 65%);padding:60px 58px 44px;border-bottom:1px solid var(--line)}
+  .logo{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .logo b{color:var(--brand)}
+  .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--brand);margin:30px 0 12px;font-weight:700}
+  h1{font-size:42px;line-height:1.06;margin:0 0 14px;font-weight:800;color:#fff}
+  h1 .y{color:var(--brand)}
+  .sub{font-size:18px;color:var(--mute);margin:0;max-width:640px}
+  .meta{display:flex;gap:30px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:18px;margin-top:32px}
+  .meta b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute2);margin-bottom:3px}
+  section{border-top:1px solid var(--line)}
+  h2{font-size:24px;margin:0 0 6px;font-weight:800;color:#fff}
+  h2 .n{color:var(--brand)}
+  .lead{color:var(--mute);font-size:15px;margin:0 0 24px}
+  p{margin:0 0 14px}
+
+  .wins{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:8px 0}
+  .win{background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:14px}
+  .win b{color:var(--brand);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+  .win.live b::after{content:" ● EN VIVO";color:var(--ok);font-size:10px}
+
+  /* Ecosistema */
+  .flow{display:flex;align-items:stretch;gap:0;margin:18px 0;flex-wrap:wrap}
+  .node{flex:1;min-width:150px;background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center}
+  .node .e{font-size:24px}
+  .node h4{margin:8px 0 4px;font-size:14px;color:#fff}
+  .node p{font-size:12px;color:var(--mute);margin:0}
+  .arrow{display:flex;align-items:center;color:var(--brand);font-size:22px;padding:0 8px;font-weight:800}
+  .cap{text-align:center;color:var(--mute);font-size:13.5px;font-style:italic;margin:6px 0 0}
+
+  /* Roadmap */
+  .phase{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border-bottom:0}
+  .badge{flex-shrink:0;width:104px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:6px 0;text-align:center;border-radius:8px;height:fit-content}
+  .badge.done{background:rgba(70,167,88,.15);color:#8fd49b;border:1px solid rgba(70,167,88,.4)}
+  .badge.now{background:var(--brand);color:var(--ink)}
+  .badge.next{background:var(--ink3);color:var(--mute);border:1px solid var(--line)}
+  .phase h4{margin:0 0 4px;font-size:16px;color:#fff}
+  .phase p{margin:0;font-size:13.5px;color:var(--mute)}
+
+  /* Streams / inversión */
+  .stream{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px;border-left:4px solid var(--brand)}
+  .stream h3{margin:0 0 4px;font-size:19px;color:#fff}
+  .stream .tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:700}
+  .stream p{font-size:14px;color:var(--mute);margin:8px 0 0}
+  .price{margin-top:14px;border-top:1px dashed var(--line);padding-top:14px;display:grid;gap:8px}
+  .price .row{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;gap:14px}
+  .price .row span{color:var(--cream)}
+  .price .row b{color:var(--brand);white-space:nowrap;font-size:15px}
+  .price .row small{color:var(--mute2);display:block;font-weight:400}
+
+  .note{background:rgba(255,210,26,.08);border:1px solid rgba(255,210,26,.3);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--cream);margin:10px 0}
+  .note b{color:var(--brand)}
+
+  ul.why{list-style:none;padding:0;margin:8px 0;display:grid;gap:10px}
+  ul.why li{padding-left:28px;position:relative;font-size:14.5px;color:var(--cream)}
+  ul.why li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:800}
+  ul.why b{color:#fff}
+
+  .cta{background:linear-gradient(135deg,#241c10,#1a150d);border:1px solid rgba(255,210,26,.35);border-radius:16px;padding:28px 30px;text-align:center;margin:8px 0}
+  .cta p{font-size:20px;font-weight:700;color:#fff;margin:0 0 6px}
+  .cta .y{color:var(--brand)}
+  .cta small{color:var(--mute);font-size:13px}
+
+  footer{padding:26px 58px;color:var(--mute2);font-size:11.5px;border-top:1px solid var(--line)}
+  @media print{body{background:#181410}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{max-width:none}section,header.cover,.cta,.stream{break-inside:avoid}}
+  @page{size:A4;margin:0}
+  @media (max-width:640px){.wins,.flow{grid-template-columns:1fr}.pad{padding:32px 24px}header.cover{padding:40px 24px}h1{font-size:32px}.arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <div class="logo">Lvanto <span style="color:var(--mute2);font-weight:400">×</span> Animal<b>food</b></div>
+    <p class="kicker">Propuesta de partnership · 2026</p>
+    <h1>Pasemos al <span class="y">próximo nivel</span>.</h1>
+    <p class="sub">Lo que venimos haciendo funciona. El totem ya está vivo y el cliente lo recibió de diez. Esta es la foto completa de a dónde puede llegar esto — y cómo lo ordenamos para que sea claro y justo para los dos.</p>
+    <div class="meta">
+      <div><b>Para</b>Roberto — AnimalFood</div>
+      <div><b>De</b>Gonzalo — Lvanto</div>
+      <div><b>Fecha</b>16 / 06 / 2026</div>
+    </div>
+  </header>
+
+  <!-- 1. Dónde estamos -->
+  <section class="pad">
+    <h2><span class="n">1.</span> Dónde estamos hoy</h2>
+    <p class="lead">Resultados concretos, en semanas.</p>
+    <div class="wins">
+      <div class="win live"><b>Asistente digital (totem)</b>El "vendedor 24/7" ya funciona online: asesora al cliente, recomienda la línea ideal e invita a la comunidad.</div>
+      <div class="win"><b>Packaging diseñado</b>Caja del totem lista para fábrica, en la identidad AnimalFood — negro + amarillo, premium.</div>
+      <div class="win"><b>Experiencia premium</b>Interfaz con marca, animaciones y un asistente "Tobi" que conversa. Aprobado por vos en la demo.</div>
+      <div class="win"><b>Métricas y seguridad</b>Mide interacciones por local (sin cámaras ni datos sensibles) y nunca hace promesas médicas: deriva al veterinario.</div>
+    </div>
+  </section>
+
+  <!-- 2. El proyecto completo -->
+  <section class="pad">
+    <h2><span class="n">2.</span> El proyecto completo</h2>
+    <p class="lead">El totem es la punta. El valor real es lo que viene detrás.</p>
+    <div class="flow">
+      <div class="node"><div class="e">🖥️</div><h4>Totem</h4><p>Asesora y engancha en el local</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="e">📱</div><h4>Comunidad</h4><p>Se registra con Google y carga su mascota</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="e">🗄️</div><h4>Base de datos</h4><p>Tus clientes finales, tuyos</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="e">🔁</div><h4>Recompra</h4><p>Ruleta + descuento mensual + emails</p></div>
+    </div>
+    <p class="cap">Deja de ser un cartel lindo: se vuelve una máquina de datos y recompra.</p>
+  </section>
+
+  <!-- 3. Roadmap -->
+  <section class="pad">
+    <h2><span class="n">3.</span> Cómo seguimos</h2>
+    <p class="lead">Por fases, sin frenar el negocio.</p>
+    <div class="phase">
+      <div class="badge done">Hecho</div>
+      <div><h4>Fase 1 — El Asistente (totem)</h4><p>Vendedor digital funcionando, packaging diseñado, experiencia con marca. Listo para mostrar e instalar.</p></div>
+    </div>
+    <div class="phase">
+      <div class="badge now">En curso</div>
+      <div><h4>Fase 2 — Comunidad + Base de datos</h4><p>Web del Club: registro con Google, alta de la mascota (con foto), ruleta de premios y descuento mensual. Acá nace tu base de clientes propia.</p></div>
+    </div>
+    <div class="phase">
+      <div class="badge next">Sigue</div>
+      <div><h4>Fase 3 — Retención automática</h4><p>Email mensual a cada cliente con su descuento único (se "quema" al usarlo). Dominio propio animalfood.com.ar/comunidad. Marca final (de demo a producto).</p></div>
+    </div>
+    <div class="phase">
+      <div class="badge next">Continuo</div>
+      <div><h4>Operación de los 100 totems</h4><p>Contenido siempre fresco, soporte técnico, actualizaciones remotas a toda la flota, tutorial en YouTube y manual de cuidado.</p></div>
+    </div>
+  </section>
+
+  <!-- 4. El modelo de trabajo -->
+  <section class="pad">
+    <h2><span class="n">4.</span> El modelo de trabajo</h2>
+    <p class="lead">Tres líneas separadas, así cada cosa tiene su valor y nada se mezcla.</p>
+
+    <div class="stream">
+      <span class="tag">Línea A · Producto</span>
+      <h3>🖥️ Programa Totem</h3>
+      <p>Desarrollo del software y la experiencia (por fases) + operación mensual de la flota: contenido, soporte, actualizaciones y la comunidad. Es un producto nuevo — va aparte del trabajo de marketing.</p>
+      <div class="price">
+        <div class="row"><span>Desarrollo Fase 2 (Comunidad + base de datos)<small>Pago por fase, contra entregables</small></span><b>USD _____</b></div>
+        <div class="row"><span>Desarrollo Fase 3 (emails + dominio + marca final)<small>Pago por fase</small></span><b>USD _____</b></div>
+        <div class="row"><span>Operación mensual de la flota<small>Contenido + soporte + hosting + comunidad</small></span><b>$ _____ /mes</b></div>
+      </div>
+    </div>
+
+    <div class="stream">
+      <span class="tag">Línea B · Recurrente</span>
+      <h3>📈 Partnership de Marketing & IA</h3>
+      <p>Lo que ya hacemos, subiendo de nivel: campañas (Meta/Google), estrategia de contenido, UGC y posicionamiento en buscadores de IA (GEO). Lvanto como tu socio de IA y growth externo.</p>
+      <div class="price">
+        <div class="row"><span>Fee mensual — ahora<small>Acompaña el alcance actual ampliado</small></span><b>$ 3.000.000 /mes</b></div>
+        <div class="row"><span>Escalonado<small>A medida que sumamos campañas, UGC y GEO</small></span><b>$ 4–5M /mes</b></div>
+      </div>
+    </div>
+
+    <div class="stream">
+      <span class="tag">Línea C · A demanda</span>
+      <h3>⚡ Proyectos puntuales</h3>
+      <p>Lo extra, con su precio: viajes para instalar/configurar totems, cobertura de eventos con dron, o desarrollo de herramientas con IA para otras áreas de AnimalFood (operaciones, atención, procesos internos).</p>
+      <div class="price">
+        <div class="row"><span>Jornada de trabajo en sitio / evento</span><b>$ _____ /día</b></div>
+        <div class="row"><span>Herramienta de IA a medida</span><b>Por proyecto</b></div>
+      </div>
+    </div>
+
+    <div class="note">⚙️ <b>Por qué en dólares el desarrollo y en pesos lo mensual:</b> el desarrollo es inversión puntual y conviene fijarlo en una moneda estable; lo recurrente (fee y operación) va en pesos para que sea simple mes a mes. Los montos en blanco los cerramos juntos.</div>
+  </section>
+
+  <!-- 5. Por qué Lvanto -->
+  <section class="pad">
+    <h2><span class="n">5.</span> Por qué seguir con Lvanto</h2>
+    <ul class="why">
+      <li><b>Velocidad real:</b> del brief al totem funcionando online en semanas. Una agencia grande tarda meses y cuesta el triple.</li>
+      <li><b>Me formo en IA todos los días:</b> lo que aplico hoy es lo último que existe — y lo traigo a tu negocio antes que tu competencia.</li>
+      <li><b>Conozco AnimalFood por dentro:</b> tus líneas, tu marca, tu cliente. No arrancás de cero con nadie.</li>
+      <li><b>Un socio, no un proveedor de tareas sueltas:</b> pienso el negocio con vos, no solo ejecuto.</li>
+    </ul>
+  </section>
+
+  <!-- 6. Cierre -->
+  <section class="pad">
+    <div class="cta">
+      <p>Lo que construimos <span class="y">funciona</span>. Llevémoslo al lugar que merece.</p>
+      <small>Quedo a disposición para repasar números y arrancar la Fase 2 cuando digas.</small>
+    </div>
+  </section>
+
+  <footer>
+    Lvanto · Propuesta de partnership para AnimalFood · 16/06/2026 · Documento de trabajo — los montos señalados con línea se definen en conjunto.
+  </footer>
+
+</div>
+</body>
+</html>
