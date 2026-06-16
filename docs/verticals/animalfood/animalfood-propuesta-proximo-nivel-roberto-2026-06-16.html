@@ -33,9 +33,8 @@
   .wins{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:8px 0}
   .win{background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:14px}
   .win b{color:var(--brand);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
-  .win.live b::after{content:" ● EN VIVO";color:var(--ok);font-size:10px}
+  .win.ready b::after{content:" ✓ LISTO";color:var(--ok);font-size:10px}
 
-  /* Ecosistema */
   .flow{display:flex;align-items:stretch;gap:0;margin:18px 0;flex-wrap:wrap}
   .node{flex:1;min-width:150px;background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center}
   .node .e{font-size:24px}
@@ -44,17 +43,15 @@
   .arrow{display:flex;align-items:center;color:var(--brand);font-size:22px;padding:0 8px;font-weight:800}
   .cap{text-align:center;color:var(--mute);font-size:13.5px;font-style:italic;margin:6px 0 0}
 
-  /* Roadmap */
   .phase{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
   .phase:last-child{border-bottom:0}
-  .badge{flex-shrink:0;width:104px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:6px 0;text-align:center;border-radius:8px;height:fit-content}
-  .badge.done{background:rgba(70,167,88,.15);color:#8fd49b;border:1px solid rgba(70,167,88,.4)}
-  .badge.now{background:var(--brand);color:var(--ink)}
+  .badge{flex-shrink:0;width:108px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:6px 0;text-align:center;border-radius:8px;height:fit-content}
+  .badge.ready{background:rgba(70,167,88,.15);color:#8fd49b;border:1px solid rgba(70,167,88,.4)}
+  .badge.proto{background:rgba(255,210,26,.16);color:var(--brand);border:1px solid rgba(255,210,26,.4)}
   .badge.next{background:var(--ink3);color:var(--mute);border:1px solid var(--line)}
   .phase h4{margin:0 0 4px;font-size:16px;color:#fff}
   .phase p{margin:0;font-size:13.5px;color:var(--mute)}
 
-  /* Streams / inversión */
   .stream{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px;border-left:4px solid var(--brand)}
   .stream h3{margin:0 0 4px;font-size:19px;color:#fff}
   .stream .tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:700}
@@ -64,6 +61,10 @@
   .price .row span{color:var(--cream)}
   .price .row b{color:var(--brand);white-space:nowrap;font-size:15px}
   .price .row small{color:var(--mute2);display:block;font-weight:400}
+
+  ul.scope{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+  ul.scope li{padding-left:24px;position:relative;font-size:13.5px;color:var(--cream)}
+  ul.scope li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:800}
 
   .note{background:rgba(255,210,26,.08);border:1px solid rgba(255,210,26,.3);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--cream);margin:10px 0}
   .note b{color:var(--brand)}
@@ -81,7 +82,7 @@
   footer{padding:26px 58px;color:var(--mute2);font-size:11.5px;border-top:1px solid var(--line)}
   @media print{body{background:#181410}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{max-width:none}section,header.cover,.cta,.stream{break-inside:avoid}}
   @page{size:A4;margin:0}
-  @media (max-width:640px){.wins,.flow{grid-template-columns:1fr}.pad{padding:32px 24px}header.cover{padding:40px 24px}h1{font-size:32px}.arrow{transform:rotate(90deg)}}
+  @media (max-width:640px){.wins,.flow,ul.scope{grid-template-columns:1fr}.pad{padding:32px 24px}header.cover{padding:40px 24px}h1{font-size:32px}.arrow{transform:rotate(90deg)}}
 </style>
 </head>
 <body>
@@ -91,7 +92,7 @@
     <div class="logo">Lvanto <span style="color:var(--mute2);font-weight:400">×</span> Animal<b>food</b></div>
     <p class="kicker">Propuesta de partnership · 2026</p>
     <h1>Pasemos al <span class="y">próximo nivel</span>.</h1>
-    <p class="sub">Lo que venimos haciendo funciona. El totem ya está vivo y el cliente lo recibió de diez. Esta es la foto completa de a dónde puede llegar esto — y cómo lo ordenamos para que sea claro y justo para los dos.</p>
+    <p class="sub">Lo que venimos haciendo está dando resultados. Tengo lista la propuesta del Asistente AnimalFood —diseño de la caja y un prototipo de la experiencia que vas a poder tocar— y quiero plantearte, en una sola foto, cómo lo producimos y cómo llevamos todo el trabajo a un nivel acorde a lo que ya estamos generando.</p>
     <div class="meta">
       <div><b>Para</b>Roberto — AnimalFood</div>
       <div><b>De</b>Gonzalo — Lvanto</div>
@@ -99,26 +100,27 @@
     </div>
   </header>
 
-  <!-- 1. Dónde estamos -->
+  <!-- 1. El Asistente -->
   <section class="pad">
-    <h2><span class="n">1.</span> Dónde estamos hoy</h2>
-    <p class="lead">Resultados concretos, en semanas.</p>
+    <h2><span class="n">1.</span> El Asistente Digital Inteligente</h2>
+    <p class="lead">Tu idea del asistente virtual, hecha producto.</p>
     <div class="wins">
-      <div class="win live"><b>Asistente digital (totem)</b>El "vendedor 24/7" ya funciona online: asesora al cliente, recomienda la línea ideal e invita a la comunidad.</div>
-      <div class="win"><b>Packaging diseñado</b>Caja del totem lista para fábrica, en la identidad AnimalFood — negro + amarillo, premium.</div>
-      <div class="win"><b>Experiencia premium</b>Interfaz con marca, animaciones y un asistente "Tobi" que conversa. Aprobado por vos en la demo.</div>
-      <div class="win"><b>Métricas y seguridad</b>Mide interacciones por local (sin cámaras ni datos sensibles) y nunca hace promesas médicas: deriva al veterinario.</div>
+      <div class="win ready"><b>Diseño de la caja</b>El packaging del tótem en la identidad AnimalFood —negro + amarillo, premium— con el nombre "Asistente Digital Inteligente" que surgió de tu pedido.</div>
+      <div class="win ready"><b>Prototipo de la experiencia</b>Un demo navegable y real (no una maqueta estática): "Tobi" conversa con el cliente, pregunta por su mascota y recomienda la línea ideal. Lo vas a poder tocar.</div>
+      <div class="win"><b>Recomendación segura</b>Asesora sin hacer promesas médicas y deriva al veterinario cuando corresponde. Cuida la marca.</div>
+      <div class="win"><b>Pensado para 100 tótems</b>Se actualiza a distancia: cambiás contenido o promos en todos los locales sin tocar pantalla por pantalla.</div>
     </div>
+    <div class="note">📌 <b>Estado:</b> diseño y prototipo listos para tu validación. Con tu OK pasamos a producción y lo dejamos funcionando.</div>
   </section>
 
   <!-- 2. El proyecto completo -->
   <section class="pad">
-    <h2><span class="n">2.</span> El proyecto completo</h2>
-    <p class="lead">El totem es la punta. El valor real es lo que viene detrás.</p>
+    <h2><span class="n">2.</span> Hacia dónde va el proyecto</h2>
+    <p class="lead">El tótem es la punta. El valor real es lo que viene detrás.</p>
     <div class="flow">
-      <div class="node"><div class="e">🖥️</div><h4>Totem</h4><p>Asesora y engancha en el local</p></div>
+      <div class="node"><div class="e">🖥️</div><h4>Tótem</h4><p>Asesora y engancha en el local</p></div>
       <div class="arrow">→</div>
-      <div class="node"><div class="e">📱</div><h4>Comunidad</h4><p>Se registra con Google y carga su mascota</p></div>
+      <div class="node"><div class="e">📱</div><h4>Comunidad</h4><p>Se registra y carga su mascota</p></div>
       <div class="arrow">→</div>
       <div class="node"><div class="e">🗄️</div><h4>Base de datos</h4><p>Tus clientes finales, tuyos</p></div>
       <div class="arrow">→</div>
@@ -129,73 +131,73 @@
 
   <!-- 3. Roadmap -->
   <section class="pad">
-    <h2><span class="n">3.</span> Cómo seguimos</h2>
-    <p class="lead">Por fases, sin frenar el negocio.</p>
+    <h2><span class="n">3.</span> El plan, por fases</h2>
+    <p class="lead">Avanzamos sin frenar el negocio.</p>
     <div class="phase">
-      <div class="badge done">Hecho</div>
-      <div><h4>Fase 1 — El Asistente (totem)</h4><p>Vendedor digital funcionando, packaging diseñado, experiencia con marca. Listo para mostrar e instalar.</p></div>
+      <div class="badge ready">Listo</div>
+      <div><h4>Diseño + prototipo</h4><p>Caja diseñada e identidad del Asistente + experiencia navegable para validar. Es lo que tenés en mano hoy.</p></div>
     </div>
     <div class="phase">
-      <div class="badge now">En curso</div>
-      <div><h4>Fase 2 — Comunidad + Base de datos</h4><p>Web del Club: registro con Google, alta de la mascota (con foto), ruleta de premios y descuento mensual. Acá nace tu base de clientes propia.</p></div>
+      <div class="badge proto">Con tu OK</div>
+      <div><h4>Fase 1 — Producción del Asistente</h4><p>Dejar la app del tótem terminada y lista para instalar en los equipos. Manual de cuidado + tutorial en YouTube por QR.</p></div>
     </div>
     <div class="phase">
       <div class="badge next">Sigue</div>
-      <div><h4>Fase 3 — Retención automática</h4><p>Email mensual a cada cliente con su descuento único (se "quema" al usarlo). Dominio propio animalfood.com.ar/comunidad. Marca final (de demo a producto).</p></div>
+      <div><h4>Fase 2 — Comunidad + base de datos</h4><p>Web del Club en animalfood.com.ar/comunidad: registro con Google, alta de la mascota (con foto), ruleta y descuento mensual. Acá nace tu base de clientes propia. Entregamos el código listo para publicar —o nos ocupamos del alta del dominio.</p></div>
     </div>
     <div class="phase">
-      <div class="badge next">Continuo</div>
-      <div><h4>Operación de los 100 totems</h4><p>Contenido siempre fresco, soporte técnico, actualizaciones remotas a toda la flota, tutorial en YouTube y manual de cuidado.</p></div>
+      <div class="badge next">Sigue</div>
+      <div><h4>Fase 3 — Retención + contenido propio</h4><p>Email mensual con descuento único que se "quema" al usarlo. Y un blog en la web para posicionar AnimalFood en Google y en los buscadores de IA (SEO + GEO).</p></div>
     </div>
   </section>
 
   <!-- 4. El modelo de trabajo -->
   <section class="pad">
-    <h2><span class="n">4.</span> El modelo de trabajo</h2>
-    <p class="lead">Tres líneas separadas, así cada cosa tiene su valor y nada se mezcla.</p>
+    <h2><span class="n">4.</span> La propuesta</h2>
+    <p class="lead">Dos cosas, separadas para que cada una sea clara y justa.</p>
 
     <div class="stream">
-      <span class="tag">Línea A · Producto</span>
-      <h3>🖥️ Programa Totem</h3>
-      <p>Desarrollo del software y la experiencia (por fases) + operación mensual de la flota: contenido, soporte, actualizaciones y la comunidad. Es un producto nuevo — va aparte del trabajo de marketing.</p>
+      <span class="tag">1 · Proyecto (inversión única, por fases)</span>
+      <h3>🖥️ El Asistente AnimalFood</h3>
+      <p>El desarrollo del producto: dejar el Asistente funcionando y, en fases siguientes, la comunidad con base de datos y la retención automática. Se aprueba y se paga por fase, contra entregables — no todo de una.</p>
       <div class="price">
-        <div class="row"><span>Desarrollo Fase 2 (Comunidad + base de datos)<small>Pago por fase, contra entregables</small></span><b>USD _____</b></div>
-        <div class="row"><span>Desarrollo Fase 3 (emails + dominio + marca final)<small>Pago por fase</small></span><b>USD _____</b></div>
-        <div class="row"><span>Operación mensual de la flota<small>Contenido + soporte + hosting + comunidad</small></span><b>$ _____ /mes</b></div>
+        <div class="row"><span>Fase 1 — Producción del Asistente (app del tótem)<small>Lista para instalar en los equipos</small></span><b>USD _____</b></div>
+        <div class="row"><span>Fase 2 — Comunidad + base de datos<small>Club, registro, ruleta, descuento</small></span><b>USD _____</b></div>
+        <div class="row"><span>Fase 3 — Retención (emails) + blog GEO/SEO<small>Pago por fase</small></span><b>USD _____</b></div>
       </div>
     </div>
 
     <div class="stream">
-      <span class="tag">Línea B · Recurrente</span>
+      <span class="tag">2 · Fee mensual (al próximo nivel)</span>
       <h3>📈 Partnership de Marketing & IA</h3>
-      <p>Lo que ya hacemos, subiendo de nivel: campañas (Meta/Google), estrategia de contenido, UGC y posicionamiento en buscadores de IA (GEO). Lvanto como tu socio de IA y growth externo.</p>
+      <p>Por los resultados que venimos logrando, propongo subir el trabajo de nivel y ordenar el fee acorde a todo lo que pasa a incluir:</p>
+      <ul class="scope">
+        <li>Más movimiento en todas las marcas</li>
+        <li>Contenido diario para 2 marcas + historias</li>
+        <li>Reels semanales</li>
+        <li>Nuevas campañas (incl. YouTube)</li>
+        <li>Más foco en tráfico/performance</li>
+        <li>Monitoreo + soporte técnico de los tótems</li>
+        <li>Actualizaciones de contenido de la flota</li>
+        <li>Posicionamiento en IA (GEO) + SEO</li>
+      </ul>
       <div class="price">
-        <div class="row"><span>Fee mensual — ahora<small>Acompaña el alcance actual ampliado</small></span><b>$ 3.000.000 /mes</b></div>
-        <div class="row"><span>Escalonado<small>A medida que sumamos campañas, UGC y GEO</small></span><b>$ 4–5M /mes</b></div>
+        <div class="row"><span>Fee mensual — ahora<small>Acompaña el alcance ampliado de marketing y contenido</small></span><b>$ 3.000.000 /mes</b></div>
+        <div class="row"><span>Escalonado<small>A medida que los 100 tótems entran en operación y suma el Club</small></span><b>$ 4–5M /mes</b></div>
       </div>
     </div>
 
-    <div class="stream">
-      <span class="tag">Línea C · A demanda</span>
-      <h3>⚡ Proyectos puntuales</h3>
-      <p>Lo extra, con su precio: viajes para instalar/configurar totems, cobertura de eventos con dron, o desarrollo de herramientas con IA para otras áreas de AnimalFood (operaciones, atención, procesos internos).</p>
-      <div class="price">
-        <div class="row"><span>Jornada de trabajo en sitio / evento</span><b>$ _____ /día</b></div>
-        <div class="row"><span>Herramienta de IA a medida</span><b>Por proyecto</b></div>
-      </div>
-    </div>
-
-    <div class="note">⚙️ <b>Por qué en dólares el desarrollo y en pesos lo mensual:</b> el desarrollo es inversión puntual y conviene fijarlo en una moneda estable; lo recurrente (fee y operación) va en pesos para que sea simple mes a mes. Los montos en blanco los cerramos juntos.</div>
+    <div class="note">⚙️ <b>Por qué el proyecto en dólares y el fee en pesos:</b> el desarrollo es una inversión puntual y conviene fijarla en moneda estable; el fee es mensual y va en pesos para que sea simple. Los montos en blanco los cerramos juntos. <b>Aparte y a demanda</b> quedan los extras puntuales: viajes para instalar/configurar tótems, cobertura de eventos con dron o herramientas de IA para otras áreas de AnimalFood.</div>
   </section>
 
   <!-- 5. Por qué Lvanto -->
   <section class="pad">
-    <h2><span class="n">5.</span> Por qué seguir con Lvanto</h2>
+    <h2><span class="n">5.</span> Por qué seguir creciendo con Lvanto</h2>
     <ul class="why">
-      <li><b>Velocidad real:</b> del brief al totem funcionando online en semanas. Una agencia grande tarda meses y cuesta el triple.</li>
-      <li><b>Me formo en IA todos los días:</b> lo que aplico hoy es lo último que existe — y lo traigo a tu negocio antes que tu competencia.</li>
-      <li><b>Conozco AnimalFood por dentro:</b> tus líneas, tu marca, tu cliente. No arrancás de cero con nadie.</li>
-      <li><b>Un socio, no un proveedor de tareas sueltas:</b> pienso el negocio con vos, no solo ejecuto.</li>
+      <li><b>Velocidad real:</b> del pedido al prototipo del Asistente en semanas. Una agencia grande tarda meses y cuesta el triple.</li>
+      <li><b>Me formo en IA todos los días:</b> traigo lo último a tu negocio antes que tu competencia.</li>
+      <li><b>Conozco AnimalFood por dentro:</b> tus marcas, tu cliente, tu estética. No arrancás de cero con nadie.</li>
+      <li><b>Un socio, no un proveedor de tareas sueltas:</b> pienso el negocio con vos.</li>
     </ul>
   </section>
 
@@ -203,7 +205,7 @@
   <section class="pad">
     <div class="cta">
       <p>Lo que construimos <span class="y">funciona</span>. Llevémoslo al lugar que merece.</p>
-      <small>Quedo a disposición para repasar números y arrancar la Fase 2 cuando digas.</small>
+      <small>Quedo a disposición para mostrarte el prototipo en vivo, repasar números y arrancar cuando digas.</small>
     </div>
   </section>
 

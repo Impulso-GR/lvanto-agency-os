@@ -4,8 +4,8 @@
 
 ## 🔥 En curso
 
-- [ ] **Propuesta "Próximo Nivel" a Roberto** (lista 16/06) — `docs/verticals/animalfood/animalfood-propuesta-proximo-nivel-roberto-2026-06-16.html/.pdf` + guion interno `animalfood-guion-conversacion-roberto-2026-06-16.md`. **Decisión: hablar DIRECTO con Roberto** (dueño + canal histórico de plata), 1:1, NO reunión con Gustavo todavía. 3 líneas: A) Programa Totem (desarrollo por fases USD + operación mensual ARS), B) fee marketing 1.8M→3M→4-5M escalonado, C) a demanda (viajes/dron/IA otras áreas). **Falta que Gonzalo cierre los montos en blanco** (dev Fase 2/3 USD, operación mensual ARS, jornada en sitio ARS) + plantear el atraso 1.8 vs 3 con calma.
-- [x] **Packaging del totem** — DISEÑADO por Gonzalo (frente "ASISTENTE DIGITAL INTELIGENTE", caja + render en local; recibido 16/06).
+- [ ] **ENVIAR HOY (16/06) la propuesta "Próximo Nivel" a Roberto** — `docs/verticals/animalfood/animalfood-propuesta-proximo-nivel-roberto-2026-06-16.html/.pdf` + guion interno `animalfood-guion-conversacion-roberto-2026-06-16.md`. Plazo: Roberto dio ~10 días para el diseño de cajas. **Decisión: hablar DIRECTO con Roberto** 1:1 (dueño + canal histórico de plata). 2 líneas: (1) Proyecto Asistente por fases (dev USD, montos en blanco) + (2) fee marketing 1.8M→3M→4-5M con scope ampliado (todas las marcas, contenido diario 2 marcas+historias, reels semanales, campañas YouTube, tráfico, soporte/updates tótems, GEO+SEO+blog futuro). Extras a demanda (viajes/dron/IA otras áreas). **Falta: Gonzalo cierra los USD en blanco** + plantear el atraso 1.8 vs 3 con calma.
+- [x] **Diseño de la caja** — DISEÑADO por Gonzalo (frente "ASISTENTE DIGITAL INTELIGENTE"; Roberto vio la caja y pidió lo del "asistente virtual"). ⚠️ El tótem NO está funcionando/aprobado: hay diseño de caja + PROTOTIPO navegable (vercel), aún sin presentar formalmente.
 - [ ] **Animaciones de interfaz extra** (Gonzalo busca repos de referencia → Claude adapta). Incluye **animación al elegir perro/gato** (pizarra Roberto — evaluar video generado vs motion).
 
 ## ⏳ Esperando assets / definiciones

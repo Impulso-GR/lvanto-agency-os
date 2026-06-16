@@ -1,13 +1,14 @@
 # Guion estratégico — Conversación con Roberto (próximo nivel)
 
 > **Para:** Gonzalo (uso interno, NO enviar) · **Fecha:** 2026-06-16
-> **Objetivo:** elevar la relación a "socio de IA & growth" + ordenar el fee (1.8 → 3M, con camino a 4–5M) + encuadrar el Programa Totem como producto aparte. Tono: **humilde, con visión, desde el valor — nunca desde la queja.**
+> **Objetivo:** presentar el Asistente (diseño de caja + prototipo) + cotizar el proyecto + ordenar el fee (1.8 → 3M, con camino a 4–5M). Tono: **humilde, con visión, desde el valor — nunca desde la queja.**
+> **OJO con los hechos:** el tótem NO está funcionando ni aprobado. Tenés el **diseño de la caja** (Roberto ya lo vio y pidió lo del "asistente virtual" → quedó "Asistente Digital Inteligente") y un **prototipo navegable** de la app. Eso es lo que mostrás. Plazo: Roberto dio ~10 días para el diseño de las cajas → **enviar la propuesta HOY.**
 
 ---
 
 ## Regla de oro de la charla
 
-**No pedís un aumento. Mostrás hacia dónde puede crecer esto y cuánto vale.** El que llega con resultados y visión no ruega — propone. Tenés el totem que Roberto ya aplaudió: ese es tu permiso para hablar de futuro.
+**No pedís un aumento. Mostrás hacia dónde puede crecer esto y cuánto vale.** El que llega con resultados y visión no ruega — propone. Tenés el diseño y el prototipo en la mano: ese es tu permiso para hablar de futuro.
 
 ## Con quién y cómo
 
@@ -17,7 +18,7 @@
 
 ## El orden de la conversación (5 movimientos)
 
-1. **Abrí con la victoria (de él, no tuya).** "Roberto, me encantó cómo recibiste el totem. Ya está online, funcionando, con el packaging diseñado. Quería mostrarte la foto completa de a dónde puede llegar esto."
+1. **Abrí con lo concreto.** "Roberto, te traje el diseño de la caja con lo del Asistente Digital Inteligente que me pediste, y además armé un prototipo de la experiencia para que lo toques. Quería mostrarte la foto completa de a dónde puede llegar esto." (Mostrá el prototipo navegable → impacta más que cualquier lámina.)
 2. **Mostrá el ecosistema (la propuesta).** Totem (Advisor) → Comunidad/Club → base de datos de clientes → retención (ruleta + descuentos + emails). "Esto deja de ser un cartel lindo y se vuelve una máquina de datos y recompra." Acá se ve que vale plata.
 3. **Encuadrá las TRES líneas** (sin números todavía): el Programa Totem es un producto nuevo; el trabajo de marketing es lo de siempre pero subiendo de nivel; y hay cosas a demanda. "Quiero ordenarlo así para que sea claro y justo para los dos."
 4. **El tema del pago, tranquilo y al pasar.** "Una cosa puntual: el mes pasado el fee llegó en 1.8 y veníamos en otra línea — lo quiero alinear con vos." Cortito, sin drama. Dejá que él responda. (Si fue error, se aclara solo; si fue recorte, sale a la luz sin pelea.)
