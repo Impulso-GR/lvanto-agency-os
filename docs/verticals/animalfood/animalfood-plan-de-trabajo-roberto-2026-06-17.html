@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de trabajo — AnimalFood Advisor</title>
+<style>
+  :root{
+    --ink:#0d0b09; --ink2:#171310; --ink3:#211b14;
+    --brand:#FFD21A; --brand-dark:#E6B400;
+    --cream:#F5F1EA; --mute:#a89f93; --mute2:#6e655a;
+    --line:#2b251f; --ok:#46A758;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#181410;color:var(--cream);line-height:1.55}
+  .page{max-width:900px;margin:0 auto;background:var(--ink)}
+  .pad{padding:42px 58px}
+  header.cover{background:radial-gradient(120% 90% at 50% 0%, #241c12 0%, var(--ink) 65%);padding:58px 58px 42px;border-bottom:1px solid var(--line)}
+  .logo{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .logo b{color:var(--brand)}
+  .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--brand);margin:28px 0 12px;font-weight:700}
+  h1{font-size:38px;line-height:1.07;margin:0 0 12px;font-weight:800;color:#fff}
+  h1 .y{color:var(--brand)}
+  .sub{font-size:17px;color:var(--mute);margin:0;max-width:640px}
+  .meta{display:flex;gap:28px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:16px;margin-top:28px;flex-wrap:wrap}
+  .meta b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute2);margin-bottom:3px}
+  section{border-top:1px solid var(--line)}
+  h2{font-size:23px;margin:0 0 6px;font-weight:800;color:#fff}
+  h2 .n{color:var(--brand)}
+  .lead{color:var(--mute);font-size:15px;margin:0 0 22px}
+  p{margin:0 0 14px}
+
+  /* resumen chips */
+  .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
+  .sumc{background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-align:center}
+  .sumc b{display:block;font-size:26px;color:var(--brand);font-weight:800;line-height:1}
+  .sumc span{font-size:12.5px;color:var(--mute);display:block;margin-top:6px}
+
+  /* gantt */
+  .months{display:grid;grid-template-columns:140px 1fr;gap:10px;margin:10px 0 6px}
+  .months .scale{display:grid;grid-template-columns:repeat(4,1fr)}
+  .months .scale div{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute2);text-align:center;border-left:1px dashed var(--line);padding:4px 0}
+  .grow{display:grid;grid-template-columns:140px 1fr;gap:10px;align-items:center;margin-bottom:9px}
+  .grow .lab{font-size:13px;font-weight:700;color:var(--cream)}
+  .grow .lab small{display:block;font-weight:400;color:var(--mute2);font-size:11px}
+  .track{position:relative;height:40px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .track::before,.track::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+  .track::before{left:25%}.track::after{left:50%}
+  .gl{position:absolute;top:0;bottom:0;left:75%;width:1px;background:var(--line)}
+  .bar{position:absolute;top:5px;bottom:5px;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden}
+  .bar.f1{background:var(--brand);color:var(--ink)}
+  .bar.f2{background:var(--brand-dark);color:var(--ink)}
+  .bar.f3{background:var(--ok);color:#fff}
+
+  /* fases detalle */
+  .stream{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0 0 13px;border-left:4px solid var(--brand)}
+  .stream.f2{border-left-color:var(--brand-dark)}
+  .stream.f3{border-left-color:var(--ok)}
+  .stream .tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:700}
+  .stream.f3 .tag{color:#8fd49b}
+  .stream h3{margin:3px 0 2px;font-size:18px;color:#fff}
+  .stream .when{font-size:12.5px;color:var(--mute);margin:0 0 8px}
+  .deliver{font-size:13px;color:var(--cream);background:var(--ink3);border-radius:8px;padding:9px 12px;margin-top:10px}
+  .deliver b{color:var(--brand)}
+  .stream.f3 .deliver b{color:#8fd49b}
+  ul.scope{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+  ul.scope li{padding-left:22px;position:relative;font-size:13px;color:var(--cream)}
+  ul.scope li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:800}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:6px 0}
+  .col{background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .col .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:700;display:block;margin-bottom:8px}
+  ul.plain{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+  ul.plain li{padding-left:22px;position:relative;font-size:13.5px;color:var(--cream)}
+  ul.plain li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:800}
+
+  .note{background:rgba(255,210,26,.08);border:1px solid rgba(255,210,26,.3);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--cream);margin:12px 0}
+  .note b{color:var(--brand)}
+
+  .cta{background:linear-gradient(135deg,#241c10,#1a150d);border:1px solid rgba(255,210,26,.35);border-radius:16px;padding:26px 30px;text-align:center;margin:6px 0}
+  .cta p{font-size:19px;font-weight:700;color:#fff;margin:0 0 6px}
+  .cta .y{color:var(--brand)}
+  .cta small{color:var(--mute);font-size:13px}
+
+  footer{padding:24px 58px;color:var(--mute2);font-size:11.5px;border-top:1px solid var(--line)}
+  @media print{body{background:#181410}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{max-width:none}section,header.cover,.stream,.cta,.split{break-inside:avoid}}
+  @page{size:A4;margin:0}
+  @media (max-width:640px){.sum,ul.scope,.split{grid-template-columns:1fr}.pad{padding:30px 22px}header.cover{padding:38px 22px}h1{font-size:30px}.grow,.months{grid-template-columns:96px 1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <div class="logo">Lvanto <span style="color:var(--mute2);font-weight:400">×</span> Animal<b>food</b></div>
+    <p class="kicker">Plan de trabajo · 2026</p>
+    <h1>Cómo vamos a <span class="y">trabajar</span>.</h1>
+    <p class="sub">El camino del Asistente AnimalFood, fase por fase: qué hacemos, cuándo lo entregamos y qué necesitamos de tu lado para cumplir los plazos. Avanzamos por etapas, contra entregables — sin frenar el negocio.</p>
+    <div class="meta">
+      <div><b>Para</b>Roberto — AnimalFood</div>
+      <div><b>De</b>Gonzalo — Lvanto</div>
+      <div><b>Fecha</b>17 / 06 / 2026</div>
+    </div>
+  </header>
+
+  <!-- Resumen -->
+  <section class="pad">
+    <h2><span class="n">1.</span> El plan, de un vistazo</h2>
+    <p class="lead">Tres fases, ~4 meses en total. Cada fase se entrega y se valida antes de pasar a la siguiente.</p>
+    <div class="sum">
+      <div class="sumc"><b>40 días</b><span>Asistente operativo (Fase 1)</span></div>
+      <div class="sumc"><b>~4 meses</b><span>Sistema completo (3 fases)</span></div>
+      <div class="sumc"><b>Por etapas</b><span>Aprobás y pagás contra entregables</span></div>
+    </div>
+  </section>
+
+  <!-- Gantt -->
+  <section class="pad">
+    <h2><span class="n">2.</span> Cronograma</h2>
+    <p class="lead">Desde la aprobación. Las fechas se sostienen si los materiales de tu lado llegan a tiempo.</p>
+
+    <div class="months">
+      <div></div>
+      <div class="scale"><div>Mes 1</div><div>Mes 2</div><div>Mes 3</div><div>Mes 4</div></div>
+    </div>
+
+    <div class="grow">
+      <div class="lab">Fase 1<small>Asistente</small></div>
+      <div class="track"><span class="gl"></span><div class="bar f1" style="left:0%;width:37.5%">6 semanas</div></div>
+    </div>
+    <div class="grow">
+      <div class="lab">Fase 2<small>Comunidad + BD</small></div>
+      <div class="track"><span class="gl"></span><div class="bar f2" style="left:37.5%;width:37.5%">6 semanas</div></div>
+    </div>
+    <div class="grow">
+      <div class="lab">Fase 3<small>Retención + blog</small></div>
+      <div class="track"><span class="gl"></span><div class="bar f3" style="left:75%;width:25%">4 sem</div></div>
+    </div>
+
+    <div class="note">⚙️ Las fases son <b>secuenciales</b>: cada una arranca cuando se aprueba la anterior. Si querés acelerar, algunas tareas se pueden solapar — lo vemos sobre la marcha.</div>
+  </section>
+
+  <!-- Detalle por fase -->
+  <section class="pad">
+    <h2><span class="n">3.</span> Qué hacemos en cada fase</h2>
+
+    <div class="stream">
+      <span class="tag">Fase 1 · Semanas 1–6</span>
+      <h3>Producción del Asistente</h3>
+      <p class="when">Dejar el tótem funcionando y listo para instalar.</p>
+      <ul class="scope">
+        <li>App final en modo kiosko + offline</li>
+        <li>Carga de la recomendación y el contenido</li>
+        <li>Actualización remota de la flota</li>
+        <li>Panel de administración por local</li>
+        <li>QA en un tótem real</li>
+        <li>Manual + tutorial en YouTube</li>
+      </ul>
+      <div class="deliver"><b>Entregable:</b> Asistente operativo e instalable en los equipos.</div>
+    </div>
+
+    <div class="stream f2">
+      <span class="tag">Fase 2 · Semanas 7–12</span>
+      <h3>Comunidad + Base de datos</h3>
+      <p class="when">La plataforma propia donde nace tu base de clientes.</p>
+      <ul class="scope">
+        <li>Registro con Google + alta de mascota</li>
+        <li>Base de datos administrable (dashboard)</li>
+        <li>Ruleta + cupón único antifraude</li>
+        <li>Descuento mensual + "mi cuenta"</li>
+        <li>Consentimiento + privacidad</li>
+        <li>Publicación en animalfood.com.ar/comunidad</li>
+      </ul>
+      <div class="deliver"><b>Entregable:</b> Club online funcionando, captando suscriptores.</div>
+    </div>
+
+    <div class="stream f3">
+      <span class="tag">Fase 3 · Semanas 13–16</span>
+      <h3>Retención + contenido propio</h3>
+      <p class="when">Que el cliente vuelva todos los meses, en automático.</p>
+      <ul class="scope">
+        <li>Email mensual con descuento único</li>
+        <li>Cupón que se "quema" al usarse</li>
+        <li>Blog para SEO + posicionamiento en IA (GEO)</li>
+        <li>Reporte mensual de resultados</li>
+      </ul>
+      <div class="deliver"><b>Entregable:</b> Motor de recompra y contenido andando solo.</div>
+    </div>
+  </section>
+
+  <!-- Cómo trabajamos / qué necesitamos -->
+  <section class="pad">
+    <h2><span class="n">4.</span> Cómo trabajamos</h2>
+    <div class="split">
+      <div class="col">
+        <span class="lbl">Nuestra forma</span>
+        <ul class="plain">
+          <li>Por fases: aprobás y pagás contra entregables</li>
+          <li>Un punto de contacto directo (yo) + avances</li>
+          <li>Revisión al cierre de cada fase</li>
+          <li>Sistema operado y monitoreado por Lvanto</li>
+        </ul>
+      </div>
+      <div class="col">
+        <span class="lbl">Lo que necesitamos de AnimalFood</span>
+        <ul class="plain">
+          <li>Criterio de recomendación de productos (Fase 1)</li>
+          <li>Marca y contenido (logos, packs) + un tótem para probar</li>
+          <li>Acceso al dominio + premios de la ruleta (Fase 2)</li>
+          <li>Validación legal de tu abogado (privacidad y promos)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">🔑 El cronograma se cumple si estos materiales llegan a tiempo. <b>Por eso, el día que arranquemos pido primero el criterio de recomendación y el acceso al dominio</b> — son los que destraban todo.</div>
+  </section>
+
+  <section class="pad">
+    <div class="cta">
+      <p>Etapa por etapa, <span class="y">sin sorpresas</span>.</p>
+      <small>Cada fase se ve, se prueba y se aprueba antes de seguir. Arrancamos cuando digas.</small>
+    </div>
+  </section>
+
+  <footer>
+    Lvanto · Plan de trabajo — AnimalFood Advisor · 17/06/2026 · Cronograma estimado desde la aprobación; los plazos dependen de la entrega en tiempo de los materiales a cargo de AnimalFood.
+  </footer>
+
+</div>
+</body>
+</html>
