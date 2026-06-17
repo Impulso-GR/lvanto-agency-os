@@ -9,20 +9,20 @@
     --ink:#0d0b09; --ink2:#171310; --ink3:#211b14;
     --brand:#FFD21A; --brand-dark:#E6B400;
     --cream:#F5F1EA; --mute:#a89f93; --mute2:#6e655a;
-    --line:#2b251f; --ok:#46A758;
+    --line:#2b251f; --ok:#46A758; --no:#c2683f;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#181410;color:var(--cream);line-height:1.55}
   .page{max-width:900px;margin:0 auto;background:var(--ink)}
-  .pad{padding:44px 58px}
+  .pad{padding:42px 58px}
   header.cover{background:radial-gradient(120% 90% at 50% 0%, #241c12 0%, var(--ink) 65%);padding:60px 58px 44px;border-bottom:1px solid var(--line)}
   .logo{font-size:22px;font-weight:800;letter-spacing:-.01em}
   .logo b{color:var(--brand)}
   .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--brand);margin:30px 0 12px;font-weight:700}
   h1{font-size:42px;line-height:1.06;margin:0 0 14px;font-weight:800;color:#fff}
   h1 .y{color:var(--brand)}
-  .sub{font-size:18px;color:var(--mute);margin:0;max-width:640px}
-  .meta{display:flex;gap:30px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:18px;margin-top:32px}
+  .sub{font-size:18px;color:var(--mute);margin:0;max-width:650px}
+  .meta{display:flex;gap:30px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:18px;margin-top:32px;flex-wrap:wrap}
   .meta b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute2);margin-bottom:3px}
   section{border-top:1px solid var(--line)}
   h2{font-size:24px;margin:0 0 6px;font-weight:800;color:#fff}
@@ -43,15 +43,6 @@
   .arrow{display:flex;align-items:center;color:var(--brand);font-size:22px;padding:0 8px;font-weight:800}
   .cap{text-align:center;color:var(--mute);font-size:13.5px;font-style:italic;margin:6px 0 0}
 
-  .phase{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
-  .phase:last-child{border-bottom:0}
-  .badge{flex-shrink:0;width:108px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:6px 0;text-align:center;border-radius:8px;height:fit-content}
-  .badge.ready{background:rgba(70,167,88,.15);color:#8fd49b;border:1px solid rgba(70,167,88,.4)}
-  .badge.proto{background:rgba(255,210,26,.16);color:var(--brand);border:1px solid rgba(255,210,26,.4)}
-  .badge.next{background:var(--ink3);color:var(--mute);border:1px solid var(--line)}
-  .phase h4{margin:0 0 4px;font-size:16px;color:#fff}
-  .phase p{margin:0;font-size:13.5px;color:var(--mute)}
-
   .stream{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px;border-left:4px solid var(--brand)}
   .stream h3{margin:0 0 4px;font-size:19px;color:#fff}
   .stream .tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:700}
@@ -68,25 +59,17 @@
   .price .row.total span{color:#fff;font-weight:700}
   .price .row.total b{font-size:19px}
 
-  ul.scope{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
-  ul.scope li{padding-left:24px;position:relative;font-size:13.5px;color:var(--cream)}
+  ul.scope{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:7px 18px}
+  ul.scope.one{grid-template-columns:1fr}
+  ul.scope li{padding-left:23px;position:relative;font-size:13.5px;color:var(--cream)}
   ul.scope li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:800}
+  ul.no li::before{content:"✕";color:var(--no)}
 
-  .note{background:rgba(255,210,26,.08);border:1px solid rgba(255,210,26,.3);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--cream);margin:10px 0}
-  .note b{color:var(--brand)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+  .col{background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .col h4{margin:0 0 4px;font-size:15px;color:#fff}
+  .col .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:700;display:block;margin-bottom:8px}
 
-  ul.why{list-style:none;padding:0;margin:8px 0;display:grid;gap:10px}
-  ul.why li{padding-left:28px;position:relative;font-size:14.5px;color:var(--cream)}
-  ul.why li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:800}
-  ul.why b{color:#fff}
-
-  .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#241c12,#0d0b09);min-height:250px;display:flex;align-items:center;justify-content:center}
-  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .shot .ph{color:var(--mute2);font-size:13px;letter-spacing:.04em;text-align:center;padding:24px}
-  .shot.contain img{object-fit:contain;padding:16px}
-  .shot .cap2{position:absolute;left:0;right:0;bottom:0;padding:20px 24px;background:linear-gradient(to top,rgba(13,11,9,.94),rgba(13,11,9,.4) 55%,transparent);z-index:2;text-align:left}
-  .shot .cap2 b{color:#fff;font-size:22px;font-weight:800;display:block;line-height:1.15}
-  .shot .cap2 span{color:var(--brand);font-size:13.5px}
   .thesis{background:linear-gradient(135deg,#241c10,#1a150d);border:1px solid rgba(255,210,26,.35);border-radius:16px;padding:24px 28px;margin:18px 0}
   .thesis .tag{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--brand);font-weight:700}
   .thesis h3{color:#fff;font-size:22px;margin:8px 0 12px;line-height:1.22}
@@ -94,15 +77,39 @@
   .thesis p{color:var(--mute);font-size:14.5px;margin:0 0 11px}
   .thesis p:last-child{margin-bottom:0}
   .thesis b{color:var(--cream)}
+
+  .frame{background:#100d0a;border:1px solid rgba(255,210,26,.3);border-radius:16px;padding:26px 28px;margin:4px 0 8px}
+  .frame .big{font-size:23px;font-weight:800;color:#fff;line-height:1.25;margin:0 0 8px}
+  .frame .big .y{color:var(--brand)}
+  .frame p{color:var(--mute);font-size:15px;margin:0}
+
+  .note{background:rgba(255,210,26,.08);border:1px solid rgba(255,210,26,.3);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--cream);margin:10px 0}
+  .note b{color:var(--brand)}
+  .legal{background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:13px;color:var(--mute);margin:8px 0}
+  .legal b{color:var(--cream)}
+
+  .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#241c12,#0d0b09);min-height:250px;display:flex;align-items:center;justify-content:center}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .shot.contain img{object-fit:contain;padding:16px}
+  .shot .ph{color:var(--mute2);font-size:13px;letter-spacing:.04em;text-align:center;padding:24px}
+  .shot .cap2{position:absolute;left:0;right:0;bottom:0;padding:20px 24px;background:linear-gradient(to top,rgba(13,11,9,.94),rgba(13,11,9,.4) 55%,transparent);z-index:2;text-align:left}
+  .shot .cap2 b{color:#fff;font-size:22px;font-weight:800;display:block;line-height:1.15}
+  .shot .cap2 span{color:var(--brand);font-size:13.5px}
+
+  ul.why{list-style:none;padding:0;margin:8px 0;display:grid;gap:10px}
+  ul.why li{padding-left:28px;position:relative;font-size:14.5px;color:var(--cream)}
+  ul.why li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:800}
+  ul.why b{color:#fff}
+
   .cta{background:linear-gradient(135deg,#241c10,#1a150d);border:1px solid rgba(255,210,26,.35);border-radius:16px;padding:28px 30px;text-align:center;margin:8px 0}
   .cta p{font-size:20px;font-weight:700;color:#fff;margin:0 0 6px}
   .cta .y{color:var(--brand)}
   .cta small{color:var(--mute);font-size:13px}
 
   footer{padding:26px 58px;color:var(--mute2);font-size:11.5px;border-top:1px solid var(--line)}
-  @media print{body{background:#181410}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{max-width:none}section,header.cover,.cta,.stream{break-inside:avoid}}
+  @media print{body{background:#181410}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{max-width:none}section,header.cover,.cta,.stream,.thesis,.frame,.split,.shot{break-inside:avoid}}
   @page{size:A4;margin:0}
-  @media (max-width:640px){.wins,.flow,ul.scope{grid-template-columns:1fr}.pad{padding:32px 24px}header.cover{padding:40px 24px}h1{font-size:32px}.arrow{transform:rotate(90deg)}}
+  @media (max-width:640px){.wins,.flow,ul.scope,.split{grid-template-columns:1fr}.pad{padding:30px 22px}header.cover{padding:40px 22px}h1{font-size:32px}.arrow{transform:rotate(90deg)}}
 </style>
 </head>
 <body>
@@ -112,7 +119,7 @@
     <div class="logo">Lvanto <span style="color:var(--mute2);font-weight:400">×</span> Animal<b>food</b></div>
     <p class="kicker">Propuesta de partnership · 2026</p>
     <h1>Pasemos al <span class="y">próximo nivel</span>.</h1>
-    <p class="sub">Lo que venimos haciendo está dando resultados. Tengo lista la propuesta del Asistente AnimalFood —diseño de la caja y un prototipo de la experiencia que vas a poder tocar— y quiero plantearte, en una sola foto, cómo lo producimos y cómo llevamos todo el trabajo a un nivel acorde a lo que ya estamos generando.</p>
+    <p class="sub">Lo que venimos haciendo está dando resultados. Te presento el Asistente AnimalFood —diseño y prototipo navegable— y, sobre todo, el sistema completo que hay detrás: software, captación de consumidores, operación de la flota y marketing. No es un gasto más: es una <b style="color:var(--cream)">unidad de crecimiento</b> para la marca.</p>
     <div class="meta">
       <div><b>Para</b>Roberto — AnimalFood</div>
       <div><b>De</b>Gonzalo — Lvanto</div>
@@ -120,7 +127,7 @@
     </div>
   </header>
 
-  <!-- Hero visual: el tótem en una veterinaria real (aspiracional) -->
+  <!-- Hero visual -->
   <div class="shot" style="min-height:380px;border-radius:0;border-left:0;border-right:0">
     <div class="ph">[ Foto: el tótem en una veterinaria real ]</div>
     <img src="assets/mockup-tienda.jpg" alt="">
@@ -137,6 +144,7 @@
       <div class="win"><b>Recomendación segura</b>Asesora sin hacer promesas médicas y deriva al veterinario cuando corresponde. Cuida la marca.</div>
       <div class="win"><b>Pensado para 100 tótems</b>Se actualiza a distancia: cambiás contenido o promos en todos los locales sin tocar pantalla por pantalla.</div>
     </div>
+
     <div class="shot" style="margin-top:14px;min-height:280px">
       <div class="ph">[ Foto: render de la caja del tótem ]</div>
       <img src="assets/mockup-caja.jpg" alt="">
@@ -147,7 +155,7 @@
     <div class="note">📌 <b>Estado:</b> diseño y prototipo listos para tu validación. Con tu OK pasamos a producción y lo dejamos funcionando.</div>
   </section>
 
-  <!-- 2. El proyecto completo -->
+  <!-- 2. El objetivo real -->
   <section class="pad">
     <h2><span class="n">2.</span> Hacia dónde va el proyecto</h2>
     <p class="lead">El tótem es la punta. El valor real es lo que viene detrás.</p>
@@ -156,16 +164,16 @@
       <div class="arrow">→</div>
       <div class="node"><div class="e">📱</div><h4>Comunidad</h4><p>Se registra y carga su mascota</p></div>
       <div class="arrow">→</div>
-      <div class="node"><div class="e">🗄️</div><h4>Base de datos</h4><p>Tus clientes finales, tuyos</p></div>
+      <div class="node"><div class="e">🗄️</div><h4>Base de datos</h4><p>Base propia, con consentimiento</p></div>
       <div class="arrow">→</div>
       <div class="node"><div class="e">🔁</div><h4>Recompra</h4><p>Ruleta + descuento mensual + emails</p></div>
     </div>
-    <p class="cap">Deja de ser un cartel lindo: se vuelve una máquina de datos y recompra.</p>
+    <p class="cap">Se vuelve un sistema de captación y recompra — medible paso a paso.</p>
 
     <div class="thesis">
       <span class="tag">El objetivo real</span>
       <h3>Que cada persona se sume al <span class="y">Programa AnimalFood</span> y reciba un descuento todos los meses.</h3>
-      <p>El tótem no asesora por asesorar: cada recomendación termina invitando a suscribirse. <b>Cada suscripción es un consumidor final en tu base de datos propia</b> — alguien a quien le podés hablar directo, todos los meses, sin intermediarios.</p>
+      <p>El tótem no asesora por asesorar: cada recomendación termina invitando a suscribirse. <b>Cada suscripción es un consumidor final en una base de datos propia</b> — alguien a quien le podés hablar directo, todos los meses, sin intermediarios.</p>
       <p>¿Por qué es lo más importante? Porque <b>el consumidor final es el que genera la demanda real.</b> Una marca que la gente pide en el mostrador se vende sola; una que nadie conoce, hay que empujarla local por local. <b>Construir demanda es construir el activo más valioso de AnimalFood.</b></p>
       <p>Y no se queda en el tótem: el mismo mecanismo —suscripción + beneficio mensual— <b>se replica en redes</b> para hacer retargeting y generar permanencia con tu audiencia. El tótem capta en el local; las redes mantienen y reactivan. <b>Un solo motor de demanda.</b></p>
     </div>
@@ -173,45 +181,106 @@
     <div class="shot contain" style="margin-top:18px;min-height:380px">
       <div class="ph">[ Pantalla: la ruleta del Club ]</div>
       <img src="assets/mockup-ruleta.jpg" alt="">
-      <div class="cap2"><b>Girá y ganá 🎡</b><span>El juego que convierte una visita en un cliente registrado.</span></div>
+      <div class="cap2"><b>Girá y ganá 🎡</b><span>El premio se reclama sumándote al Club. Cada giro, un suscriptor nuevo.</span></div>
     </div>
   </section>
 
-  <!-- 3. Roadmap -->
+  <!-- 3. Encuadre: no es un fee de redes -->
   <section class="pad">
-    <h2><span class="n">3.</span> El plan, por fases</h2>
-    <p class="lead">Avanzamos sin frenar el negocio.</p>
-    <div class="phase">
-      <div class="badge ready">Listo</div>
-      <div><h4>Diseño + prototipo</h4><p>Caja diseñada e identidad del Asistente + experiencia navegable para validar. Es lo que tenés en mano hoy.</p></div>
+    <h2><span class="n">3.</span> Qué estás contratando</h2>
+    <p class="lead">Antes de los números, leámoslo con el marco correcto.</p>
+
+    <div class="frame">
+      <p class="big">Esto <span class="y">no es un fee de redes.</span></p>
+      <p>Es una unidad de crecimiento: software a medida, IA, captación de consumidores finales, operación de una flota de 100 tótems, contenido, retargeting y soporte comercial para tus puntos de venta. Comparado con publicar posteos, parece caro. Comparado con lo que realmente entrega, es otra categoría.</p>
     </div>
-    <div class="phase">
-      <div class="badge proto">Con tu OK</div>
-      <div><h4>Fase 1 — Producción del Asistente</h4><p>Dejar la app del tótem terminada y lista para instalar en los equipos. Manual de cuidado + tutorial en YouTube por QR.</p></div>
-    </div>
-    <div class="phase">
-      <div class="badge next">Sigue</div>
-      <div><h4>Fase 2 — Comunidad + base de datos</h4><p>Web del Club en animalfood.com.ar/comunidad: registro con Google, alta de la mascota (con foto), ruleta y descuento mensual. Acá nace tu base de clientes propia. Entregamos el código listo para publicar —o nos ocupamos del alta del dominio.</p></div>
-    </div>
-    <div class="phase">
-      <div class="badge next">Sigue</div>
-      <div><h4>Fase 3 — Retención + contenido propio</h4><p>Email mensual con descuento único que se "quema" al usarlo. Y un blog en la web para posicionar AnimalFood en Google y en los buscadores de IA (SEO + GEO).</p></div>
+
+    <div class="split">
+      <div class="col">
+        <span class="lbl">Para el consumidor · B2C</span>
+        <h4>Una puerta de entrada al cliente final</h4>
+        <ul class="scope one">
+          <li>Asesora y recomienda en el momento de decidir</li>
+          <li>Lo registra en el Programa AnimalFood</li>
+          <li>Le da un descuento mensual → recompra</li>
+          <li>Instala demanda: que pidan la marca en el mostrador</li>
+        </ul>
+      </div>
+      <div class="col">
+        <span class="lbl">Para tu negocio · B2B</span>
+        <h4>Seriedad y control en el punto de venta</h4>
+        <ul class="scope one">
+          <li>Herramienta de recomendación en cada local</li>
+          <li>Presencia de marca premium frente al petshop</li>
+          <li>Control remoto del contenido en los 100 locales</li>
+          <li>Soporte y operación que respaldan al comercio</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- 4. El modelo de trabajo -->
+  <!-- 4. Plan por fases con alcance -->
   <section class="pad">
-    <h2><span class="n">4.</span> La propuesta</h2>
-    <p class="lead">Dos cosas, separadas para que cada una sea clara y justa.</p>
+    <h2><span class="n">4.</span> El plan, por fases</h2>
+    <p class="lead">Cada fase se aprueba y se paga contra entregables — no todo de una. Esto es lo que incluye cada una.</p>
+
+    <div class="stream">
+      <span class="tag">Fase 1 · Listo el diseño y el prototipo</span>
+      <h3>Producción del Asistente</h3>
+      <ul class="scope">
+        <li>App instalable en modo kiosko (Android)</li>
+        <li>Funcionamiento sin internet (modo offline)</li>
+        <li>Lógica de recomendación (especie, edad, porte, actividad)</li>
+        <li>Panel de administración (promos/contenido por local)</li>
+        <li>Actualización remota de contenido a la flota</li>
+        <li>Derivación al veterinario (disclaimer de seguridad)</li>
+        <li>Analítica de uso (interacciones por tótem)</li>
+        <li>QA probado en un tótem real</li>
+        <li>Manual de uso + video tutorial en YouTube</li>
+      </ul>
+    </div>
+
+    <div class="stream">
+      <span class="tag">Fase 2</span>
+      <h3>Comunidad + Base de datos</h3>
+      <ul class="scope">
+        <li>Registro con cuenta de Google</li>
+        <li>Alta de la mascota (datos + foto)</li>
+        <li>Base de datos administrable (dashboard)</li>
+        <li>Ruleta de premios</li>
+        <li>Generación de cupón único</li>
+        <li>Validación de uso (el cupón se "quema")</li>
+        <li>Exportación de datos</li>
+        <li>Consentimiento + política de privacidad</li>
+      </ul>
+    </div>
+
+    <div class="stream">
+      <span class="tag">Fase 3</span>
+      <h3>Retención + contenido propio</h3>
+      <ul class="scope">
+        <li>Plataforma de email integrada</li>
+        <li>Automatización del envío mensual</li>
+        <li>Cupón único que caduca al usarse</li>
+        <li>Blog en la web (SEO + GEO)</li>
+        <li>Calendario editorial</li>
+        <li>Reporte mensual de resultados</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. La propuesta (números) -->
+  <section class="pad">
+    <h2><span class="n">5.</span> La propuesta</h2>
+    <p class="lead">Dos cosas separadas: la inversión única del producto y el trabajo mensual.</p>
 
     <div class="stream">
       <span class="tag">1 · Proyecto (inversión única, por fases)</span>
       <h3>🖥️ El Asistente AnimalFood</h3>
-      <p>El desarrollo del producto: dejar el Asistente funcionando y, en fases siguientes, la comunidad con base de datos y la retención automática. Se aprueba y se paga por fase, contra entregables — no todo de una.</p>
       <div class="price">
-        <div class="row"><span>Fase 1 — Producción del Asistente<small>App lista para instalar + manual de uso + tutorial en YouTube</small></span><b>USD 7.500</b></div>
-        <div class="row"><span>Fase 2 — Comunidad + base de datos<small>Club, registro con Google, ruleta, descuento, base de datos</small></span><b>USD 13.000</b></div>
-        <div class="row"><span>Fase 3 — Retención (emails) + blog GEO/SEO<small>Cupón único mensual + posicionamiento</small></span><b>USD 4.500</b></div>
+        <div class="row"><span>Fase 1 — Producción del Asistente<small>App + panel + recomendación + offline + analítica + manual + tutorial</small></span><b>USD 7.500</b></div>
+        <div class="row"><span>Fase 2 — Comunidad + base de datos<small>Login, registro, ruleta, cupón, dashboard, privacidad</small></span><b>USD 13.000</b></div>
+        <div class="row"><span>Fase 3 — Retención (emails) + blog GEO/SEO<small>Automatización + cupón único + posicionamiento</small></span><b>USD 4.500</b></div>
         <div class="row sub"><span>Subtotal</span><b>USD 25.000</b></div>
         <div class="row disc"><span>Bonificación cliente AnimalFood (–15%)<small>Por la continuidad de +1 año juntos y el fee activo</small></span><b>– USD 3.750</b></div>
         <div class="row total"><span>Inversión total del proyecto<small>Se paga por fase, contra entregables — no todo de una</small></span><b>USD 21.250</b></div>
@@ -219,63 +288,133 @@
     </div>
 
     <div class="stream">
-      <span class="tag">2 · Fee mensual (al próximo nivel)</span>
-      <h3>📈 Partnership de Marketing & IA</h3>
-      <p>Por los resultados que venimos logrando, propongo subir el trabajo de nivel y ordenar el fee acorde a todo lo que pasa a incluir:</p>
+      <span class="tag">2 · Fee mensual · capa base</span>
+      <h3>📈 Marketing & crecimiento</h3>
+      <p>El trabajo de marca, contenido y demanda — al nivel que los resultados ya justifican:</p>
       <ul class="scope">
-        <li>Más movimiento en todas las marcas</li>
+        <li>Estrategia + coordinación + reporting</li>
         <li>Contenido diario para 2 marcas + historias</li>
         <li>Reels semanales</li>
-        <li>Nuevas campañas (incl. YouTube)</li>
+        <li>Campañas (Meta / Google / YouTube) — gestión</li>
         <li>Tráfico, retargeting y retención de audiencia</li>
-        <li>Soporte técnico remoto (respuesta &lt; 24 hs hábiles)</li>
-        <li>Actualizaciones de contenido de la flota</li>
+        <li>Más movimiento en todas las marcas</li>
         <li>Posicionamiento en IA (GEO) + SEO</li>
+        <li>Captación de suscriptores al Programa</li>
       </ul>
       <div class="price">
-        <div class="row"><span>Fee mensual — Partnership ampliado<small>Cubre todo el alcance de marketing y contenido detallado arriba</small></span><b>$ 4.000.000 /mes</b></div>
-        <div class="row"><span>Con la flota en operación + el Club<small>Soporte de los 100 tótems, comunidad y retención ya activos</small></span><b>$ 5.000.000 /mes</b></div>
+        <div class="row total"><span>Fee mensual<small>Reemplaza el esquema actual, con el alcance ampliado</small></span><b>$ 4.000.000 /mes</b></div>
       </div>
     </div>
 
     <div class="stream" style="border-left-color:var(--ok)">
-      <span class="tag" style="color:#8fd49b">Incluido · Acompañamiento</span>
-      <h3>🛠️ Soporte y tranquilidad</h3>
-      <p>Para que los 100 locales funcionen sin dolores de cabeza — incluido en el trabajo mensual:</p>
+      <span class="tag" style="color:#8fd49b">2 · Fee mensual · capa de operación</span>
+      <h3>🛠️ + Operación de la flota</h3>
+      <p>Se activa <b style="color:var(--cream)">solo cuando los 100 tótems estén operativos y el Club activo</b> — condicionado a operación real, no a una promesa. Suma a lo anterior:</p>
       <ul class="scope">
-        <li>Soporte técnico remoto: respuesta en menos de 24 hs hábiles (L–V)</li>
+        <li>Soporte técnico remoto: respuesta &lt; 24 hs hábiles (L–V)</li>
         <li>Resolución virtual de consultas e incidencias</li>
-        <li>Manual de preservación y uso del tótem</li>
-        <li>Video tutorial en YouTube para el dueño del local</li>
-        <li>Actualizaciones de contenido a toda la flota</li>
-        <li>Monitoreo del estado de los equipos</li>
+        <li>Actualización de contenido en los 100 locales</li>
+        <li>Monitoreo del estado de la flota</li>
+        <li>Operación de la comunidad y la retención</li>
       </ul>
+      <div class="price">
+        <div class="row total"><span>Fee mensual ampliado<small>Recién cuando la operación esté en marcha</small></span><b>$ 5.000.000 /mes</b></div>
+      </div>
     </div>
 
-    <div class="note">⚙️ <b>Por qué el proyecto en dólares y el fee en pesos:</b> el desarrollo es una inversión puntual y conviene fijarla en moneda estable; el fee es mensual y va en pesos para que sea simple. Los montos en blanco los cerramos juntos. <b>Aparte y a demanda</b> quedan los extras puntuales: viajes para instalar/configurar tótems, cobertura de eventos con dron o herramientas de IA para otras áreas de AnimalFood.</div>
+    <div class="note">⚙️ <b>Por qué el proyecto en dólares y el fee en pesos:</b> el desarrollo es una inversión puntual con exposición técnica dolarizada; el fee es mensual y va en pesos para que sea administrable. <b>El paso a $5M no es automático:</b> arranca únicamente con la flota operativa + el Club activo + soporte técnico real.</div>
   </section>
 
-  <!-- 5. Por qué Lvanto -->
+  <!-- 6. Qué incluye / qué no -->
   <section class="pad">
-    <h2><span class="n">5.</span> Por qué seguir creciendo con Lvanto</h2>
+    <h2><span class="n">6.</span> Qué incluye y qué no</h2>
+    <p class="lead">Claridad para que el fee no se transforme en una bolsa infinita de pedidos.</p>
+    <div class="split">
+      <div class="col">
+        <span class="lbl" style="color:#8fd49b">Incluido en el fee</span>
+        <ul class="scope one">
+          <li>Estrategia, contenido, reels, historias, campañas (gestión)</li>
+          <li>Retargeting, retención y reporting mensual</li>
+          <li>Operación de flota y soporte remoto (capa de operación)</li>
+          <li>Actualización de contenido en los tótems</li>
+        </ul>
+      </div>
+      <div class="col">
+        <span class="lbl" style="color:var(--no)">No incluido (aparte o por AnimalFood)</span>
+        <ul class="scope one no">
+          <li>Hosting, servidores y uso de APIs de IA</li>
+          <li>Plataforma de email y herramientas SaaS</li>
+          <li>Pauta publicitaria (presupuesto de ads)</li>
+          <li>Viajes, instalación física y soporte fuera de horario</li>
+          <li>Honorarios legales / inscripción de bases</li>
+          <li>Mantenimiento del hardware (es del comodato)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Los ítems "no incluidos" se cotizan aparte o los provee AnimalFood. Los extras puntuales (viajes para instalar/configurar, eventos con dron, herramientas de IA para otras áreas) se presupuestan por proyecto.</div>
+  </section>
+
+  <!-- 7. Cómo lo medimos -->
+  <section class="pad">
+    <h2><span class="n">7.</span> Cómo lo medimos</h2>
+    <p class="lead">No se mide por "me gusta". Se mide como una inversión.</p>
+    <div class="split">
+      <div class="col">
+        <span class="lbl">Demanda · B2C</span>
+        <ul class="scope one">
+          <li>Interacciones por tótem</li>
+          <li>Tasa de registro al Club</li>
+          <li>Costo por consumidor registrado</li>
+          <li>Tasa de uso del cupón y recompra</li>
+          <li>Crecimiento de la base propia</li>
+          <li>Apertura / clic de los emails</li>
+        </ul>
+      </div>
+      <div class="col">
+        <span class="lbl">Operación · B2B</span>
+        <ul class="scope one">
+          <li>Tótems activos y uptime de la flota</li>
+          <li>Locales usando el sistema</li>
+          <li>Incidencias resueltas &lt; 24 hs hábiles</li>
+          <li>Pedidos de actualización de promos</li>
+          <li>Feedback de petshops / veterinarias</li>
+          <li>Consultas comerciales por zona</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Cuando AnimalFood comparta datos de venta (ticket, frecuencia, redención), cruzamos estas métricas con el <b>sell-through por local</b> para mostrar el retorno real, no estimado.</div>
+  </section>
+
+  <!-- 8. Datos y cumplimiento -->
+  <section class="pad">
+    <h2><span class="n">8.</span> Datos y cumplimiento</h2>
+    <p class="lead">Capturar consumidores es un activo — y se hace bien desde el día uno.</p>
+    <div class="legal">
+      El sistema se diseña para cumplir la normativa argentina de datos personales (<b>Ley 25.326 / AAIP</b>): <b>consentimiento explícito</b> de cada persona sobre el uso comercial de sus datos, <b>baja de emails en un clic</b>, y <b>bases y condiciones</b> de las promociones y descuentos. La validación legal final y la inscripción de bases cuando corresponda quedan a cargo de AnimalFood; <b>Lvanto entrega el sistema preparado para cumplir</b>. Esto no frena el proyecto: lo hace más serio y protege a la marca.
+    </div>
+  </section>
+
+  <!-- 9. Por qué Lvanto -->
+  <section class="pad">
+    <h2><span class="n">9.</span> Por qué seguir creciendo con Lvanto</h2>
     <ul class="why">
-      <li><b>Velocidad real:</b> del pedido al prototipo del Asistente en semanas. Una agencia grande tarda meses y cuesta el triple.</li>
-      <li><b>Me formo en IA todos los días:</b> traigo lo último a tu negocio antes que tu competencia.</li>
-      <li><b>Conozco AnimalFood por dentro:</b> tus marcas, tu cliente, tu estética. No arrancás de cero con nadie.</li>
-      <li><b>Un socio, no un proveedor de tareas sueltas:</b> pienso el negocio con vos.</li>
+      <li><b>Velocidad:</b> del pedido al prototipo del Asistente en semanas, con foco y sin vueltas.</li>
+      <li><b>Conocimiento interno de tus marcas:</b> tu catálogo, tu cliente y tu estética ya los manejo. No arrancás de cero.</li>
+      <li><b>Continuidad operativa:</b> un solo responsable que piensa marketing, producto y operación como un sistema.</li>
+      <li><b>Actualización constante en IA:</b> traigo lo último a tu negocio, aplicado a resultados concretos.</li>
     </ul>
   </section>
 
-  <!-- 6. Cierre -->
+  <!-- 10. Cierre -->
   <section class="pad">
     <div class="cta">
       <p>Lo que construimos <span class="y">funciona</span>. Llevémoslo al lugar que merece.</p>
-      <small>Quedo a disposición para mostrarte el prototipo en vivo, repasar números y arrancar cuando digas.</small>
+      <small>Quedo a disposición para mostrarte el prototipo en vivo, repasar el alcance y arrancar la Fase 1 cuando digas.</small>
     </div>
   </section>
 
   <footer>
-    Lvanto · Propuesta de partnership para AnimalFood · 16/06/2026 · Documento de trabajo — los montos señalados con línea se definen en conjunto.
+    Lvanto · Propuesta de partnership para AnimalFood · 16/06/2026 · Documento de trabajo. Montos de proyecto en USD (referencia), fee en ARS. Validez sujeta a confirmación de alcance. El paso a la capa de operación ($5M) se activa con la flota y el Club operativos.
   </footer>
 
 </div>

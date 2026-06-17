@@ -24,6 +24,13 @@
 4. **El tema del pago, tranquilo y al pasar.** "Una cosa puntual: el mes pasado el fee llegó en 1.8 y veníamos en otra línea — lo quiero alinear con vos." Cortito, sin drama. Dejá que él responda. (Si fue error, se aclara solo; si fue recorte, sale a la luz sin pelea.)
 5. **El pedido, desde el valor.** "Me estoy formando todo el tiempo en IA y siento que puedo aportar muchísimo más desde mi lugar. Me gustaría pasar a ser su socio de IA y growth — no un proveedor más de tareas sueltas." Y ahí entregás la propuesta escrita.
 
+## ⚠️ El riesgo #1: que lo lea como "fee de redes"
+
+- Si Roberto encuadra esto como *"redes, reels y diseño mensual"*, $4–5M se siente carísimo (una agencia de community cobra $200–400k). **No lo dejes caer en ese marco.**
+- Tu frase ancla (decila temprano): *"Roberto, esto no es un fee de redes. Es una unidad de crecimiento: software, IA, captación de consumidores, operación de 100 tótems, contenido y soporte comercial. Pedís una cosa y recibís un sistema."*
+- Comparado contra **desarrollo de software + tótems** (no contra agencias), los números son baratos: la propuesta lo demuestra con el alcance detallado por fase, los KPIs y las exclusiones.
+- Las secciones de **"Qué no incluye", "Cómo lo medimos" y "Datos y cumplimiento"** están a propósito: suben la percepción de seriedad y muestran que no es humo. Mostralas con orgullo.
+
 ## Cómo plantear el fee
 
 - **No digas "quiero que me paguen más".** Decí: **"el alcance creció mucho; quiero ordenar el fee para que acompañe lo que estamos entregando."**
@@ -42,6 +49,7 @@
 
 - Clave mental: **el totem NO sale del fee de marketing.** Es software + producto. Tiene desarrollo (por fases) + operación mensual (mantener 100 pantallas con contenido fresco, soporte, la comunidad, los emails).
 - Si Roberto intenta meterlo en el fee: "Te lo separo a propósito, Roberto — así ves que el marketing sigue su curso y el totem se sostiene solo. Es lo más sano para los dos."
+- **El fee tiene dos capas, y la segunda es condicionada:** $4M ahora (marketing + crecimiento). El salto a **$5M se activa SOLO cuando los 100 tótems estén operativos + el Club andando + soporte real** — no antes. Esto te protege a vos (no cobrás operación que todavía no existe) y le da tranquilidad a él (paga el nivel alto cuando ya ve la máquina funcionando).
 
 ## Lo "a demanda" (Línea C) — frená la barra libre
 
