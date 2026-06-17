@@ -83,6 +83,7 @@
   .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#241c12,#0d0b09);min-height:250px;display:flex;align-items:center;justify-content:center}
   .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .shot .ph{color:var(--mute2);font-size:13px;letter-spacing:.04em;text-align:center;padding:24px}
+  .shot.contain img{object-fit:contain;padding:16px}
   .shot .cap2{position:absolute;left:0;right:0;bottom:0;padding:20px 24px;background:linear-gradient(to top,rgba(13,11,9,.94),rgba(13,11,9,.4) 55%,transparent);z-index:2;text-align:left}
   .shot .cap2 b{color:#fff;font-size:22px;font-weight:800;display:block;line-height:1.15}
   .shot .cap2 span{color:var(--brand);font-size:13.5px}
@@ -134,6 +135,8 @@
       <img src="assets/mockup-caja.jpg" alt="">
     </div>
 
+    <p style="font-size:14px;color:var(--mute);margin-top:14px">Cada tótem se entrega con su <b style="color:var(--cream)">manual de preservación y uso</b> + un <b style="color:var(--cream)">video tutorial en YouTube</b>, para que el dueño del local lo ponga en marcha y lo cuide sin depender de nadie.</p>
+
     <div class="note">📌 <b>Estado:</b> diseño y prototipo listos para tu validación. Con tu OK pasamos a producción y lo dejamos funcionando.</div>
   </section>
 
@@ -151,6 +154,12 @@
       <div class="node"><div class="e">🔁</div><h4>Recompra</h4><p>Ruleta + descuento mensual + emails</p></div>
     </div>
     <p class="cap">Deja de ser un cartel lindo: se vuelve una máquina de datos y recompra.</p>
+
+    <div class="shot contain" style="margin-top:18px;min-height:380px">
+      <div class="ph">[ Pantalla: la ruleta del Club ]</div>
+      <img src="assets/mockup-ruleta.jpg" alt="">
+      <div class="cap2"><b>Girá y ganá 🎡</b><span>El juego que convierte una visita en un cliente registrado.</span></div>
+    </div>
   </section>
 
   <!-- 3. Roadmap -->
