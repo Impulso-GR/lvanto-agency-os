@@ -31,6 +31,13 @@
 - **El 3M es tu carta VERBAL, si hace falta:** "Roberto, veníamos en camino a los 3 y quedó esperando; por eso te lo planteo ya ordenado al nivel que el trabajo necesita." Eso justifica el salto sin sonar a reclamo.
 - Justificación = la lista de scope de la propuesta (todas las marcas, contenido diario x2, reels, campañas, YouTube, tráfico, soporte de tótems, GEO+SEO). Que el número se sienta chico al lado del valor.
 
+## El descuento es tu mejor carta de confianza
+
+- El proyecto figura con **subtotal USD 25.000 → bonificación cliente –15% → total USD 21.250.** El descuento está **a la vista a propósito.**
+- Frase: *"Roberto, lo cargué a precio de mercado pero te apliqué una bonificación por ser cliente hace más de un año y por el fee — quiero que el número sea justo para los dos, no vine a venderte humo."* Eso vale más que cualquier número: le muestra que lo cuidás.
+- Números auditados (mercado real): app de kiosko custom USD 10–75k, comunidad/loyalty USD 15–60k. Estás **por debajo del promedio** — defendible y honesto.
+- Si querés ser aún más generoso, se puede subir la bonificación a 20% (total USD 20.000) en 1 minuto. Vos decidís cuánto ceder.
+
 ## El Programa Totem es APARTE (Línea A)
 
 - Clave mental: **el totem NO sale del fee de marketing.** Es software + producto. Tiene desarrollo (por fases) + operación mensual (mantener 100 pantallas con contenido fresco, soporte, la comunidad, los emails).
