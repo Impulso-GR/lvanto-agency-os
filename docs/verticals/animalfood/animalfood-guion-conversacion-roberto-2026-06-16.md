@@ -24,11 +24,12 @@
 4. **El tema del pago, tranquilo y al pasar.** "Una cosa puntual: el mes pasado el fee llegó en 1.8 y veníamos en otra línea — lo quiero alinear con vos." Cortito, sin drama. Dejá que él responda. (Si fue error, se aclara solo; si fue recorte, sale a la luz sin pelea.)
 5. **El pedido, desde el valor.** "Me estoy formando todo el tiempo en IA y siento que puedo aportar muchísimo más desde mi lugar. Me gustaría pasar a ser su socio de IA y growth — no un proveedor más de tareas sueltas." Y ahí entregás la propuesta escrita.
 
-## Cómo plantear el fee (Línea B)
+## Cómo plantear el fee
 
 - **No digas "quiero que me paguen más".** Decí: **"el alcance creció mucho; quiero ordenar el fee para que acompañe lo que estamos entregando."**
-- Ancla: de ~1.8 actual → **3M ahora** (es a donde ya esperabas estar) → **camino a 4–5M** a medida que sumamos campañas, UGC y posicionamiento en IA (GEO). Progresivo: no es un salto, es una escalera.
-- Justificación = la lista de lo que YA hacés + lo nuevo. Que el número se sienta chico al lado del valor.
+- **En el documento NO figura el 3M a propósito.** Veníamos esperando el OK de ese paso; para no quedar otra vez esperando respuesta, la propuesta escrita salta directo al nivel real: **$4M ahora → $5M con la flota + el Club operando.** Profesional y decidido.
+- **El 3M es tu carta VERBAL, si hace falta:** "Roberto, veníamos en camino a los 3 y quedó esperando; por eso te lo planteo ya ordenado al nivel que el trabajo necesita." Eso justifica el salto sin sonar a reclamo.
+- Justificación = la lista de scope de la propuesta (todas las marcas, contenido diario x2, reels, campañas, YouTube, tráfico, soporte de tótems, GEO+SEO). Que el número se sienta chico al lado del valor.
 
 ## El Programa Totem es APARTE (Línea A)
 

@@ -74,6 +74,12 @@
   ul.why li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:800}
   ul.why b{color:#fff}
 
+  .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#241c12,#0d0b09);min-height:250px;display:flex;align-items:center;justify-content:center}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .shot .ph{color:var(--mute2);font-size:13px;letter-spacing:.04em;text-align:center;padding:24px}
+  .shot .cap2{position:absolute;left:0;right:0;bottom:0;padding:20px 24px;background:linear-gradient(to top,rgba(13,11,9,.94),rgba(13,11,9,.4) 55%,transparent);z-index:2;text-align:left}
+  .shot .cap2 b{color:#fff;font-size:22px;font-weight:800;display:block;line-height:1.15}
+  .shot .cap2 span{color:var(--brand);font-size:13.5px}
   .cta{background:linear-gradient(135deg,#241c10,#1a150d);border:1px solid rgba(255,210,26,.35);border-radius:16px;padding:28px 30px;text-align:center;margin:8px 0}
   .cta p{font-size:20px;font-weight:700;color:#fff;margin:0 0 6px}
   .cta .y{color:var(--brand)}
@@ -100,6 +106,13 @@
     </div>
   </header>
 
+  <!-- Hero visual: el tótem en una veterinaria real (aspiracional) -->
+  <div class="shot" style="min-height:380px;border-radius:0;border-left:0;border-right:0">
+    <div class="ph">[ Foto: el tótem en una veterinaria real ]</div>
+    <img src="assets/mockup-tienda.jpg" alt="">
+    <div class="cap2"><b>Tu Asistente, en cada local.</b><span>Imaginátelo recibiendo a cada cliente, 24/7.</span></div>
+  </div>
+
   <!-- 1. El Asistente -->
   <section class="pad">
     <h2><span class="n">1.</span> El Asistente Digital Inteligente</h2>
@@ -110,6 +123,11 @@
       <div class="win"><b>Recomendación segura</b>Asesora sin hacer promesas médicas y deriva al veterinario cuando corresponde. Cuida la marca.</div>
       <div class="win"><b>Pensado para 100 tótems</b>Se actualiza a distancia: cambiás contenido o promos en todos los locales sin tocar pantalla por pantalla.</div>
     </div>
+    <div class="shot" style="margin-top:14px;min-height:280px">
+      <div class="ph">[ Foto: render de la caja del tótem ]</div>
+      <img src="assets/mockup-caja.jpg" alt="">
+    </div>
+
     <div class="note">📌 <b>Estado:</b> diseño y prototipo listos para tu validación. Con tu OK pasamos a producción y lo dejamos funcionando.</div>
   </section>
 
@@ -182,8 +200,8 @@
         <li>Posicionamiento en IA (GEO) + SEO</li>
       </ul>
       <div class="price">
-        <div class="row"><span>Fee mensual — ahora<small>Acompaña el alcance ampliado de marketing y contenido</small></span><b>$ 3.000.000 /mes</b></div>
-        <div class="row"><span>Escalonado<small>A medida que los 100 tótems entran en operación y suma el Club</small></span><b>$ 4–5M /mes</b></div>
+        <div class="row"><span>Fee mensual — Partnership ampliado<small>Cubre todo el alcance de marketing y contenido detallado arriba</small></span><b>$ 4.000.000 /mes</b></div>
+        <div class="row"><span>Con la flota en operación + el Club<small>Soporte de los 100 tótems, comunidad y retención ya activos</small></span><b>$ 5.000.000 /mes</b></div>
       </div>
     </div>
 
