@@ -34,9 +34,9 @@
 ## Cómo plantear el fee
 
 - **No digas "quiero que me paguen más".** Decí: **"el alcance creció mucho; quiero ordenar el fee para que acompañe lo que estamos entregando."**
-- **En el documento NO figura el 3M a propósito.** Veníamos esperando el OK de ese paso; para no quedar otra vez esperando respuesta, la propuesta escrita salta directo al nivel real: **$4M ahora → $5M con la flota + el Club operando.** Profesional y decidido.
-- **El 3M es tu carta VERBAL, si hace falta:** "Roberto, veníamos en camino a los 3 y quedó esperando; por eso te lo planteo ya ordenado al nivel que el trabajo necesita." Eso justifica el salto sin sonar a reclamo.
-- Justificación = la lista de scope de la propuesta (todas las marcas, contenido diario x2, reels, campañas, YouTube, tráfico, soporte de tótems, GEO+SEO). Que el número se sienta chico al lado del valor.
+- **El fee es UN solo número: $5.000.000/mes, todo incluido** (marketing + contenido + campañas + retargeting + operación completa de los 100 tótems: soporte, actualizaciones, monitoreo, comunidad). No es un fee de redes — es marketing + tecnología + operación en uno.
+- **El 3M es tu carta VERBAL, si hace falta:** "Roberto, veníamos en camino a los 3 y quedó esperando; por eso te lo planteo ya ordenado al nivel que el sistema completo necesita." Justifica el número sin sonar a reclamo.
+- Justificación = la lista de scope de la propuesta. Que el número se sienta chico al lado de todo lo que cubre.
 
 ## El descuento es tu mejor carta de confianza
 
@@ -49,7 +49,8 @@
 
 - Clave mental: **el totem NO sale del fee de marketing.** Es software + producto. Tiene desarrollo (por fases) + operación mensual (mantener 100 pantallas con contenido fresco, soporte, la comunidad, los emails).
 - Si Roberto intenta meterlo en el fee: "Te lo separo a propósito, Roberto — así ves que el marketing sigue su curso y el totem se sostiene solo. Es lo más sano para los dos."
-- **El fee tiene dos capas, y la segunda es condicionada:** $4M ahora (marketing + crecimiento). El salto a **$5M se activa SOLO cuando los 100 tótems estén operativos + el Club andando + soporte real** — no antes. Esto te protege a vos (no cobrás operación que todavía no existe) y le da tranquilidad a él (paga el nivel alto cuando ya ve la máquina funcionando).
+- **Control de marca como argumento de cierre:** el sistema lo operás vos al 100%, con trabas para que solo se vea contenido del universo AnimalFood; el local puede subir un video propio pero pasa por tu aprobación manual. Eso le da a Roberto algo que ninguna pantalla enlatada le da: **control total de lo que se muestra en sus 100 locales.**
+- **Plazo concreto:** Fase 1 operativa en **40 días desde la aprobación.** Da seriedad y compromiso.
 
 ## Lo "a demanda" (Línea C) — frená la barra libre
 
