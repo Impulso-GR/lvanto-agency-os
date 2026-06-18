@@ -1,111 +1,132 @@
-# Asistente de WhatsApp AnimalFood — B2B (captación de comercios)
+# Asistente de WhatsApp AnimalFood — B2B + mini-CRM en Google Sheets
 
 > **Fecha:** 2026-06-18 · **Para:** Gonzalo (Lvanto)
-> **Objetivo:** captar leads **B2B** de las campañas de Meta Ads (zonas Buenos Aires provincia y Santiago del Estero): **veterinarias (prioritario), petshops y distribuidoras**. Atenderlos al instante, **calificar que sean comercios reales, frenar a los curiosos B2C**, mantenerlos calientes y **derivarlos al vendedor correcto por zona** (Santiago → equipo Santiago · Buenos Aires → Brayan).
-> **Importante:** este canal NO es para consumidores finales. El bot debe filtrar B2C antes de pasar el lead a un vendedor.
-> **Por qué ahora:** API oficial (sin riesgo de ban), task-specific (lo que Meta permite). Mensajería de leads que entran por anuncio = **gratis** (ventana 72 hs de Click-to-WhatsApp).
+> **Objetivo:** captar leads **B2B** de las campañas de Meta Ads (Buenos Aires provincia y Santiago del Estero): **veterinarias (prioritario), petshops y distribuidoras**. Atenderlos al instante, **filtrar a los curiosos B2C**, **registrarlos solos en un Google Sheet con estados**, mantenerlos calientes y **derivarlos al vendedor correcto por zona** (Santiago → equipo Santiago · Buenos Aires → Brayan).
+> **Club AnimalFood:** ⏸️ en pausa por ahora. El flujo queda **listo para enchufarlo** (cambio de 1 línea) cuando se active.
 
 ---
 
 ## 1. El problema que resuelve
 - Los leads B2B llegan calientes del anuncio, pero **los vendedores demoran 1 día o más** → se enfrían y se pierden.
-- Además, a un canal de comercios se cuelan **consumidores finales** ("quiero una bolsa para mi perro") que **hacen perder tiempo** a los vendedores.
-- **Solución:** el asistente responde **al instante**, **separa comercio de consumidor final**, califica al comercio, **lo captura en la base** (no se pierde aunque el vendedor tarde) y lo **rutea al vendedor correcto por zona**. Si el vendedor tarda, el bot **reactiva** al lead y le recuerda al vendedor.
+- Se cuelan **consumidores finales** que hacen perder tiempo a los vendedores.
+- Cargar los leads **a mano en un Sheet** es lento y se pierde el seguimiento.
+- **Solución:** el asistente responde **al instante**, **separa comercio de consumidor final**, califica, **escribe el lead solo en el Sheet con su estado**, lo **rutea al vendedor por zona** y lo **reactiva** si el vendedor tarda.
 
-## 2. Segmentos (orden de prioridad)
+## 2. Segmentos (prioridad)
 1. 🩺 **Veterinarias** — prescriptoras, recomiendan con autoridad. **El segmento más valioso.**
 2. 🛍️ **Petshops** — volumen y reposición.
 3. 📦 **Distribuidoras / mayoristas** — escala.
 4. 🚫 **Consumidor final (B2C)** → se frena/deriva, NO va a los vendedores.
 
-## 3. Arquitectura / stack (2 opciones)
-**Opción A — Plataforma gestionada (rápida) ✅ recomendada para arrancar**
-- Flujos + **bandeja de equipo** + **asignación por zona** (Respond.io / ManyChat / Wati / 360dialog). Trae listo el flujo, los botones, los asientos para Brayan y el equipo de Santiago y la asignación automática. ~USD 15–99/mes (lo paga AnimalFood).
-
-**Opción B — Low-cost (más setup)**
-- **Cloud API** + **n8n** (flujo) + **Chatwoot** (bandeja de equipo, gratis). ~USD 0–10/mes. Más control, más configuración.
-
-> En las dos, los mensajes de leads que entran por anuncio son **gratis** (ventana 72 hs).
+## 3. Arquitectura / stack
+- **WhatsApp:** API oficial (Cloud API) o un BSP (Respond.io / 360dialog / Wati).
+- **Automatización del flujo:** n8n (o el constructor del BSP).
+- **CRM:** **Google Sheets** (el bot escribe la fila; los vendedores actualizan el estado).
+- **Conexión bot → Sheet:** nodo de Google Sheets en n8n (o Make/Zapier, o la integración nativa de la plataforma).
+- Costo: leads de anuncios = **gratis** (ventana 72 hs). Plataforma ~USD 0–10/mes (Cloud API+n8n) o ~USD 15–99/mes (BSP). Lo paga AnimalFood.
 
 ## 4. Detección de zona (para el ruteo)
-1. **Automática por anuncio (ideal):** un ad set para Buenos Aires y otro para Santiago → el bot lee el dato del anuncio (referral) y **sabe la zona sin preguntar**.
+1. **Automática por anuncio (ideal):** un ad set para Buenos Aires y otro para Santiago → el bot lee el dato del anuncio (referral) y sabe la zona sin preguntar.
 2. **Fallback:** el bot pregunta la **localidad**.
 
 ## 5. El flujo conversacional (B2B)
 
-**0. Disparo:** anuncio B2B ("¿Tenés veterinaria, petshop o distribuidora? Sumá AnimalFood — mejores márgenes y reposición rápida") → click → WhatsApp.
+**0. Disparo:** anuncio B2B → click → WhatsApp.
 
-**1. Bienvenida + FILTRO B2B/B2C (primer mensaje, botones):**
+**1. Bienvenida + FILTRO B2B/B2C (botones):**
 > ¡Hola! 👋 Soy el asistente comercial de AnimalFood. Para orientarte bien: ¿nos escribís por tu **comercio** o **para tu mascota**?
 
-Botones: **[Tengo un comercio]** · **[Es para mi mascota]**
+**[Tengo un comercio]** · **[Es para mi mascota]**
 
-- ➡️ Si **"Es para mi mascota" (B2C)** → **se frena con buena onda, NO se rutea a vendedor:**
-  > ¡Genial que elijas AnimalFood! 🐾 Este canal es solo para comercios. Para tu mascota, conseguinos en los puntos de venta cerca tuyo 👉 {link/buscador de locales}. Y si querés descuentos todos los meses, sumate al **Club AnimalFood** 👉 {link}. ¡Gracias!
-  - (Opcional) se guarda en una **lista B2C aparte** (para el Club), sin molestar a los vendedores.
-- ➡️ Si **"Tengo un comercio"** → sigue la calificación B2B.
+- ➡️ **"Es para mi mascota" (B2C)** → se frena con buena onda, **NO va al vendedor**:
+  > ¡Genial que elijas AnimalFood! 🐾 Este canal es solo para comercios. Para tu mascota, conseguinos en los puntos de venta cerca tuyo 👉 {link/buscador de locales}. ¡Gracias!
+  - 🔒 *Club AnimalFood: en pausa. Acá se agrega el link de registro al Club apenas se active (cambio de 1 línea). Mientras, opcionalmente se guarda en una pestaña "B2C" del Sheet.*
+- ➡️ **"Tengo un comercio"** → sigue la calificación B2B.
 
 **2. Tipo de comercio (botones):** 🩺 Veterinaria · 🛍️ Petshop · 📦 Distribuidora/Mayorista · Otro
 
-**3. ¿Ya trabaja AnimalFood? (botones):** Ya la vendo (reposición) · Quiero sumarla (nuevo) — le da contexto al vendedor.
+**3. ¿Ya trabaja AnimalFood? (botones):** Ya la vendo (reposición) · Quiero sumarla (nuevo)
 
-**4. Datos del comercio:**
-- Nombre del comercio + **localidad** (sirve para el ruteo por zona) + nombre y cargo del contacto.
+**4. Datos del comercio:** nombre del comercio + **localidad** + nombre y cargo del contacto.
 
-**5. Interés (botones/texto):** ¿Qué buscás? Lista de precios mayorista · Líneas/productos · Condiciones para ser punto de venta.
+**5. Interés (botones):** Lista de precios mayorista · Líneas/productos · Condiciones para ser punto de venta.
+> *(El bot puede aclarar que hay un **mínimo de compra mayorista**; el número y la lista los pasa el vendedor.)*
 
-**6. Captura + derivación al vendedor correcto por zona:**
-- Guarda el lead B2B en la base: tipo de comercio, nombre, localidad/zona, contacto, ¿nuevo o reposición?, interés, teléfono, fecha.
-- Asigna la conversación + **notifica al vendedor correcto** con el resumen comercial.
+**6. Captura + Sheet + derivación:**
+- ✍️ **Escribe la fila en el Google Sheet** con **Estado: 🆕 Nuevo** y **Vendedor asignado** según la zona.
+- Notifica al vendedor correcto con el resumen.
 > ¡Listo, {nombre}! Te conecto con {Brayan / nuestro equipo en Santiago}, que te pasa la **lista mayorista** y las condiciones. Te escribe a la brevedad. 📋
 
 **7. Anti-enfriamiento (si el vendedor no respondió en X horas):**
-- Al lead (lo mantiene tibio):
-  > {nombre}, ¿seguís interesado en sumar AnimalFood a {comercio}? {Vendedor} ya tiene tus datos y te contacta a la brevedad. Cualquier cosa, escribime. 🐾
-- Al vendedor (recordatorio + escalamiento):
-  > ⏰ Lead B2B sin responder hace {X} hs — {tipo de comercio} "{nombre comercio}", {localidad}, {nuevo/reposición}. Contacto: {nombre} · {teléfono}.
+- Al lead: *{nombre}, ¿seguís interesado en sumar AnimalFood a {comercio}? {Vendedor} ya tiene tus datos y te contacta a la brevedad. 🐾*
+- Al vendedor: *⏰ Lead B2B sin responder hace {X} hs — {tipo} "{comercio}", {localidad}.*
 
-**8. Fuera de horario:** el bot igual califica y captura (no se pierde), y avisa que el equipo responde apenas abra.
+**8. Horario y fuera de hora:** atención **8 a 16 hs** (tentativo, a confirmar). Fuera de ese horario el bot igual califica y captura (no se pierde) y avisa que el equipo responde al abrir.
 
 ## 6. Lógica de ruteo
 ```
-si es B2C (consumidor final)      → frenar + derivar a puntos de venta / Club (NO a vendedores)
+si es B2C                         → frenar + derivar a puntos de venta (NO a vendedores)
 si zona = "Santiago del Estero"   → asignar a EQUIPO SANTIAGO (round-robin si son varios)
 si zona = "Buenos Aires"          → asignar a BRAYAN
 si no se detecta la zona          → preguntar la localidad
 ```
-- El vendedor responde desde la **misma línea de la marca** (bandeja de equipo) → el lead queda en una sola conversación con todo el contexto.
 
-## 7. El anuncio ya pre-filtra (adelanto del trafficker — paso 2)
-El mejor filtro empieza en el anuncio: creatividad y segmentación apuntadas a **dueños de veterinarias/petshops/distribuidoras** ("Sumá AnimalFood a tu comercio", "precios mayoristas", "margen", "reposición"). Eso reduce los clicks B2C antes de que lleguen al bot. → Esto lo armamos en el **paso 2 (trafficker)**.
+## 7. 🆕 Seguimiento en Google Sheets (mini-CRM)
+El bot **escribe cada lead como una fila**; vendedores y vos ven el embudo en vivo y actualizan el estado con desplegables.
 
-## 8. Lo que necesito de vos para terminar de configurarlo
-- [ ] **Números de WhatsApp** de Brayan (BA) y del/los vendedor(es) de Santiago (¿cuántos? ¿round-robin o uno fijo?).
-- [ ] **Horario de atención** de los vendedores (para el mensaje fuera de horario).
-- [ ] ¿Qué define un **lead B2B válido**? (¿piden CUIT / condición de IVA? ¿mínimo de compra? ¿requisitos para ser punto de venta?).
-- [ ] ¿Existe una **lista de precios mayorista** para enviar, o la pasa el vendedor?
-- [ ] ¿Qué hacemos con los **B2C**? (solo frenarlos, o también ofrecer el Club / guardarlos aparte).
-- [ ] ¿Hay un **número de WhatsApp Business de la marca** ya? ¿Verificación de Meta Business hecha?
-- [ ] **Cada cuánto** el bot reactiva el lead si el vendedor no responde (ej.: 2 hs y 24 hs).
+**Columnas:**
+| Col | Campo | Quién lo carga |
+|---|---|---|
+| A | Fecha/hora | bot (auto) |
+| B | **Estado** (desplegable) | vendedor |
+| C | **Zona** (desplegable: Bs As / Santiago) | bot |
+| D | **Vendedor** (desplegable: Brayan / Santiago-1 / …) | bot (por zona) |
+| E | **Tipo de comercio** (desplegable: Veterinaria / Petshop / Distribuidora / Otro) | bot |
+| F | Comercio (nombre) | bot |
+| G | Contacto (nombre) | bot |
+| H | WhatsApp (tel / link) | bot |
+| I | **¿Nuevo o reposición?** (desplegable) | bot |
+| J | Interés / nota | bot + vendedor |
+| K | **Origen** (desplegable: Anuncio BA / Anuncio Santiago / Orgánico) | bot |
+| L | Última actualización | vendedor |
+| M | Próximo seguimiento (fecha) | vendedor |
+| N | Días sin contactar (fórmula) | auto → se pinta en rojo si >1 día sin contactar |
 
-## 9. Pasos de implementación (orden)
-1. Número de WhatsApp Business de la marca + verificación Meta.
-2. Elegir stack (A o B) y conectar la API.
-3. Cargar el flujo B2B + el **filtro B2C** + botones + plantillas.
-4. Cargar la regla de ruteo por zona + alta de Brayan y equipo Santiago en la bandeja.
-5. Configurar el destino "WhatsApp" en los anuncios (un ad set por zona).
-6. **Probar de punta a punta** (anuncio → filtro → calificación → derivación → notificación → reactivación).
-7. Recién ahí: **paso 2 → trafficker** (campañas B2B) y prender.
+**Estados (desplegable B):** 🆕 Nuevo · 👤 Asignado · 💬 Contactado · 📋 Negociando · ✅ Ganado · ❌ Perdido · 🚫 No califica
 
-## 10. Costo (resumen)
-- **Captar leads de los anuncios:** prácticamente **gratis** (ventana 72 hs). Solo pagás la **pauta**.
-- **Plataforma:** ~USD 0–10/mes (B) o ~USD 15–99/mes (A).
-- **IA:** $0 (flujo por reglas).
-- **Tu parte:** cobrás **armado + operación** (fee / Línea C); plataforma y pauta las paga AnimalFood.
+**Cómo funciona:**
+- El bot agrega la fila al capturar (Estado = Nuevo, Vendedor por zona).
+- **Formato condicional:** cada Estado pinta la fila de un color → se ve el embudo de un vistazo.
+- **Columna N (días sin contactar):** marca en rojo los leads atascados en "Nuevo/Asignado" → conecta con el anti-enfriamiento (paso 7).
+- **Vistas filtradas:** una pestaña/filtro por vendedor (Brayan ve lo suyo, Santiago lo suyo) y un **tablero** con totales por estado y por zona.
+- (Opcional) pestaña **"B2C"** aparte donde caen los consumidores finales, sin mezclarse con el embudo B2B.
 
-## 11. Doble beneficio estratégico
-1. Cumplís algo concreto para AnimalFood **ahora** (goodwill mientras espera lo del tótem).
-2. Es tu **primer caso del servicio "Asistente de WhatsApp B2B"** → demo para vender a otros clientes (mayoristas, marcas con red de comercios).
+## 8. Config decidida / pendiente
+**Decidido (hoy):**
+- Horario **8–16 hs** (tentativo, a confirmar).
+- **Hay mínimo de compra** mayorista (número TBD; lo pasa el vendedor).
+- **La lista de precios la envía el vendedor** (no el bot).
+- **Club: sin opción por ahora**, dejar listo para activar.
 
----
-> **Próximo paso (cuando cerremos esto):** preparar el **trafficker** — campañas Meta Ads B2B, segmentación por rubro/zona, creatividades que pre-filtran B2C, y conexión Click-to-WhatsApp.
+**Falta para terminar:**
+- [ ] **Números de WhatsApp** de Brayan (BA) y del/los vendedor(es) de Santiago (¿cuántos? ¿round-robin?).
+- [ ] ¿Qué define un **lead B2B válido**? (¿piden CUIT / condición de IVA?).
+- [ ] **Cada cuánto** el bot reactiva el lead si no hay respuesta (ej.: a las 2 hs y a las 24 hs).
+- [ ] ¿Hay **número de WhatsApp Business de la marca** + verificación Meta?
+- [ ] ¿Quién más necesita acceso al Sheet además de los vendedores?
+
+## 9. Pasos de implementación
+1. Crear el **Google Sheet** con columnas, desplegables, formato condicional y vistas.
+2. Número de WhatsApp Business + verificación Meta.
+3. Conectar API (Cloud API+n8n o BSP) + cargar el flujo B2B + filtro B2C.
+4. Conectar el flujo al Sheet (append de fila + asignación por zona).
+5. Alta de Brayan y equipo Santiago (bandeja + acceso al Sheet).
+6. Probar de punta a punta (anuncio → filtro → calificación → fila en Sheet → notificación → reactivación).
+7. **Paso 2: trafficker** (campañas Meta Ads B2B) y prender.
+
+## 10. El anuncio pre-filtra (adelanto del paso 2)
+Creatividad/segmentación a **dueños de veterinarias/petshops/distribuidoras** ("sumá AnimalFood a tu comercio", "precios mayoristas", "margen", "reposición") → baja los clicks B2C antes del bot. Se arma en el **paso 2 (trafficker)**.
+
+## 11. Doble beneficio
+1. Cumplís algo concreto para AnimalFood **ahora** + le ordenás el seguimiento de leads (que hoy es manual).
+2. Es tu **primer caso del servicio "Asistente de WhatsApp B2B + CRM"** → demo para vender a otros.
