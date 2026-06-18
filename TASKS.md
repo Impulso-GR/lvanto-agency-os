@@ -1,6 +1,11 @@
 # Tareas activas — Lvanto Agency OS
 
-> Actualizado: 2026-06-16. Frente activo: **AnimalFood Advisor** (totem) + próxima fase **Club AnimalFood** + **propuesta comercial Próximo Nivel**.
+> Actualizado: 2026-06-18. **Frente activo: Asistente de WhatsApp B2B** (captación de comercios para campañas Meta Ads).
+> ⏸️ **TÓTEM EN PAUSA hasta nuevo aviso** (propuesta enviada a Roberto 17/06, esperando respuesta — no mezclar contexto). Todo el detalle del tótem quedó en `animalfood-contexto-handoff-2026-06-17.md`.
+
+## 🔥 Frente activo — Asistente de WhatsApp B2B
+- [ ] Sistema de captación por WhatsApp para campañas Meta Ads **B2B** (petshops/veterinarias/distribuidoras), zonas **Buenos Aires** y **Santiago del Estero**. Plan: `animalfood-whatsapp-asistente-plan-2026-06-18.md`. Debe **filtrar curiosos B2C** y **rutear por zona** (Santiago→equipo Santiago · BA→Brayan) + mantener leads calientes.
+- [ ] Próximo paso (después de cerrar el flujo): preparar el **trafficker** (campañas Meta Ads B2B) — también con Claude.
 
 ## 🔥 En curso
 
