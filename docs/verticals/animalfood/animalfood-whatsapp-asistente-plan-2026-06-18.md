@@ -116,7 +116,7 @@ El bot **escribe cada lead como una fila**; vendedores y vos ven el embudo en vi
 - [ ] ¿Quién más necesita acceso al Sheet además de los vendedores?
 
 ## 9. Pasos de implementación
-1. Crear el **Google Sheet** con columnas, desplegables, formato condicional y vistas.
+1. Crear el **Google Sheet** con columnas, desplegables, formato condicional y vistas. ✅ **Listo el generador:** `scripts/crear-sheet-leads-b2b.gs` (se pega en Apps Script de una planilla nueva y se ejecuta). Faltan: cargar nombres reales de vendedores + correrlo.
 2. Número de WhatsApp Business + verificación Meta.
 3. Conectar API (Cloud API+n8n o BSP) + cargar el flujo B2B + filtro B2C.
 4. Conectar el flujo al Sheet (append de fila + asignación por zona).
